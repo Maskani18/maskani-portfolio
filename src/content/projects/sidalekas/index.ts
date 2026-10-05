@@ -9,7 +9,7 @@
 
 import type { Project } from "@/content/types";
 
-export const sidalekas = {
+export const sidalekas: Project = {
   slug: "sidalekas",
   index: "P-01",
   title: "SIDALEKAS",
@@ -47,4 +47,4 @@ export const sidalekas = {
   },
   // Slot media menyusul (PF-07). Tidak dirender sampai ada berkasnya.
   assets: [],
-} as const satisfies Project;
+};

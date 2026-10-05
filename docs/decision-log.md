@@ -188,3 +188,32 @@ menetapkan default ini.
 **Dampak.** P1 dapat dimulai. Perubahan di masa depan = entri DL baru.
 
 **Status.** Disetujui (default kerja).
+
+## DL-012 · 2026-10-06 · P3 baseline update
+
+**Keputusan.** Baseline performa diukur ulang setelah P3. JS rute awal naik dari
+136,1 KB → 182,2 KB gzip (+46,1 KB); CSS 5,0 KB → 6,9 KB.
+
+**Sumber kenaikan (estimasi).**
+
+- `next/og` (OG image) — kemungkinan sebagian ikut di shared chunk.
+- `next/image` runtime (Projects poster + MediaFrame).
+- `ReportStepper.client` (IntersectionObserver).
+- Rute `/projects/[slug]` + halaman `/`.
+
+**Status terhadap anggaran.** Anggaran §13 Final Spec: JS rute awal ≈150 KB gzip.
+Baseline sekarang **32 KB di atas anggaran**. Margin anggaran habis.
+
+**Keputusan sementara.** Tidak ada optimasi agresif di P3. Angka dicatat dan
+dibawa ke R4 (P9 Performance). Prioritas: pastikan kenaikan tidak berasal dari
+kode yang tidak perlu di rute awal. `next/og` seharusnya hanya server-side.
+
+**Tindak lanjut wajib.**
+
+- R4-04 P9: profiling per-rute. Target: JS rute awal kembali ≤150 KB, atau
+  perbarui anggaran dengan entri DL baru yang disetujui.
+- Sebelum G-R1: konfirmasi bahwa GSAP (belum aktif) tidak akan menaikkan angka
+  baseline ini saat masuk di R2.
+
+**Dampak.** Setiap rilis berikutnya diukur ulang terhadap baseline ini.
+Kenaikan >5 KB harus punya alasan eksplisit.
