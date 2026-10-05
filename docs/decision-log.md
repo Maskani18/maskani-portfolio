@@ -161,3 +161,30 @@ kosong, mismatch Node version).
 **Dampak.** CI hijau tiga job. Lokal bisa Node 20.19; tidak dipaksa.
 
 **Status.** Disetujui.
+## DL-010 · 2026-10-05 · PF-02 exception
+
+**Keputusan.** PF-02 (perbaiki typo CV) ditunda ke G-R1, tidak memblokir G-0.
+
+**Alasan.** Typo yang dimaksud ("Okobert 2025", "Juil 2024", spasi "PHP, Trello"
+dan "DNS") hanya ada di berkas CV sumber. Konten di `src/content/*.ts`
+ditranskrip ulang dan sudah bersih (guard CG-01…CG-14 hijau). PF-02 menjadi
+wajib sebelum PDF CV diekspor dan diunggah (PF-03), yang menandai G-R1.
+
+**Dampak.** G-0 lulus dengan catatan. Rilis R1 terblokir sampai PF-02 dan
+PF-03 selesai.
+
+**Kadaluarsa.** Gerbang G-R1.
+
+**Status.** Disetujui (default kerja, dapat diubah lewat F-14).
+## DL-011 · 2026-10-05 · PF-13 default
+
+**Keputusan.** BR-01…BR-18 (interpretasi Build Reference §4.3) berlaku sebagai
+default kerja. Pemilik dapat mengajukan perubahan kapan saja lewat F-14.
+
+**Alasan.** PF-13 tercatat "Terbuka" di §4.1 Build Reference, dengan catatan
+"default kerja berlaku sampai ada tanggapan". P1 tidak dapat dimulai tanpa
+menetapkan default ini.
+
+**Dampak.** P1 dapat dimulai. Perubahan di masa depan = entri DL baru.
+
+**Status.** Disetujui (default kerja).
