@@ -1,11 +1,9 @@
 // MASKANI — Data skills (§2.4).
-//
-// Lima kategori, urutan tetap. MikroTik tepat sekali (Networking, CG-11).
-// Tanpa "Soft Skills", tanpa persentase. `evidence` = baris bukti mono.
+// Lima kategori, urutan tetap. MikroTik tepat sekali (CG-11).
 
 import type { SkillGroup } from "./types";
 
-export const skills = [
+export const skills: readonly SkillGroup[] = [
   {
     label: "IT Support",
     items: [
@@ -56,4 +54,4 @@ export const skills = [
     ],
     evidence: "",
   },
-] as const satisfies readonly SkillGroup[];
+];

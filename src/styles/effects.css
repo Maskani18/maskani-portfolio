@@ -1,0 +1,31 @@
+/* MASKANI — Atmosphere (§5.6, BR-10).
+ *
+ * Statis: grain, vinyet. CSS murni, tidak beranimasi.
+ * Grid hairline per-section, bukan global.
+ * Semua dekoratif: aria-hidden + pointer-events: none.
+ * Layer mengikuti §4.5.
+ */
+
+@layer components {
+  .atmosphere-grain {
+    position: fixed;
+    inset: 0;
+    z-index: var(--layer-grain);
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='128' height='128' filter='url(%23n)' opacity='0.55'/></svg>");
+    background-size: 128px 128px;
+    opacity: var(--grain-opacity);
+  }
+
+  .atmosphere-vignette {
+    position: fixed;
+    inset: 0;
+    z-index: var(--layer-void);
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 40%,
+      transparent 35%,
+      rgba(0, 0, 0, var(--vignette-opacity)) 100%
+    );
+  }
+}

@@ -1,7 +1,7 @@
-/* MASKANI — Entry CSS. Urutan penting: Tailwind dulu, lalu token,
- * lalu base, lalu tier. Tidak ada aturan lain di file ini. */
+/* MASKANI — Entry CSS. Urutan penting. */
 
 @import "tailwindcss";
 @import "../styles/tokens.css";
 @import "../styles/base.css";
+@import "../styles/effects.css";
 @import "../styles/tiers.css";

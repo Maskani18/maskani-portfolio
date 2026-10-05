@@ -14,7 +14,12 @@ import { test } from "@playwright/test";
 
 test("ukur total byte font yang terunduh pada initial load", async ({
   page,
-}) => {
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== "chromium-cinematic",
+    "Ukur sekali saja.",
+  );
+
   const fontResponses: { url: string; bytes: number }[] = [];
 
   page.on("response", async (res) => {

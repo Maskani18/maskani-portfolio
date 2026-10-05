@@ -37,15 +37,14 @@ export type EmailParts = {
 
 export type Profile = {
   readonly name: string;
-  // Tiga bidang sesuai urutan CV: IT Support · QA · Frontend.
   readonly fields: readonly [string, string, string];
   readonly location: string;
+  readonly locationShort: string;
   readonly status: "Open to work";
   readonly emailParts: EmailParts;
   readonly linkedin: string;
-  // GitHub disembunyikan sampai URL ada (PF-06); tidak dirender bila kosong.
   readonly github?: string;
-  readonly cvPath: string; // mis. "/cv/Maskani-CV.pdf"
+  readonly cvPath: string;
 };
 
 // ---------------- Experience (§2.2) ----------------

@@ -1,42 +1,46 @@
-// MASKANI — Validasi kontras token.
+// MASKANI — Audit aksesibilitas berbasis axe-core (§10.3, G-1).
 //
-// Sebab: P0-03 / G-0 #3 mewajibkan kontras divalidasi dengan alat, bukan
-// hanya dihitung manual. axe-core mengevaluasi setiap elemen yang dirender.
-// Tujuan: memastikan setiap kombinasi warna token di halaman kosong ini
-// memenuhi WCAG 2.2 AA (teks >= 4.5:1, non-teks penting >= 3:1).
-// Perilaku: satu spec yang membuka /, menjalankan axe-core dengan tag
-// wcag2aa + wcag21aa + wcag22aa, dan menggagalkan tes bila ada violation
-// dengan id `color-contrast`.
-//
-// Catatan: pada tahap P0 halaman masih template Next.js; tes ini akan
-// memberi tahu apakah template melanggar. Saat P1 kita mengganti markup,
-// tes ini otomatis memvalidasi token MASKANI yang sebenarnya.
+// Sebelumnya hanya `color-contrast`; sekarang menjalankan seluruh tag
+// WCAG 2.0/2.1/2.2 AA. Dijalankan pada keadaan istirahat dan (di project
+// Lite) dengan dialog Index terbuka.
 
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("tidak ada pelanggaran kontras pada halaman kosong", async ({ page }) => {
+const TAGS = ["wcag2aa", "wcag21aa", "wcag22aa"];
+
+test("axe: tidak ada pelanggaran pada keadaan istirahat", async ({ page }) => {
   await page.goto("/");
   await page.waitForLoadState("networkidle");
 
-  const results = await new AxeBuilder({ page })
-    .withTags(["wcag2aa", "wcag21aa", "wcag22aa"])
-    .withRules(["color-contrast"])
-    .analyze();
+  const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
 
-  // Cetak ringkas ke log agar mudah dibaca bila gagal.
   if (results.violations.length > 0) {
-    console.log(
-      `[contrast] ${results.violations.length} pelanggaran ditemukan:`,
-    );
+    console.log(`[axe] ${results.violations.length} pelanggaran:`);
     for (const v of results.violations) {
       console.log(`- ${v.id}: ${v.help}`);
       for (const n of v.nodes) {
         console.log(`  · ${n.target.join(" > ")}`);
-        console.log(`    ${n.failureSummary ?? ""}`);
       }
     }
   }
 
+  expect(results.violations).toEqual([]);
+});
+
+test("axe: tidak ada pelanggaran dengan dialog Index terbuka", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(!isMobile, "Hanya relevan di project Lite (mobile).");
+
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+
+  // Buka dialog Index.
+  await page.getByRole("button", { name: /index/i }).first().click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+
+  const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   expect(results.violations).toEqual([]);
 });

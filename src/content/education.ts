@@ -1,10 +1,9 @@
 // MASKANI — Data pendidikan, sertifikasi, organisasi (§2.3).
-//
 // RH124 ditulis persis "Certificate of Attendance" (CG-14).
 
 import type { EducationBlock } from "./types";
 
-export const education = {
+export const education: EducationBlock = {
   degree: "D4 Software Engineering (Rekayasa Perangkat Lunak)",
   school: "Politeknik Negeri Indramayu",
   period: "2022 – 2026",
@@ -32,4 +31,4 @@ export const education = {
     description:
       "Led two subdivisions (Study Club, Competition), 13 members, 5 work programs.",
   },
-} as const satisfies EducationBlock;
+};

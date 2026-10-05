@@ -15,7 +15,12 @@ type Entry = {
   kind: "js" | "css" | "font" | "other";
 };
 
-test("ukur baseline JS + request pada shell", async ({ page }) => {
+test("ukur baseline JS + request pada shell", async ({ page }, testInfo) => {
+  test.skip(
+    testInfo.project.name !== "chromium-cinematic",
+    "Ukur sekali saja.",
+  );
+
   const entries: Entry[] = [];
   const requests: string[] = [];
 

@@ -1,13 +1,9 @@
 // MASKANI — Data pengalaman (§2.2).
-//
-// Terurut terbaru dulu (CG-10). Ringkasan satu baris persis C-09..C-11.
-// `details` (3–4 poin per peran, PF-05) belum diisi; field absen sampai
-// pemilik menyetujui terjemahan EN dari CV versi Indonesia. P1-07 akan
-// merender tombol "Details" hanya bila field ada.
+// Terurut terbaru dulu (CG-10). `details` opsional (PF-05 pending).
 
 import type { ExperienceItem } from "./types";
 
-export const experience = [
+export const experience: readonly ExperienceItem[] = [
   {
     role: "Frontend Developer Intern",
     org: "Diskominfo Kabupaten Indramayu",
@@ -29,4 +25,4 @@ export const experience = [
     summary:
       "Troubleshot hardware and software, configured Windows, printers and MikroTik-based networks, and maintained computers and CCTV.",
   },
-] as const satisfies readonly ExperienceItem[];
+];

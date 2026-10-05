@@ -6,7 +6,7 @@
 // di nav/Trace. Komponen (SiteNav, Trace, SectionShell) membaca dari sini.
 // Perilaku: array statis, `as const`. Tidak ada impor UI.
 
-import type { SectionEntry } from "./types";
+import type { SectionEntry, SectionId } from "./types";
 
 export const sections = [
   { id: "hero", number: "01", label: "Hero", inNav: false, inTrace: true },
@@ -44,3 +44,10 @@ export const sections = [
 ] as const satisfies readonly SectionEntry[];
 
 export type SectionsManifest = typeof sections;
+export function getSection(id: SectionId): SectionEntry {
+  const found = sections.find((s) => s.id === id);
+  if (!found) {
+    throw new Error(`Section "${id}" not found in manifest`);
+  }
+  return found;
+}
