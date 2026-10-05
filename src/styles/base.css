@@ -1,0 +1,152 @@
+/* MASKANI — Base layer.
+ *
+ * Sebab: P0-03 mewajibkan gaya dasar (fokus, seleksi, scroll padding,
+ * forced-colors) disiapkan di Foundation sebelum komponen.
+ * Tujuan: satu tempat untuk aturan global yang berlaku lintas tier.
+ * Perilaku: seluruh isi dibungkus `@layer base` supaya Tailwind v4
+ * utilities (di `@layer utilities`) menang saat dipakai di komponen.
+ * Tanpa pembungkusan ini, aturan unlayered menang atas utilities dan
+ * override token di komponen tidak akan berfungsi (temuan tes kontras).
+ * Tidak ada `opacity: 0` di file ini (F-20).
+ */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: var(--color-void);
+    color: var(--color-text-1);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* A-03: offset anchor = tinggi nav + 16px. */
+    scroll-padding-top: calc(var(--nav-height) + var(--nav-offset));
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-text-1);
+    background-color: var(--color-void);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-text-1);
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  figure,
+  blockquote {
+    margin: 0;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  picture {
+    display: block;
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Fokus global — §4.6. */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Seleksi teks — §4.1 */
+  ::selection {
+    background-color: var(--color-accent-dim);
+    color: var(--color-text-1);
+  }
+
+  /* Jaring pengaman: bila atribut tier belum sempat diset. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* forced-colors — §4.1 */
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid CanvasText;
+      outline-offset: 3px;
+    }
+
+    hr,
+    [role="separator"] {
+      border-color: CanvasText;
+    }
+  }
+}

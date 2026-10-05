@@ -1,0 +1,20 @@
+/* MASKANI — Tier variants.
+ *
+ * Sebab: tier ditentukan input + preferensi, bukan lebar layar (§5.1).
+ * Tujuan: satu tempat untuk aturan kondisional tier.
+ * Perilaku: atribut data-tier di-set pada <html> oleh skrip inline kecil
+ * sebelum paint (U-09, P1-01). Tanpa JS tidak ada atribut dan tampilan akhir
+ * statis penuh — jadi markup server harus utuh tanpa bantuan tier.
+ *
+ * Isi detail menyusul saat fitur tier dibangun:
+ *   - P1-13: primitive `reveal` dan tier store.
+ *   - R2: Trace, mask-text, Lenis.
+ *   - R3: Cursor, Magnetic, Lamp, Aperture.
+ *
+ * Untuk saat ini file ini hanya mengunci kontrak: tidak ada aturan yang
+ * boleh tersebar di luar tiga selektor di bawah.
+ */
+
+/* [data-tier="static"]    — GSAP tidak dimuat; komposisi akhir sejak awal. */
+/* [data-tier="lite"]      — touch/mobile; GSAP ringan; tanpa Lenis, Cursor. */
+/* [data-tier="cinematic"] — pointer fine + hover; GSAP penuh. */

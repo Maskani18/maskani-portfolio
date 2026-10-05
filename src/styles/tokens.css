@@ -1,0 +1,149 @@
+/* MASKANI — Design tokens (satu sumber nilai).
+ *
+ * Sebab: P0-03 Build Reference mewajibkan token disiapkan sebelum komponen
+ * (F-04). Nilai diambil persis dari §4 dan §5.2 Final Specification.
+ * Tujuan: menghapus angka ajaib dari komponen; Tailwind v4 memakai blok
+ * @theme untuk men-generate utility (bg-void, text-d1, font-display, dst.).
+ * Perilaku: token warna/tipografi/radius/breakpoint terdaftar di @theme;
+ * token yang tidak butuh utility (layer, durasi, padding section) tetap
+ * sebagai CSS custom property di :root.
+ */
+
+@theme {
+  /* Warna (§4.1) */
+  --color-void: #0a0a0b;
+  --color-surface-1: #0f0f11;
+  --color-surface-2: #141417;
+  --color-surface-3: #1b1b20;
+
+  --color-text-1: #f4f4f5;
+  --color-text-2: #a1a1aa;
+  --color-text-3: #8a8a93;
+
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.16);
+
+  --color-accent: #8aa4ff;
+  --color-accent-hover: #a9bcff;
+  --color-accent-dim: rgba(138, 164, 255, 0.12);
+  --color-accent-glow: rgba(138, 164, 255, 0.28);
+  --color-on-accent: #0a0a0b;
+
+  /* Tipografi — keluarga (§4.2). Variabel --font-* diisi next/font di P0-04;
+     sampai itu, fallback sistem yang dipakai. */
+  --font-display:
+    var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-body:
+    var(--font-geist), "Geist", ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-mono:
+    var(--font-geist-mono), "Geist Mono", ui-monospace, "SFMono-Regular", Menlo,
+    monospace;
+
+  /* Tipografi — skala (§4.2). Sub-token --text-{n}--line-height dst. dibaca
+     Tailwind v4 untuk menghasilkan utilitas lengkap (size + LH + tracking + weight). */
+  --text-d1: clamp(3.5rem, 1.5rem + 9vw, 10rem);
+  --text-d1--line-height: 0.92;
+  --text-d1--letter-spacing: -0.04em;
+  --text-d1--font-weight: 600;
+
+  --text-d2: clamp(2.5rem, 1.25rem + 5vw, 6rem);
+  --text-d2--line-height: 1;
+  --text-d2--letter-spacing: -0.03em;
+  --text-d2--font-weight: 600;
+
+  --text-d3: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
+  --text-d3--line-height: 1.1;
+  --text-d3--letter-spacing: -0.02em;
+  --text-d3--font-weight: 600;
+
+  --text-lead: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  --text-lead--line-height: 1.45;
+  --text-lead--letter-spacing: -0.01em;
+  --text-lead--font-weight: 400;
+
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --text-body--line-height: 1.65;
+  --text-body--font-weight: 400;
+
+  --text-ui: 0.9375rem;
+  --text-ui--line-height: 1.4;
+  --text-ui--font-weight: 500;
+
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.3;
+  --text-meta--letter-spacing: 0.08em;
+  --text-meta--font-weight: 500;
+
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1;
+  --text-micro--letter-spacing: 0.1em;
+  --text-micro--font-weight: 500;
+
+  /* Radius (§4.4) */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Breakpoint (§4.3). Tailwind v4 memakai prefix --breakpoint-*.
+     Layout berubah terutama di 768 dan 1024. */
+  --breakpoint-sm: 30rem; /* 480 */
+  --breakpoint-md: 40rem; /* 640 */
+  --breakpoint-lg: 48rem; /* 768 */
+  --breakpoint-xl: 64rem; /* 1024 */
+  --breakpoint-2xl: 80rem; /* 1280 */
+  --breakpoint-3xl: 96rem; /* 1536 */
+}
+
+/* Token yang tidak butuh utility Tailwind. Nilainya tetap satu sumber. */
+:root {
+  /* Spasi non-Tailwind (basis 4px; skala Tailwind default sudah kompatibel).
+     Dipakai bila komponen butuh padding/gap yang tidak lazim dari skala Tailwind. */
+
+  /* Layout (§4.3) */
+  --section-pad: clamp(80px, 12vw, 160px);
+  --gutter: clamp(20px, 5vw, 72px);
+  --container-max: 1200px;
+  --site-max: 1440px;
+  --read-max: 62ch;
+  --nav-height: 4rem; /* tinggi nav desktop; disesuaikan di P1-04 */
+  --nav-offset: 16px; /* jarak tambahan untuk scroll-padding-top (A-03) */
+
+  /* Layer (§4.5) */
+  --layer-void: 0;
+  --layer-grid: 10;
+  --layer-ghost: 20;
+  --layer-light: 30;
+  --layer-trace: 40;
+  --layer-content: 50;
+  --layer-grain: 60;
+  --layer-ui: 70;
+  --layer-nav: 80;
+  --layer-skip: 90;
+
+  /* Gerak (§5.2) */
+  --dur-instant: 100ms;
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 560ms;
+  --dur-long: 900ms;
+  --dur-cine: 1400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Nilai gerak baku — dibaca JS sekali saat init (§5.2). */
+  --reveal-distance: 24px;
+  --reveal-distance-lite: 12px;
+  --stagger-max: 8;
+  --stagger-step: 60ms;
+
+  /* Efek atmosfer (§5.6; belum aktif sampai P1-12; nilai default di sini) */
+  --grain-opacity: 0.04;
+  --vignette-opacity: 0.45;
+  --nav-blur: 12px;
+  --nav-bg: rgba(10, 10, 11, 0.72);
+  --dialog-scrim: rgba(10, 10, 11, 0.86);
+
+  /* Warna latar & teks global, terhubung ke skema gelap. */
+  color-scheme: dark;
+}

@@ -1,0 +1,13 @@
+# MASKANI — Normalisasi line ending.
+# Repo menyimpan LF; checkout Windows boleh CRLF. Mencegah diff berisik
+# dan memastikan hasil CI identik dengan lokal.
+
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff2 binary
+*.pdf binary
