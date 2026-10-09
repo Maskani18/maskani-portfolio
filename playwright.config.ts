@@ -1,13 +1,7 @@
 // MASKANI — Playwright configuration.
 //
-// Tiga project mewakili tiga tier §5.1:
-//   chromium-cinematic — Desktop, dark mode (tier Cinematic).
-//   chromium-lite      — Mobile touch, no hover, no fine pointer (tier Lite).
-//   chromium-static    — Reduced motion (tier Static).
-//
-// `colorScheme: dark` di semua project karena situs dark-only (§4.1).
-// `exactOptionalPropertyTypes` aktif — properti opsional harus dihilangkan
-// via conditional spread, bukan diset `undefined`.
+// Chromium (Cinematic, Lite, Static) → semua spec.
+// WebKit (smoke) → hanya webkit-smoke.spec.ts (jalur kritis).
 
 import { defineConfig, devices } from "@playwright/test";
 
@@ -28,6 +22,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium-cinematic",
+      testIgnore: ["**/webkit-smoke.spec.ts"],
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: 1440, height: 900 },
@@ -36,6 +31,7 @@ export default defineConfig({
     },
     {
       name: "chromium-lite",
+      testIgnore: ["**/webkit-smoke.spec.ts"],
       use: {
         ...devices["Pixel 7"],
         colorScheme: "dark",
@@ -43,11 +39,21 @@ export default defineConfig({
     },
     {
       name: "chromium-static",
+      testIgnore: ["**/webkit-smoke.spec.ts"],
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: 1440, height: 900 },
         colorScheme: "dark",
         reducedMotion: "reduce",
+      },
+    },
+    {
+      name: "webkit-smoke",
+      testMatch: /webkit-smoke\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Safari"],
+        viewport: { width: 1440, height: 900 },
+        colorScheme: "dark",
       },
     },
   ],
