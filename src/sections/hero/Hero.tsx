@@ -23,7 +23,18 @@ export function Hero(): JSX.Element {
         {/* Baris atas: meta + chip status */}
         <div className="relative z-40 flex flex-col items-start justify-between gap-6 md:flex-row md:items-start">
           <div className="flex flex-col gap-1 font-mono text-meta uppercase text-text-3">
-            <span>{profile.fields.join(" · ")}</span>
+            <ul className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+              {profile.fields.map((f, i) => (
+                <li key={f} className="flex items-center gap-2">
+                  {i > 0 ? (
+                    <span aria-hidden="true" className="opacity-60">
+                      ·
+                    </span>
+                  ) : null}
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
             <span>{profile.locationShort}</span>
           </div>
 
@@ -37,7 +48,6 @@ export function Hero(): JSX.Element {
             </span>
           </div>
         </div>
-
         {/* Blok tengah: potret + judul tiga lapis */}
         <div className="flex flex-col gap-10 md:gap-14">
           <HeroPortrait
@@ -52,7 +62,7 @@ export function Hero(): JSX.Element {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Button href={profile.cvPath} variant="primary">
                 <Icon name="download" size={18} />
-                Download CV
+                Unduh CV
               </Button>
               <Button href="#projects" variant="secondary">
                 View Work

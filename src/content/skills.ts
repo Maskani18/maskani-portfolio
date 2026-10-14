@@ -1,5 +1,7 @@
-// MASKANI — Data skills (§2.4).
+// MASKANI — Data skills (§2.4, DL-016).
+//
 // Lima kategori, urutan tetap. MikroTik tepat sekali (CG-11).
+// Setiap item memiliki ikon monokrom (lihat SkillIcon.tsx).
 
 import type { SkillGroup } from "./types";
 
@@ -7,50 +9,56 @@ export const skills: readonly SkillGroup[] = [
   {
     label: "IT Support",
     items: [
-      "Hardware and Software Troubleshooting",
-      "Device Installation and Configuration",
-      "Hardware Maintenance",
-      "Technical Support",
+      { icon: "troubleshoot", label: "Troubleshooting Hardware & Software" },
+      { icon: "device-install", label: "Instalasi & Konfigurasi Perangkat" },
+      { icon: "maintenance", label: "Hardware Maintenance" },
+      { icon: "support", label: "Technical Support" },
     ],
     evidence: "PT Dirgantara Indonesia",
   },
   {
     label: "Networking",
     items: [
-      "Computer Networking",
-      "Basic Network Administration",
-      "MikroTik",
-      "Network Monitoring",
-      "Proxy",
-      "DNS",
+      { icon: "networking", label: "Computer Networking" },
+      { icon: "network-admin", label: "Basic Network Administration" },
+      { icon: "mikrotik", label: "MikroTik" },
+      { icon: "network-monitoring", label: "Network Monitoring" },
+      { icon: "proxy", label: "Proxy" },
+      { icon: "dns", label: "DNS" },
     ],
     evidence: "PT Dirgantara Indonesia · VSGA",
   },
   {
-    label: "QA and Testing",
+    label: "Software Quality Assurance",
     items: [
-      "Manual Testing",
-      "Functional Testing",
-      "User Acceptance Testing (UAT)",
-      "Test Case Design",
-      "Bug Reporting",
-      "Retesting",
-      "Test Documentation",
+      { icon: "manual-testing", label: "Manual Testing" },
+      { icon: "functional-testing", label: "Functional Testing" },
+      { icon: "uat", label: "User Acceptance Testing (UAT)" },
+      { icon: "test-case", label: "Test Case Design" },
+      { icon: "bug-report", label: "Bug Reporting" },
+      { icon: "retesting", label: "Retesting" },
+      { icon: "test-doc", label: "Test Documentation" },
     ],
     evidence: "PT Qtasnim Digital Teknologi",
   },
   {
-    label: "Frontend and Development",
-    items: ["React.js", "Tailwind CSS", "Laravel", "PHP", "REST API (Axios)"],
+    label: "Frontend & Development",
+    items: [
+      { icon: "react", label: "React.js" },
+      { icon: "tailwind", label: "Tailwind CSS" },
+      { icon: "laravel", label: "Laravel" },
+      { icon: "php", label: "PHP" },
+      { icon: "rest-api", label: "REST API (Axios)" },
+    ],
     evidence: "Diskominfo Indramayu",
   },
   {
-    label: "Tools and Documentation",
+    label: "Tools & Documentation",
     items: [
-      "Trello",
-      "Microsoft Excel",
-      "Microsoft Word",
-      "Technical Documentation",
+      { icon: "trello", label: "Trello" },
+      { icon: "excel", label: "Microsoft Excel" },
+      { icon: "word", label: "Microsoft Word" },
+      { icon: "documentation", label: "Technical Documentation" },
     ],
     evidence: "",
   },

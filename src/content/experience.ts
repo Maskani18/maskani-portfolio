@@ -1,5 +1,8 @@
-// MASKANI — Data pengalaman (§2.2).
-// Terurut terbaru dulu (CG-10). `details` opsional (PF-05 pending).
+// MASKANI — Data pengalaman (§2.2, DL-015).
+//
+// Terurut terbaru dulu (CG-10). Ringkasan satu baris diadaptasi dari
+// CV versi Indonesia. `details` (PF-05) belum diisi; field absen sampai
+// pemilik menyetujui poin-poin terjemahan.
 
 import type { ExperienceItem } from "./types";
 
@@ -7,22 +10,22 @@ export const experience: readonly ExperienceItem[] = [
   {
     role: "Frontend Developer Intern",
     org: "Diskominfo Kabupaten Indramayu",
-    period: { from: "Oct 2025", to: "Dec 2025" },
+    period: { from: "Okt 2025", to: "Des 2025" },
     summary:
-      "Built the SIDALEKAS interface with React.js and Tailwind CSS: CRUD, search, filters, form validation and REST API integration.",
+      "Mengembangkan antarmuka SIDALEKAS dengan React.js dan Tailwind CSS: CRUD, pencarian, filter, validasi form, dan integrasi REST API.",
   },
   {
     role: "QA Intern",
     org: "PT Qtasnim Digital Teknologi",
-    period: { from: "Jul 2025", to: "Oct 2025" },
+    period: { from: "Jul 2025", to: "Okt 2025" },
     summary:
-      "Ran manual and user acceptance tests, documented bugs, retested fixes and coordinated findings with developers.",
+      "Melakukan manual testing dan User Acceptance Testing (UAT), mendokumentasikan bug, retesting, serta berkoordinasi dengan tim developer.",
   },
   {
     role: "IT Support Intern",
     org: "PT Dirgantara Indonesia (Persero)",
-    period: { from: "Oct 2019", to: "Jan 2020" },
+    period: { from: "Okt 2019", to: "Jan 2020" },
     summary:
-      "Troubleshot hardware and software, configured Windows, printers and MikroTik-based networks, and maintained computers and CCTV.",
+      "Troubleshooting hardware dan software, konfigurasi Windows, printer, dan jaringan berbasis MikroTik, serta pemeliharaan komputer dan CCTV.",
   },
 ];

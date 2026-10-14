@@ -446,3 +446,41 @@ situs (K-08). CV publik di `public/cv/Maskani-CV.pdf` harus bebas nomor
 telepon.
 
 **Status.** DISETUJUI PEMILIK 15 OKTOBER 2026.
+
+---
+
+## DL-016 · 15 Oktober 2026 · Skills dengan ikon
+
+**Keputusan.** Setiap item Skills mendapat ikon monokrom 32px, label mono
+12px di bawahnya, dalam grid responsif (4 kolom desktop, 3 tablet,
+2 mobile).
+
+**Menggantikan / menyimpang dari:**
+
+- **Anti-Direction #5** (`tanpa awan logo`) — dikecualikan: ikon brand
+  monokrom diizinkan di Skills.
+- **Spec v2 §2.4** (`item sebagai daftar teks biasa, bukan chip hover`) —
+  dikecualikan: item tampil sebagai kartu ikon + label, bukan daftar teks.
+- **Spec v2 §4.6** (`ikon buatan sendiri`) — diperluas: ikon skill
+  mencakup representasi minimalis dari brand/language (React, Tailwind,
+  Laravel, PHP, MikroTik, Trello, Excel, Word) + ikon custom untuk skill
+  konseptual.
+
+**Alasan.** Keputusan pemilik 15 Oktober 2026 — Skills perlu lebih visual
+dan modern.
+
+**Aturan yang tetap berlaku.**
+
+- Ikon **monokrom** (`currentColor`), bukan warna brand asli.
+- **Ukuran** 32px (28px di mobile).
+- **Grid** 4/3/2 kolom.
+- **Bahasa visual** konsisten dengan `Icon.tsx`: stroke 1.5px untuk custom,
+  path sederhana untuk brand.
+- **Tidak ada awan logo berwarna** — larangan itu tetap berlaku.
+
+**Dampak.** `SkillGroup.items` berubah dari `string[]` menjadi
+`readonly SkillItem[]` di `src/content/types.ts`; `skills.ts` disesuaikan;
+komponen `SkillIcon` baru di `src/components/ui/`; layout `Skills.tsx`
+dirombak.
+
+**Status.** DISETUJUI PEMILIK 15 OKTOBER 2026.

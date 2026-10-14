@@ -1,11 +1,10 @@
 "use client";
 
-// MASKANI — Copy Email + Open Email (§7.2, §7.3, A-07).
+// MASKANI — Copy Email + Open Email (§7.2, §7.3, A-07, DL-015).
 //
 // Email TIDAK ADA di HTML server (K-18). Dirakit di client setelah hydration.
 // Hydration flag pakai useSyncExternalStore (SSR: false, client: true) agar
 // tidak ada hydration mismatch DAN tidak ada setState di dalam effect.
-// Clipboard API → state success/failure. Timer 2400ms, satu timer aktif.
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
@@ -18,8 +17,6 @@ type State = "idle" | "success" | "failure";
 
 const RESET_MS = 2400;
 
-// Flag hydration: false saat SSR, true setelah client mount.
-// Tidak pernah memicu re-render loop.
 function subscribeNoop(): () => void {
   return () => {};
 }
@@ -71,12 +68,14 @@ export function ContactActions() {
     }
     if (ok) {
       setState("success");
-      setAnnounce("Email copied to clipboard.");
+      setAnnounce("Email berhasil disalin ke clipboard.");
       resetTimer();
       return;
     }
     setState("failure");
-    setAnnounce("Couldn't copy. Use Open email or select the address below.");
+    setAnnounce(
+      "Gagal menyalin. Gunakan Buka email atau salin alamat di bawah.",
+    );
     resetTimer();
   }
 
@@ -87,12 +86,12 @@ export function ContactActions() {
           {state === "success" ? (
             <>
               <Icon name="check" size={18} />
-              Email copied
+              Email tersalin
             </>
           ) : (
             <>
               <Icon name="copy" size={18} />
-              Copy email
+              Salin email
             </>
           )}
         </Button>
@@ -100,7 +99,7 @@ export function ContactActions() {
         {mailto ? (
           <Button href={mailto} variant="secondary">
             <Icon name="mail" size={18} />
-            Open email
+            Buka email
           </Button>
         ) : (
           <span
@@ -108,14 +107,14 @@ export function ContactActions() {
             className="inline-flex min-h-12 items-center gap-2 rounded-md border border-hairline-strong px-5 text-ui font-medium text-text-2"
           >
             <Icon name="mail" size={18} />
-            Open email
+            Buka email
           </span>
         )}
       </div>
 
       {state === "failure" && email ? (
         <p className="max-w-[62ch] text-body text-text-2">
-          {announce} You can select the address below:
+          {announce} Anda dapat menyalin alamat di bawah:
           <br />
           <span className="mt-2 inline-block font-mono text-meta uppercase text-text-1 select-all">
             {email}

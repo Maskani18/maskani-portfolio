@@ -12,7 +12,7 @@ export function SkipLink() {
       href="#main"
       className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:rounded-sm focus:border focus:border-[var(--color-accent)] focus:bg-[var(--color-void)] focus:px-4 focus:py-2 focus:text-[0.9375rem] focus:text-[var(--color-text-1)]"
     >
-      Skip to content
+      Lompat ke konten
     </a>
   );
 }

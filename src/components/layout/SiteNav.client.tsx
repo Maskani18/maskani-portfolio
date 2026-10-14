@@ -1,6 +1,6 @@
 "use client";
 
-// MASKANI — SiteNav + IndexDialog (§3.2, A-03, A-04).
+// MASKANI — SiteNav + IndexDialog (§3.2, A-03, A-04, DL-015).
 //
 // Client karena: scroll handler, fokus judul section, state dialog native.
 // Dialog memakai <dialog> native: Escape, focus trap, focus return
@@ -19,7 +19,6 @@ const navItems = sections.filter((s) => s.inNav);
 export function SiteNav() {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  // Backdrop click → close. Native menangani Escape & focus return.
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -35,8 +34,6 @@ export function SiteNav() {
     };
   }, []);
 
-  // A-03: scroll + pindah fokus ke judul section (tabindex=-1).
-  // scroll-mt pada SectionShell menghormati offset nav.
   function handleNavClick(
     e: React.MouseEvent<HTMLAnchorElement>,
     id: string,
@@ -56,7 +53,7 @@ export function SiteNav() {
   return (
     <>
       <nav
-        aria-label="Primary"
+        aria-label="Navigasi utama"
         className="mx-auto flex h-[var(--nav-height)] w-full max-w-[var(--container-max)] items-center justify-between px-[var(--gutter)]"
       >
         <Link
@@ -81,7 +78,7 @@ export function SiteNav() {
           ))}
           <li>
             <Button href={profile.cvPath} variant="secondary">
-              Download CV
+              Unduh CV
             </Button>
           </li>
         </ul>
@@ -94,14 +91,14 @@ export function SiteNav() {
           className="inline-flex items-center gap-2 text-text-1 lg:hidden"
         >
           <Icon name="index" size={20} />
-          <span className="font-mono text-meta uppercase">Index</span>
+          <span className="font-mono text-meta uppercase">Indeks</span>
         </button>
       </nav>
 
       {/* Dialog Index mobile (A-04) */}
       <dialog
         ref={dialogRef}
-        aria-label="Site index"
+        aria-label="Indeks situs"
         className="fixed inset-0 m-0 h-full max-h-full w-full max-w-full bg-void p-0 text-text-1 backdrop:bg-[var(--dialog-scrim)]"
       >
         <div className="flex h-full flex-col">
@@ -112,16 +109,16 @@ export function SiteNav() {
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
-              aria-label="Close index"
+              aria-label="Tutup indeks"
               className="inline-flex items-center gap-2 text-text-1"
             >
               <Icon name="close" size={20} />
-              <span className="font-mono text-meta uppercase">Close</span>
+              <span className="font-mono text-meta uppercase">Tutup</span>
             </button>
           </div>
 
           <nav
-            aria-label="Sections"
+            aria-label="Bagian"
             className="flex-1 overflow-y-auto px-[var(--gutter)] py-10"
           >
             <ol className="flex flex-col gap-6">
@@ -150,7 +147,7 @@ export function SiteNav() {
             <div className="mt-12 flex flex-col gap-3">
               <Button href={profile.cvPath} variant="primary">
                 <Icon name="download" size={18} />
-                Download CV
+                Unduh CV
               </Button>
               <Button href={profile.linkedin} variant="secondary" external>
                 LinkedIn

@@ -48,7 +48,7 @@ export default function OG(): ImageResponse {
           MASKANI
         </div>
         <div style={{ fontSize: 40, color: "#a1a1aa" }}>
-          I find what breaks, and I make it work.
+          Kekuatan yang menenggelamkan, Keberanian yang Menyelamatkan
         </div>
       </div>
 

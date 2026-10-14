@@ -240,7 +240,9 @@ const read = (p) => readFile(p, "utf8");
 // ---------- CG-10: Experience order + Intern ----------
 {
   const src = strip(await read(join(CONTENT_DIR, "experience.ts")));
+  // Mendukung English + Indonesia (DL-015).
   const MONTHS = {
+    // English
     Jan: 1,
     Feb: 2,
     Mar: 3,
@@ -253,10 +255,41 @@ const read = (p) => readFile(p, "utf8");
     Oct: 10,
     Nov: 11,
     Dec: 12,
+    // Indonesia (penuh)
+    Januari: 1,
+    Februari: 2,
+    Maret: 3,
+    April: 4,
+    Mei: 5,
+    Juni: 6,
+    Juli: 7,
+    Agustus: 8,
+    September: 9,
+    Oktober: 10,
+    November: 11,
+    Desember: 12,
+    // Indonesia (singkatan)
+    Jan: 1,
+    Feb: 2,
+    Mar: 3,
+    Apr: 4,
+    Mei: 5,
+    Jun: 6,
+    Jul: 7,
+    Agu: 8,
+    Sep: 9,
+    Okt: 10,
+    Nov: 11,
+    Des: 12,
   };
   const froms = [...src.matchAll(/from:\s*"([A-Za-z]+)\s+(\d{4})"/g)].map(
     (m) => ({ mon: m[1], year: Number(m[2]) }),
   );
+  for (const { mon } of froms) {
+    if (!(mon in MONTHS)) {
+      fail("CG-10", `bulan tidak dikenal: "${mon}"`);
+    }
+  }
   const stamps = froms.map(({ mon, year }) => year * 12 + (MONTHS[mon] ?? 0));
   for (let i = 1; i < stamps.length; i++) {
     if (stamps[i] > stamps[i - 1]) {

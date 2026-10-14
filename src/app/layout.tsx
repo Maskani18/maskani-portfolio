@@ -34,7 +34,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Maskani — IT Support, QA & Frontend Developer",
   description:
-    "Software Engineering graduate with hands-on experience in IT support and software QA. I also build frontend interfaces with React and Tailwind CSS.",
+    "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support, Software Quality Assurance, dan Frontend Development.",
   metadataBase: new URL("https://maskani-portfolio.vercel.app"),
 };
 

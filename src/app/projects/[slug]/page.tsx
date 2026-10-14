@@ -14,13 +14,13 @@ import type { ProjectStepKey } from "@/content/types";
 type Params = { slug: string };
 
 const STEP_LABEL: Record<ProjectStepKey, string> = {
-  context: "Context",
-  problem: "Problem",
-  role: "Role",
-  approach: "Approach",
-  implementation: "Implementation",
-  verification: "Verification",
-  result: "Result",
+  context: "Konteks",
+  problem: "Masalah",
+  role: "Peran",
+  approach: "Pendekatan",
+  implementation: "Implementasi",
+  verification: "Verifikasi",
+  result: "Hasil",
   stack: "Stack",
 };
 
@@ -37,7 +37,7 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Case Report`,
+    title: `${project.title} — Laporan`,
     description: project.context.short,
     alternates: { canonical: `/projects/${project.slug}` },
   };
@@ -61,7 +61,7 @@ export default async function ProjectReportPage({
           href="/#projects"
           className="font-mono text-meta uppercase text-text-3 transition-colors duration-[var(--dur-fast)] hover:text-accent"
         >
-          ← Back to Projects
+          ← Kembali ke Projects
         </Link>
 
         <header className="mt-12 border-b border-hairline pb-10">

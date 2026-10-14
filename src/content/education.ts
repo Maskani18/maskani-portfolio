@@ -1,10 +1,12 @@
-// MASKANI — Data pendidikan, sertifikasi, organisasi (§2.3).
-// RH124 ditulis persis "Certificate of Attendance" (CG-14).
+// MASKANI — Data pendidikan, sertifikasi, organisasi (§2.3, DL-015).
+//
+// RH124 ditulis persis "Certificate of Attendance" (CG-14) — tidak
+// diterjemahkan.
 
 import type { EducationBlock } from "./types";
 
 export const education: EducationBlock = {
-  degree: "D4 Software Engineering (Rekayasa Perangkat Lunak)",
+  degree: "D4 Rekayasa Perangkat Lunak",
   school: "Politeknik Negeri Indramayu",
   period: "2022 – 2026",
   gpa: "3.55/4.00",
@@ -12,7 +14,7 @@ export const education: EducationBlock = {
     {
       name: "Red Hat System Administration I (RH124)",
       issuer: "Red Hat Training and Certification",
-      period: "May 2024",
+      period: "Mei 2024",
       note: "Certificate of Attendance",
     },
     {
@@ -21,14 +23,14 @@ export const education: EducationBlock = {
         "Vocational School Graduate Academy (VSGA), Digital Talent Scholarship 2023 (Kominfo)",
       period: "Jun – Jul 2023",
       description:
-        "Topology and addressing, wireless installation, switch configuration, routing. 90 hours.",
+        "Merancang topologi dan pengalamatan jaringan, instalasi nirkabel, konfigurasi switch, serta routing dalam satu dan antar autonomous system. 90 jam.",
     },
   ],
   organization: {
-    role: "Head of Research and Technology Division",
+    role: "Ketua Divisi Riset dan Teknologi",
     name: "Himpunan Mahasiswa Teknik Informatika",
     period: "Jul 2023 – Jul 2024",
     description:
-      "Led two subdivisions (Study Club, Competition), 13 members, 5 work programs.",
+      "Memimpin dua subdivisi (Study Club, Kompetisi), 13 anggota, dan 5 program kerja selama satu periode kepengurusan.",
   },
 };

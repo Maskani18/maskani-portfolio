@@ -16,7 +16,7 @@ export function Experience(): JSX.Element {
   return (
     <SectionShell entry={entry}>
       <Heading id="experience-heading" level={2} size="d2" className="mb-14">
-        Experience
+        Pengalaman
       </Heading>
 
       <ul className="flex flex-col">

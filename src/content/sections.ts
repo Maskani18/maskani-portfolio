@@ -10,11 +10,11 @@ import type { SectionEntry, SectionId } from "./types";
 
 export const sections = [
   { id: "hero", number: "01", label: "Hero", inNav: false, inTrace: true },
-  { id: "about", number: "02", label: "About", inNav: true, inTrace: true },
+  { id: "about", number: "02", label: "Tentang", inNav: true, inTrace: true },
   {
     id: "experience",
     number: "03",
-    label: "Experience",
+    label: "Pengalaman",
     inNav: true,
     inTrace: true,
   },
@@ -29,11 +29,11 @@ export const sections = [
   {
     id: "education",
     number: "06",
-    label: "Education",
+    label: "Pendidikan",
     inNav: true,
     inTrace: true,
   },
-  { id: "contact", number: "07", label: "Contact", inNav: true, inTrace: true },
+  { id: "contact", number: "07", label: "Kontak", inNav: true, inTrace: true },
   {
     id: "colophon",
     number: "08",
@@ -44,6 +44,7 @@ export const sections = [
 ] as const satisfies readonly SectionEntry[];
 
 export type SectionsManifest = typeof sections;
+
 export function getSection(id: SectionId): SectionEntry {
   const found = sections.find((s) => s.id === id);
   if (!found) {

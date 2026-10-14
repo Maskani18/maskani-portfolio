@@ -38,7 +38,10 @@ test("axe: tidak ada pelanggaran dengan dialog Index terbuka", async ({
 
   await page.goto("/");
   await page.waitForLoadState("networkidle");
-  await page.getByRole("button", { name: /index/i }).first().click();
+  await page
+    .getByRole("button", { name: /^indeks$/i })
+    .first()
+    .click();
   await expect(page.getByRole("dialog")).toBeVisible();
 
   const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();

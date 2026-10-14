@@ -1,8 +1,11 @@
-// MASKANI — Copy Contact (BR-C1, §7.1).
+// MASKANI — Copy Contact (DL-015).
+//
+// Lead satu kalimat (BR-C1 asli versi Indonesia).
+
 import type { Profile } from "./types";
 
 export const contact = {
-  lead: "Open to IT support, QA and frontend roles. Email is the fastest way to reach me.",
+  lead: "Terbuka untuk posisi IT Support, Software Quality Assurance, dan Frontend. Email adalah cara tercepat untuk menghubungi saya.",
 } as const;
 
 export type _ContactProfileRef = Profile;

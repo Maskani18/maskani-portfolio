@@ -71,9 +71,43 @@ export type ExperienceItem = {
 
 // ---------------- Skills (§2.4) ----------------
 
+// Ikon skill (DL-016). Nama ikon didefinisikan di SkillIcon.tsx.
+export type SkillIconName =
+  | "troubleshoot"
+  | "device-install"
+  | "maintenance"
+  | "support"
+  | "networking"
+  | "network-admin"
+  | "mikrotik"
+  | "network-monitoring"
+  | "proxy"
+  | "dns"
+  | "manual-testing"
+  | "functional-testing"
+  | "uat"
+  | "test-case"
+  | "bug-report"
+  | "retesting"
+  | "test-doc"
+  | "react"
+  | "tailwind"
+  | "laravel"
+  | "php"
+  | "rest-api"
+  | "trello"
+  | "excel"
+  | "word"
+  | "documentation";
+
+export type SkillItem = {
+  readonly icon: SkillIconName;
+  readonly label: string;
+};
+
 export type SkillGroup = {
   readonly label: string;
-  readonly items: readonly string[]; // daftar teks biasa, tanpa persentase
+  readonly items: readonly SkillItem[];
   // Baris bukti mono. String kosong = tidak ada baris bukti.
   readonly evidence: string;
 };

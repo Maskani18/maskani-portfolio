@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 test("skip link adalah fokus pertama", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("Tab");
-  const skip = page.getByRole("link", { name: "Skip to content" });
+  const skip = page.getByRole("link", { name: "Lompat ke konten" });
   await expect(skip).toBeFocused();
 });
 
@@ -24,11 +24,12 @@ test("nav desktop menggerakkan fokus ke heading section", async ({
 
 test("mobile: Index dialog navigasi ke section", async ({ page, isMobile }) => {
   test.skip(!isMobile, "Hanya relevan di project Lite.");
-  await page.goto("/");
-  await page
-    .getByRole("button", { name: /^index$/i })
-    .first()
-    .click();
+  await page.goto("/", { waitUntil: "networkidle" });
+
+  const trigger = page.locator('header button[aria-haspopup="dialog"]').first();
+  await expect(trigger).toBeVisible({ timeout: 10_000 });
+  await trigger.click();
+
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
   await dialog.locator('a[href="#about"]').first().click();
@@ -41,11 +42,11 @@ test("nama MASKANI adalah h1 dan terlihat tanpa JS", async ({ browser }) => {
   await noJs.goto("/");
   await expect(noJs.locator("h1")).toHaveText("MASKANI");
   for (const text of [
-    "About",
-    "Experience",
+    "Tentang",
+    "Pengalaman",
     "Skills",
-    "Education",
-    "Contact",
+    "Pendidikan",
+    "Kontak",
   ]) {
     await expect(
       noJs.getByRole("heading", { name: text, exact: false }).first(),
@@ -113,20 +114,20 @@ test("reflow 320px tidak memotong teks", async ({ page }) => {
   expect(overflows).toBe(false);
 });
 
-test("Copy Email mengubah label dan mengumumkan status", async ({
+test("Salin Email mengubah label dan mengumumkan status", async ({
   page,
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/");
-  const btn = page.getByRole("button", { name: /copy email/i });
+  const btn = page.getByRole("button", { name: /salin email/i });
   await expect(btn).toBeVisible();
   await btn.click();
-  await expect(page.getByRole("button", { name: /email copied/i })).toBeVisible(
-    { timeout: 2000 },
-  );
+  await expect(
+    page.getByRole("button", { name: /email tersalin/i }),
+  ).toBeVisible({ timeout: 2000 });
   const status = page.getByRole("status");
-  await expect(status).toHaveText(/copied/i, { timeout: 2000 });
+  await expect(status).toHaveText(/disalin/i, { timeout: 2000 });
 });
 
 test("dialog Index membuka, menutup, mengembalikan fokus", async ({
@@ -135,7 +136,7 @@ test("dialog Index membuka, menutup, mengembalikan fokus", async ({
 }) => {
   test.skip(!isMobile, "Hanya relevan di project Lite.");
   await page.goto("/");
-  const trigger = page.getByRole("button", { name: /^index$/i }).first();
+  const trigger = page.getByRole("button", { name: /^indeks$/i }).first();
   await trigger.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();

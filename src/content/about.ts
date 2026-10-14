@@ -1,14 +1,19 @@
-// MASKANI — Copy About (C-06, C-07, C-08).
+// MASKANI — Copy About (DL-015).
+//
+// Lead diadaptasi dari CV Professional Summary (versi Indonesia).
+// Tiga frasa bergaris underline (C-07). Chip C-08.
+// Istilah teknis tetap English.
+
 import type { Profile } from "./types";
 
 export const about = {
-  lead: "Software Engineering graduate from Politeknik Negeri Indramayu with hands-on experience in IT support and software QA. I troubleshoot hardware and software, configure networks with MikroTik, and test applications through manual and user acceptance testing. I also build frontend interfaces with React and Tailwind CSS.",
+  lead: "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support. Terbiasa melakukan troubleshooting hardware dan software, konfigurasi jaringan dengan MikroTik, serta pengujian aplikasi melalui manual testing dan User Acceptance Testing. Saya juga membangun antarmuka frontend dengan React dan Tailwind CSS.",
   highlights: [
-    "troubleshoot hardware and software",
-    "configure networks with MikroTik",
-    "test applications through manual and user acceptance testing",
+    "troubleshooting hardware dan software",
+    "konfigurasi jaringan dengan MikroTik",
+    "pengujian aplikasi melalui manual testing dan User Acceptance Testing",
   ],
-  chip: "D4 Software Engineering · Politeknik Negeri Indramayu · GPA 3.55/4.00",
+  chip: "D4 Rekayasa Perangkat Lunak · Politeknik Negeri Indramayu · IPK 3.55/4.00",
 } as const;
 
 export type _AboutProfileRef = Profile;

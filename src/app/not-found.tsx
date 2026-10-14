@@ -10,12 +10,14 @@ export default function NotFound(): JSX.Element {
       className="flex min-h-[calc(100svh-var(--nav-height))] flex-col items-center justify-center gap-8 px-[var(--gutter)] py-24 text-center"
     >
       <p className="font-mono text-meta uppercase text-text-3">404</p>
-      <h1 className="font-display text-d3 text-text-1">Page not found</h1>
+      <h1 className="font-display text-d3 text-text-1">
+        Halaman tidak ditemukan
+      </h1>
       <Link
         href="/"
         className="font-mono text-meta uppercase text-text-2 transition-colors duration-[var(--dur-fast)] hover:text-accent"
       >
-        ← Back to home
+        ← Kembali ke beranda
       </Link>
     </main>
   );

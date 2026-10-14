@@ -19,7 +19,7 @@ export function Contact(): JSX.Element {
   return (
     <SectionShell entry={entry} className="bg-surface-1">
       <Heading id="contact-heading" level={2} size="d2" className="mb-10">
-        Contact
+        Kontak
       </Heading>
 
       <p className="mb-12 max-w-[42rem] text-lead text-text-2">

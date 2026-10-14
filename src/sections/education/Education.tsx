@@ -15,7 +15,7 @@ export function Education(): JSX.Element {
   return (
     <SectionShell entry={entry}>
       <Heading id="education-heading" level={2} size="d2" className="mb-14">
-        Education
+        Pendidikan
       </Heading>
 
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">

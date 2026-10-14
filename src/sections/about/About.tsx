@@ -16,7 +16,7 @@ export function About(): JSX.Element {
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Heading id="about-heading" level={2} size="d2">
-            About
+            Tentang
           </Heading>
         </div>
         <div data-reveal className="flex flex-col gap-8 lg:col-span-7">
