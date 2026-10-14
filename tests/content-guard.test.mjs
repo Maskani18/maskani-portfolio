@@ -5,9 +5,12 @@
 // Tujuan: untuk setiap aturan yang diuji (CG-01, CG-07, CG-10, CG-11),
 // sisipkan pelanggaran sementara, jalankan `scripts/content-guard.mjs`,
 // pastikan keluar dengan kode 1 dan pesan menyebut kode aturan.
-// Perilaku: manipulasi disk di-restore via try/finally. Hanya menyentuh
-// satu file temp di src/content/ dan experience.ts (dengan cadangan).
-// Node test runner bawaan; tanpa dependensi baru (F-07).
+// Perilaku: manipulasi disk di-restore via try/finally.
+//
+// Test menggunakan regex yang cocok dengan struktur umum, bukan label
+// atau bulan spesifik, agar tetap hijau saat konten berubah (DL-015,
+// DL-016). Pattern harus diarahkan ke baris mana saja yang memang ada
+// di file target.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -58,13 +61,14 @@ test("CG-07: string k-metric memicu kegagalan", async () => {
 });
 
 test("CG-11: Soft Skills memicu kegagalan", async () => {
-  // CG-11 membaca skills.ts spesifik, bukan folder content. Modifikasi
-  // berkas asli, restore via finally.
+  // Timpa label kategori apa pun yang ada dengan "Soft Skills".
+  // Regex mencocokkan label: "..." generik, jadi tidak bergantung
+  // pada teks label yang spesifik (mis. "Tools & Documentation").
   const backup = await readFile(SKILLS, "utf8");
   try {
     const tampered = backup.replace(
-      /label:\s*"Tools and Documentation"/,
-      'label: "Soft Skills"',
+      /label:\s*"[^"]+",\n(\s+)items:/,
+      'label: "Soft Skills",\n$1items:',
     );
     assert.notEqual(tampered, backup, "berhasil memodifikasi berkas");
     await writeFile(SKILLS, tampered, "utf8");
@@ -78,9 +82,15 @@ test("CG-11: Soft Skills memicu kegagalan", async () => {
 });
 
 test("CG-10: Experience tidak terurut memicu kegagalan", async () => {
+  // Timpa nilai `from:` pertama yang ada dengan bulan jauh di masa
+  // lalu, agar urutan terbaru-dulu terlanggar. Regex mencocokkan
+  // format umum (`from: "..."`), jadi tidak bergantung pada bahasa.
   const backup = await readFile(EXPERIENCE, "utf8");
   try {
-    const tampered = backup.replace(/from:\s*"Oct 2025"/, 'from: "Oct 2018"');
+    const tampered = backup.replace(
+      /from:\s*"[^"]+"/,
+      'from: "Jan 1990"',
+    );
     assert.notEqual(tampered, backup, "berhasil memodifikasi berkas");
     await writeFile(EXPERIENCE, tampered, "utf8");
 
