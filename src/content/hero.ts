@@ -1,15 +1,16 @@
-// MASKANI — Copy Hero (C-02, §5.3).
+// MASKANI — Copy Hero (DL-015).
 //
-// Lead Hero. C-03 (fields + location) dari profile; C-04 (status) dari
-// profile; C-05 (CTA) literal di komponen karena merupakan aksi, bukan
-// klaim konten.
-
-import type { Profile } from "./types";
+// Lead Hero diganti 15 Okt 2026 (menggantikan C-02).
+// Meta (C-03) dari profile. Status (C-04) dari profile.
+// CTA (C-05) literal di komponen karena merupakan aksi.
+//
+// V-1 (DL-014a): potret cutout di Hero.
+// Path foto asli; placeholder dihapus setelah hero-cutout.webp tersedia.
 
 export const hero = {
-  lead: "I find what breaks, and I make it work.",
+  lead: "Kekuatan yang menenggelamkan, Keberanian yang Menyelamatkan - fstvls",
+  portrait: {
+    src: "/portrait/hero-cutout.webp",
+    alt: "Potret Maskani",
+  },
 } as const;
-
-// Referensi tipe agar Profile tetap terpakai walau hero.ts tidak
-// memakainya secara langsung.
-export type _HeroProfileRef = Profile;

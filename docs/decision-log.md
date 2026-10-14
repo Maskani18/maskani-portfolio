@@ -415,3 +415,34 @@ desktop (bukan 3 kategori). Di mobile 1 kolom.
 
 **Status.** DISETUJUI PEMILIK 10 Okt 2026 untuk V-1, V-2, V-3.
 Sub-keputusan DL-014d dan DL-014e berstatus OPEN.
+
+---
+
+## DL-015 · 15 Oktober 2026 · Bahasa situs ID + English terms, Lead Hero baru
+
+**Keputusan.** Situs memakai Bahasa Indonesia untuk konten naratif, dengan
+istilah teknis tetap English (Frontend Developer, QA, REST API, MikroTik,
+Tailwind CSS, dsb.). Lead Hero diganti.
+
+**Menggantikan.**
+
+- **K-02** (bahasa English) → diganti: **ID + English terms**.
+- **C-02** (`"I find what breaks, and I make it work."`) → diganti Lead Hero
+  baru.
+
+**Lead Hero baru.** `"Kekuatan yang menenggelamkan, Keberanian yang
+Menyelamatkan - fstvls"`.
+
+**Alasan.** Keputusan pemilik 15 Oktober 2026. CV publik sudah Bahasa
+Indonesia; situs diselaraskan.
+
+**Dampak.** Migrasi konten multi-commit: seluruh `src/content/*.ts`, label
+UI (~15 string di 8 komponen), metadata & SEO, JSON-LD, OG image, dan test
+E2E (assertion EN → ID). Setiap perubahan konten di masa depan tetap dapat
+dilakukan via DL baru (F-14).
+
+**Batasan.** Nomor telepon pada CV sumber (`+62 895-...`) tidak boleh masuk
+situs (K-08). CV publik di `public/cv/Maskani-CV.pdf` harus bebas nomor
+telepon.
+
+**Status.** DISETUJUI PEMILIK 15 OKTOBER 2026.
