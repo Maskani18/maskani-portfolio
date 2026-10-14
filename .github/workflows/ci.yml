@@ -22,6 +22,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NEXT_PUBLIC_SITE_ENV: production
+
 jobs:
   verify:
     name: Lint · Type Check · Build
@@ -123,8 +126,6 @@ jobs:
 
       - name: Run Lighthouse CI
         run: npx lhci autorun
-        env:
-          NEXT_PUBLIC_SITE_ENV: production
 
 # Catatan: job deploy ditambahkan di langkah 8d setelah Vercel + GitHub
 # terhubung, dan setelah auto-deploy produksi dimatikan di dashboard Vercel.
