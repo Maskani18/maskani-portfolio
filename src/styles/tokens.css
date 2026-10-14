@@ -85,6 +85,11 @@
   --radius-sm: 2px;
   --radius-md: 4px;
 
+  /* Visual Alignment (Addendum 10 Okt 2026, DL-014) — radius khusus media.
+   * Radius UI (tombol, tag, kontrol) tetap memakai --radius-sm/md. */
+  --radius-media: clamp(16px, 2.4vw, 32px);
+  --shadow-media: 0 12px 32px rgba(0, 0, 0, 0.35);
+
   /* Breakpoint (§4.3). Tailwind v4 memakai prefix --breakpoint-*.
      Layout berubah terutama di 768 dan 1024. */
   --breakpoint-sm: 30rem; /* 480 */
@@ -130,6 +135,15 @@
   --dur-cine: 1400ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Visual Alignment (DL-014) — token khusus sistem Stage.
+   * --dur-stage: durasi transisi horizontal T-SLIDE (0,8–1,0 s).
+   * --ease-stage: padanan GSAP power3.inOut.
+   * --stroke-outline: garis outline judul Hero (duplikat aria-hidden).
+   * --progress-line: garis progres horizontal di tepi bawah mode Stage. */
+  --dur-stage: 900ms;
+  --ease-stage: cubic-bezier(0.65, 0, 0.35, 1);
+  --stroke-outline: 1px var(--color-hairline-strong);
+  --progress-line: 1px var(--color-text-3);
 
   /* Nilai gerak baku — dibaca JS sekali saat init (§5.2). */
   --reveal-distance: 24px;
