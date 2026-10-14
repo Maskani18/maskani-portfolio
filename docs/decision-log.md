@@ -217,3 +217,201 @@ kode yang tidak perlu di rute awal. `next/og` seharusnya hanya server-side.
 
 **Dampak.** Setiap rilis berikutnya diukur ulang terhadap baseline ini.
 Kenaikan >5 KB harus punya alasan eksplisit.
+
+**Update 2026-10-09.** Exception dicabut. `public/cv/Maskani-CV.pdf` (331 KB,
+tanpa nomor telepon dan alamat rumah) sudah tersedia. CG-09 kini ditegakkan
+penuh; `scripts/content-guard-exceptions.json` kosong.
+### AUDIT-DL-013 · 10 Oktober 2026 · V-1 (Media visual)
+
+**Keputusan.** Semua foto memakai `MediaCard` bersudut membulat besar
+(`radius-media`), bayangan lembut **statis**; potret cutout di Hero.
+Radius UI (tombol/tag) tetap 2px/4px.
+
+**Alasan.** Keputusan pemilik 10 Okt 2026 ("semua foto seperti video").
+Menggantikan aturan radius tajam (K-10) untuk media saja.
+
+**Status.** DISETUJUI PEMILIK 10 Okt 2026.
+
+---
+
+### AUDIT-DL-014 · 10 Oktober 2026 · V-2 (Transisi Stage)
+
+**Keputusan.** Transisi antar section memakai sistem Stage: T-SLIDE
+horizontal 0,8–1,0 s (Cinematic), T-RISE vertikal, T-TITLE kartu judul.
+Outline → solid pada judul Hero dan heading chapter.
+
+**Alasan.** Keputusan pemilik ("efek dan transisinya seperti video").
+
+**Status.** DISETUJUI PEMILIK 10 Okt 2026.
+
+---
+
+### AUDIT-DL-015 · 10 Oktober 2026 · Pengecualian Anti-Direction
+
+**Keputusan.** Anti-Direction #9 (scroll-jacking) dan #10 (galeri
+horizontal) **dikecualikan** khusus untuk transisi Stage, dengan batasan §3.6
+Addendum (fallback reflow, tidak ada paging, nav stabil).
+
+**Alasan.** Efek visual yang diinginkan pemilik memerlukan pin horizontal.
+
+**Status.** DISETUJUI PEMILIK 10 Okt 2026.
+
+---
+
+### AUDIT-DL-016 · 10 Oktober 2026 · Trace Horizontal
+
+**Keputusan.** Trace berorientasi horizontal di mode Stage (Cinematic), di
+tepi bawah layar, sebagai garis progres. Di Lite/Static dan halaman report
+tetap vertikal.
+
+**Status.** OPEN (menunggu UI Design).
+
+---
+
+### AUDIT-DL-017 · 10 Oktober 2026 · LCP Hero
+
+**Keputusan.** Nama MASKANI tetap LCP kandidat utama. Potret cutout dimuat
+dengan `priority` tapi tidak memblokir teks. Anggaran gambar potret
+ditetapkan di T-V-06.
+
+**Status.** OPEN (menunggu T-V-06).
+
+---
+
+### AUDIT-DL-018 · 14 Oktober 2026 · Experience Opsi A/B
+
+**Keputusan.** Default Experience = **Opsi A** (satu stage, tiga peran).
+Opsi B (video-literal, 11 foto, tiga stage terpisah) hanya bila pemilik
+menyetujui eksplisit.
+
+**Status.** Default disetujui; Opsi B menunggu keputusan pemilik.
+
+---
+
+### AUDIT-DL-019 · 14 Oktober 2026 · Skills layout
+
+**Keputusan.** Skills tetap 5 kategori (Spec §2.4), ditata sebagai grid
+3 kolom (desktop) — bukan 3 kategori seperti storyboard. Di mobile 1 kolom.
+
+**Status.** DISETUJUI (inferens dari Spec §2.4 yang tidak berubah).
+
+---
+
+### AUDIT-DL-020 · 14 Oktober 2026 · Contact reuse potret Hero
+
+**Keputusan.** Contact memakai ulang `[PORTRAIT CUTOUT]` dari Hero
+(bookend). Tidak butuh foto baru.
+
+**Status.** DISETUJUI.
+
+---
+
+## DL-014 · 14 Oktober 2026 · Register pengecualian Addendum + keputusan VA
+
+**Keputusan.** Mengadopsi `FINAL-VISUAL-REFERENCE-ADDENDUM.md` (10 Okt 2026)
+sebagai keputusan visual yang mengikat, dengan **pengecualian terdaftar**
+terhadap beberapa aturan lama. Semua keputusan terkunci lain (font, warna,
+urutan section, konten) **tidak berubah**.
+
+**Sub-keputusan:**
+
+### DL-014a · V-1 — Media visual
+
+Semua foto memakai `MediaCard` bersudut membulat besar
+(`--radius-media: clamp(16px, 2.4vw, 32px)`), bayangan lembut **statis**
+(`--shadow-media`). Potret cutout di Hero. Radius UI (tombol, tag, kontrol)
+**tetap** 2px / 4px.
+
+- Menggantikan: radius tajam untuk media (K-10 / Final CD §6).
+- Menggantikan: "tanpa drop shadow besar" (Final CD §3.5) — menjadi
+  bayangan lembut **statis** (tidak dianimasikan).
+- Menggantikan: `Frame` / `MediaFrame` dengan siku sudut → `MediaCard`
+  tanpa siku.
+- Status: **DISETUJUI PEMILIK 10 Okt 2026.**
+
+### DL-014b · V-2 — Transisi Stage
+
+Transisi antar-section memakai sistem Stage:
+
+- **T-SLIDE** — horizontal 0,8–1,0 s (Cinematic). Konten keluar kiri,
+  masuk kanan. Foto tiba lebih dulu, heading menyusul, teks terakhir.
+- **T-RISE** — scroll vertikal biasa.
+- **T-TITLE** — kartu judul bab (Experience, Projects).
+- **Outline → solid** pada judul Hero dan heading chapter. Outline awal
+  adalah **teks terlihat** (bukan `opacity: 0`).
+- **Garis progres** di tepi layar (mode Stage Cinematic).
+
+- Batasan wajib: semua isi tetap di DOM; Cinematic saja yang pakai
+  pin/scrub; Lite disederhanakan; Static tumpukan vertikal; fallback
+  reflow 320 px / zoom 400%; nav stabil tanpa jitter; satu choreography;
+  satu ticker.
+- Status: **DISETUJUI PEMILIK 10 Okt 2026.**
+
+### DL-014c · Pengecualian Anti-Direction
+
+Anti-Direction #9 (scroll-jacking), #10 (galeri horizontal), §21 REMOVE pin
+Experience, dan Dev Architecture §22 **dikecualikan** khusus untuk transisi
+Stage, dengan batasan di DL-014b.
+
+- Status: **DISETUJUI PEMILIK 10 Okt 2026.**
+
+### DL-014d · Trace horizontal (mode Stage)
+
+Trace berorientasi **horizontal** di tepi bawah layar pada mode Stage
+(Cinematic), berfungsi sebagai garis progres. Di Lite/Static dan di halaman
+report tetap **vertikal** (gutter) seperti rancangan semula.
+
+- Status: **OPEN** — menunggu UI Design.
+
+### DL-014e · Hero potret + LCP
+
+Hero menambahkan `[PORTRAIT CUTOUT]`. Nama MASKANI tetap kandidat LCP
+utama (terlihat sejak first paint). Potret dimuat dengan `priority` tapi
+tidak memblokir teks. Anggaran gambar potret ditetapkan di T-V-06.
+
+- Status: **OPEN** — menunggu T-V-06.
+
+### DL-014f · Experience Opsi A vs Opsi B
+
+**Default = Opsi A** (satu stage memuat tiga peran, ramah recruiter).
+Opsi B (video-literal, 11 foto, tiga stage terpisah) hanya diaktifkan bila
+pemilik menyetujui eksplisit.
+
+- Status: Default disetujui; Opsi B menunggu keputusan pemilik.
+
+### DL-014g · Contact memakai ulang potret Hero
+
+Contact memakai ulang `[PORTRAIT CUTOUT]` dari Hero (bookend). Tidak butuh
+foto baru.
+
+- Status: **DISETUJUI** (inferens dari Addendum §3.7).
+
+### DL-014h · Skills layout
+
+Skills tetap **5 kategori** (Spec §2.4), ditata sebagai grid **3 kolom**
+desktop (bukan 3 kategori). Di mobile 1 kolom.
+
+- Status: **DISETUJUI** (inferens dari Spec §2.2 yang tidak berubah).
+
+**Dampak.**
+
+- Fase **VA (Visual Alignment)** ditambahkan ke Roadmap antara R1e dan R2.
+- Gerbang baru **G-VA** dengan 18 butir.
+- Token baru: `--radius-media`, `--shadow-media`, `--stroke-outline`,
+  `--dur-stage`, `--ease-stage`, `--progress-line`.
+- Komponen baru: `MediaCard`, `StageShell`, `systems/stage`.
+- Komponen dihapus: `Frame`, `MediaFrame`.
+- Deploy produksi pertama **direkomendasikan ditunda** sampai T-V-02 s.d.
+  T-V-06 dan T-V-15 s.d. T-V-19 selesai (Addendum §5.3). Keputusan akhir
+  pada pemilik.
+
+**Sumber bukti.**
+
+- `FINAL-VISUAL-REFERENCE-ADDENDUM.md` (10 Okt 2026).
+- `LAYOUT-AND-PHOTO-PLACEMENT.md` (10 Okt 2026).
+- `MASKANI_STORYBOARD.md` (14 Okt 2026).
+- Keputusan pemilik 10 Okt 2026: "Semua foto seperti video, efek dan
+  transisinya seperti video. Yang lain menyesuaikan dengan DeepSeek."
+
+**Status.** DISETUJUI PEMILIK 10 Okt 2026 untuk V-1, V-2, V-3.
+Sub-keputusan DL-014d dan DL-014e berstatus OPEN.
