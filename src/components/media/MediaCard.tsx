@@ -20,10 +20,14 @@ export type MediaCardProps = {
   /** Alt wajib. Boleh "" hanya bila decorative: true. */
   alt: string;
   variant?: MediaCardVariant;
+  /** Override rasio aspect untuk section yang butuh (mis. 8/7, 7/5, 7/10). */
+  aspectOverride?: string;
   caption?: string;
   /** Angka `FIG.` opsional; merujuk caption di halaman report. */
   figNumber?: string;
   priority?: boolean;
+  /** Next.js 16: LCP image sebaiknya pakai loading="eager". */
+  loading?: "lazy" | "eager";
   sizes?: string;
   /** Dekoratif: alt dikosongkan + aria-hidden. */
   decorative?: boolean;
@@ -40,26 +44,30 @@ export function MediaCard({
   src,
   alt,
   variant = "landscape",
+  aspectOverride,
   caption,
   figNumber,
   priority = false,
+  loading,
   sizes = "(min-width: 1024px) 800px, 100vw",
   decorative = false,
   className = "",
 }: MediaCardProps): JSX.Element | null {
   if (!src) return null;
 
+  const aspectClass = aspectOverride ?? ASPECT[variant];
+
   return (
     <figure className={`flex flex-col gap-3 ${className}`.trim()}>
       <div
-        className={`relative overflow-hidden rounded-[var(--radius-media)] shadow-media ${ASPECT[variant]}`}
+        className={`relative overflow-hidden rounded-[var(--radius-media)] shadow-media ${aspectClass}`}
       >
         <Image
           src={src}
           alt={decorative ? "" : alt}
           fill
           sizes={sizes}
-          priority={priority}
+          loading={loading ?? (priority ? "eager" : undefined)}
           aria-hidden={decorative || undefined}
           className="object-cover"
         />

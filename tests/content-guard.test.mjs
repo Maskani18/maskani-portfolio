@@ -87,10 +87,7 @@ test("CG-10: Experience tidak terurut memicu kegagalan", async () => {
   // format umum (`from: "..."`), jadi tidak bergantung pada bahasa.
   const backup = await readFile(EXPERIENCE, "utf8");
   try {
-    const tampered = backup.replace(
-      /from:\s*"[^"]+"/,
-      'from: "Jan 1990"',
-    );
+    const tampered = backup.replace(/from:\s*"[^"]+"/, 'from: "Jan 1990"');
     assert.notEqual(tampered, backup, "berhasil memodifikasi berkas");
     await writeFile(EXPERIENCE, tampered, "utf8");
 

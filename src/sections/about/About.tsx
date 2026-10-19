@@ -1,9 +1,12 @@
-// MASKANI — Section 02 About.
-// Teks sama persis dengan C-06. Tiga frasa bergaris bawah hairline (C-07).
+// MASKANI — Section 02 About (Template B, V-1).
+//
+// Kartu foto MediaCard 8:7 di kiri, judul + paragraf + chip di kanan.
+// Rata kiri (bukan justify). Tiga frasa bergaris underline.
 
 import type { JSX } from "react";
 
 import { SectionShell } from "@/components/layout/SectionShell";
+import { MediaCard } from "@/components/media/MediaCard";
 import { Heading } from "@/components/ui/Heading";
 import { about } from "@/content/about";
 import { getSection } from "@/content/sections";
@@ -14,15 +17,26 @@ export function About(): JSX.Element {
   return (
     <SectionShell entry={entry}>
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
+        <div data-reveal className="lg:col-span-5">
+          <MediaCard
+            src={about.photo.src}
+            alt={about.photo.alt}
+            variant="landscape"
+            aspectOverride="aspect-[8/7]"
+            sizes="(min-width: 1024px) 41vw, 100vw"
+            loading="eager"
+          />
+        </div>
+
+        <div className="flex flex-col gap-8 lg:col-span-7">
           <Heading id="about-heading" level={2} size="d2">
             Tentang
           </Heading>
-        </div>
-        <div data-reveal className="flex flex-col gap-8 lg:col-span-7">
+
           <p className="max-w-[62ch] text-lead text-text-2">
             <WithHighlights text={about.lead} phrases={about.highlights} />
           </p>
+
           <span className="inline-flex w-fit rounded-full border border-hairline-strong px-3 py-1.5 font-mono text-meta uppercase text-text-2">
             {about.chip}
           </span>

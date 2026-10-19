@@ -1,8 +1,7 @@
-// MASKANI — Copy About (DL-015).
+// MASKANI — Copy About (DL-015, V-1).
 //
-// Lead diadaptasi dari CV Professional Summary (versi Indonesia).
-// Tiga frasa bergaris underline (C-07). Chip C-08.
-// Istilah teknis tetap English.
+// Lead diadaptasi dari CV Professional Summary. Tiga frasa bergaris.
+// Chip C-08. Foto About (8:7) untuk kartu MediaCard di section.
 
 import type { Profile } from "./types";
 
@@ -14,6 +13,10 @@ export const about = {
     "pengujian aplikasi melalui manual testing dan User Acceptance Testing",
   ],
   chip: "D4 Rekayasa Perangkat Lunak · Politeknik Negeri Indramayu · IPK 3.55/4.00",
+  photo: {
+    src: "/portrait/about.webp",
+    alt: "Foto Maskani di depan kampus Politeknik Negeri Indramayu",
+  },
 } as const;
 
 export type _AboutProfileRef = Profile;
