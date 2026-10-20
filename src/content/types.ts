@@ -183,25 +183,49 @@ export type ProjectAsset = {
   readonly step?: ProjectStepKey; // kosong = pemetaan bawaan (§6.3)
 };
 
-export type Project = {
-  readonly slug: string; // huruf kecil, tanda hubung (CG-02)
-  readonly index: string; // "P-01"
+export type ProjectFeature = {
   readonly title: string;
+  readonly description: string;
+  readonly icon: "user" | "database" | "shield" | "bell" | "monitor";
+};
+
+export type ProjectScreenshot = {
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly src: string;
+  readonly alt: string;
+};
+
+export type Project = {
+  readonly slug: string;
+  readonly index: string;
+  readonly title: string;
+  readonly subtitle: string; // Sistem Informasi...
   readonly role: string;
-  readonly period: string; // "Oct 2025 – Dec 2025"
-  readonly stack: readonly string[]; // tag stack di poster
-  readonly links: {
+  readonly org: string; // Diskominfo...
+  readonly period: string;
+  readonly stack: readonly string[];
+
+  readonly context: {
+    readonly short: string;
+  };
+
+  readonly features: readonly ProjectFeature[];
+  readonly screenshots: readonly ProjectScreenshot[];
+  readonly roleDetails: readonly string[];
+  readonly closingQuote: string;
+} & {
+  // Opsional: jika masih butuh fields lama untuk halaman report lama.
+  readonly links?: {
     readonly live?: string;
     readonly repo?: string;
   };
-  readonly steps: ProjectSteps;
-  readonly context: {
-    readonly short: string; // satu kalimat untuk poster
+  readonly steps?: ProjectSteps;
+  readonly result?: {
+    readonly short?: string;
   };
-  readonly result: {
-    readonly short?: string; // U-08: bila tidak ada, baris dihilangkan
-  };
-  readonly assets: readonly ProjectAsset[];
+  readonly assets?: readonly ProjectAsset[];
 };
 
 // ---------------- Colophon (§7.4) ----------------

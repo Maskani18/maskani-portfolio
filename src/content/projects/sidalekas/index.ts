@@ -1,50 +1,84 @@
-// MASKANI — Data project SIDALEKAS (§6.5).
-//
-// Sebab: satu-satunya project (K-11, K-12). Nilai langkah mengikuti §6.5;
-// langkah kosong wajib `null` (U-10, K-06).
-// Tujuan: mengisi kontrak Project tanpa mengarang data. Problem, Approach,
-// Verification, Result belum ada isinya → dibiarkan `null`.
-// Teks copy tambahan (BR-C2, BR-C3, BR-C4, BR-C6) berstatus "Perlu
-// persetujuan" (PF-04). Ganti jika pemilik memberi redaksi berbeda.
-
 import type { Project } from "@/content/types";
 
 export const sidalekas: Project = {
   slug: "sidalekas",
-  index: "P-01",
+  index: "01",
   title: "SIDALEKAS",
+  subtitle: "Sistem Informasi Data Lembaga Kesejahteraan Sosial",
   role: "Frontend Developer Intern",
-  period: "Oct 2025 – Dec 2025",
-  stack: ["React.js", "Tailwind CSS", "Axios", "REST API"],
-  links: {},
-  steps: {
-    // BR-C2 (usulan, PF-04)
-    context:
-      "SIDALEKAS (Sistem Informasi Data Lembaga Kesejahteraan Sosial) is an application at Diskominfo Kabupaten Indramayu. I worked on it as a frontend developer intern from October to December 2025.",
-    // §6.5: belum ada isi.
-    problem: null,
-    // BR-C3 (usulan, PF-04)
-    role: "Frontend Developer Intern: developed the application interface.",
-    // §6.5: belum ada isi.
-    approach: null,
-    // BR-C4 (usulan, PF-04)
-    implementation:
-      "Responsive interface components with React.js and Tailwind CSS; frontend features for managing and verifying data: CRUD, search, filters, form validation and REST API integration with Axios.",
-    // §6.5: hanya diisi bila memang diuji.
-    verification: null,
-    // §6.5: belum ada isi.
-    result: null,
-    // Tag stack yang sama dengan poster, ringkas.
-    stack: "React.js · Tailwind CSS · Axios · REST API",
-  },
+  org: "Diskominfo Kabupaten Indramayu",
+  period: "Okt 2025 – Des 2025",
+  stack: [
+    "React.js",
+    "Tailwind CSS",
+    "Axios",
+    "REST API",
+    "React Router",
+    "JWT / Auth",
+  ],
   context: {
-    // BR-C6 (usulan, PF-04). Satu kalimat pertama dari BR-C2.
     short:
-      "SIDALEKAS (Sistem Informasi Data Lembaga Kesejahteraan Sosial) is an application at Diskominfo Kabupaten Indramayu.",
+      "Aplikasi berbasis web yang dikembangkan untuk mendukung pengelolaan data Lembaga Kesejahteraan Sosial di Kabupaten Indramayu. Sebagai Frontend Developer Intern, saya berkontribusi dalam pengembangan antarmuka responsif, fitur pengelolaan data, serta alur pengajuan dan verifikasi.",
   },
-  result: {
-    // U-08: result.short tidak ada → baris dihilangkan di poster.
-  },
-  // Slot media menyusul (PF-07). Tidak dirender sampai ada berkasnya.
-  assets: [],
+  features: [
+    {
+      title: "Autentikasi Pengguna",
+      description: "Login dengan hak akses berdasarkan peran.",
+      icon: "user",
+    },
+    {
+      title: "Pengelolaan Data Klien",
+      description: "CRUD, pencarian, filter, validasi form.",
+      icon: "database",
+    },
+    {
+      title: "Pengajuan Verifikasi",
+      description: "Form pengajuan dan pelacakan status.",
+      icon: "shield",
+    },
+    {
+      title: "Notifikasi & Validasi",
+      description: "Informasi real-time dan validasi data.",
+      icon: "bell",
+    },
+    {
+      title: "Tampilan Responsif",
+      description: "Optimal di berbagai perangkat.",
+      icon: "monitor",
+    },
+  ],
+  screenshots: [
+    {
+      id: "01",
+      title: "Login",
+      description:
+        "Halaman autentikasi pengguna sebagai pintu masuk ke sistem SIDALEKAS.",
+      src: "/projects/sidalekas/login.webp",
+      alt: "Tampilan Login SIDALEKAS",
+    },
+    {
+      id: "02",
+      title: "Data Klien",
+      description:
+        "Antarmuka pengelolaan data klien dengan fitur pencarian, filter, dan aksi pengelolaan data.",
+      src: "/projects/sidalekas/data-klien.webp",
+      alt: "Tampilan Data Klien",
+    },
+    {
+      id: "03",
+      title: "Form Verifikasi",
+      description:
+        "Formulir untuk mengisi dan mengajukan data dalam proses verifikasi lembaga.",
+      src: "/projects/sidalekas/form-verifikasi.webp",
+      alt: "Tampilan Form Verifikasi",
+    },
+  ],
+  roleDetails: [
+    "Mengembangkan antarmuka menggunakan React.js dan Tailwind CSS.",
+    "Membangun fitur CRUD, pencarian, filter, dan validasi formulir.",
+    "Mengintegrasikan REST API menggunakan Axios.",
+    "Mengimplementasikan routing, hak akses berbasis peran, serta notifikasi.",
+  ],
+  closingQuote:
+    "Aplikasi ini membantu proses pengelolaan dan verifikasi data lembaga sosial di Indramayu agar lebih cepat, akurat, dan terstruktur.",
 };
