@@ -33,10 +33,15 @@ export function Heading({
   children,
 }: HeadingProps): JSX.Element {
   const Tag = `h${level}` as const;
+
+  // Tambahkan pengecekan mask text untuk ukuran d2
+  const isMask = size === "d2";
+
   return (
     <Tag
       id={id}
       tabIndex={tabIndex}
+      data-mask-text={isMask ? "" : undefined}
       className={`font-display text-text-1 ${SIZE_CLASS[size]} ${className}`.trim()}
     >
       {children}

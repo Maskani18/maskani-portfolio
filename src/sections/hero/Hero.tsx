@@ -8,15 +8,21 @@ import { hero } from "@/content/hero";
 import { profile } from "@/content/profile";
 import { getSection } from "@/content/sections";
 import { HeroPortrait } from "./HeroPortrait";
+import { HeroMotion } from "./HeroMotion.client";
 
 export function Hero(): JSX.Element {
   const entry = getSection("hero");
 
   return (
     <SectionShell entry={entry} hideHeader className="!py-0">
+      <HeroMotion />
+
       <div className="flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-between gap-12 pt-12 pb-20 md:pt-20 md:pb-28">
         {/* Baris atas: meta + chip status */}
-        <div className="relative z-40 flex flex-col items-start justify-between gap-6 md:flex-row md:items-start">
+        <div
+          className="relative z-40 flex flex-col items-start justify-between gap-6 md:flex-row md:items-start"
+          data-hero-meta
+        >
           <div className="flex flex-col gap-1.5 font-mono text-meta uppercase text-text-3">
             <ul className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
               {profile.fields.map((f, i) => (
@@ -30,6 +36,7 @@ export function Hero(): JSX.Element {
                 </li>
               ))}
             </ul>
+
             <div className="flex items-center gap-1.5">
               <svg
                 width="12"
@@ -65,7 +72,10 @@ export function Hero(): JSX.Element {
           alt={hero.portrait.alt}
           title={profile.name}
         >
-          <div className="flex flex-col gap-8 text-center md:text-left">
+          <div
+            className="relative z-40 flex max-w-[42rem] flex-col gap-8"
+            data-hero-cta
+          >
             <p className="mx-auto max-w-[42rem] text-lead text-text-2 md:mx-0">
               {hero.lead}
             </p>
@@ -75,6 +85,7 @@ export function Hero(): JSX.Element {
                 <Icon name="download" size={18} />
                 Unduh CV
               </Button>
+
               <Button href="#projects" variant="secondary">
                 Lihat Karya
                 <Icon name="arrow-right" size={18} />

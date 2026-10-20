@@ -1,14 +1,8 @@
 "use client";
 
-// MASKANI — Atmosphere + reveal mount (§5.6, §5.3).
-//
-// Client karena: mount grain/vignette sebagai layer, jalankan reveal
-// berbasis GSAP. Jika tier = static, tidak ada GSAP yang diimpor (BR-01).
-// Jika prefers-reduced-motion berubah di tengah sesi, kita revert:
-// ScrollTrigger di-kill, tier atribut diubah, konten tetap terlihat.
-
 import { useEffect } from "react";
 
+import { setupMaskText } from "@/motion/primitives/mask-text"; // Tambahan
 import { setupReveal } from "@/motion/primitives/reveal";
 import { getTier } from "@/motion/runtime/tier";
 
@@ -17,22 +11,29 @@ export function Effects() {
     if (getTier() === "static") return;
 
     let cancelled = false;
-    let cleanup: (() => void) | null = null;
+    let cleanupReveal: (() => void) | null = null;
+    let cleanupMask: (() => void) | null = null;
 
     void (async () => {
-      const fn = await setupReveal(document.body);
+      const revealFn = await setupReveal(document.body);
+      const maskFn = await setupMaskText(document.body); // Tambahan
+
       if (cancelled) {
-        fn();
+        revealFn();
+        maskFn();
         return;
       }
-      cleanup = fn;
+      cleanupReveal = revealFn;
+      cleanupMask = maskFn;
     })();
 
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = (e: MediaQueryListEvent): void => {
       if (e.matches) {
-        cleanup?.();
-        cleanup = null;
+        cleanupReveal?.();
+        cleanupMask?.();
+        cleanupReveal = null;
+        cleanupMask = null;
         document.documentElement.dataset.tier = "static";
       }
     };
@@ -40,7 +41,8 @@ export function Effects() {
 
     return () => {
       cancelled = true;
-      cleanup?.();
+      cleanupReveal?.();
+      cleanupMask?.();
       mql.removeEventListener("change", onChange);
     };
   }, []);

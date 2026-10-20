@@ -7,6 +7,8 @@ import { SiteNav } from "@/components/layout/SiteNav.client";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { TIER_SCRIPT } from "@/motion/runtime/tier-script";
 import { profile } from "@/content/profile";
+import { SmoothScroll } from "@/motion/runtime/smooth-scroll.client";
+import { TraceLayer } from "@/systems/trace/TraceLayer.client";
 
 import "./globals.css";
 
@@ -75,7 +77,9 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SmoothScroll />
         <Effects />
+        <TraceLayer />
         <SkipLink />
         <header
           id="site-header"

@@ -1,8 +1,3 @@
-// MASKANI — SectionShell (§7, §8.3).
-//
-// Membungkus setiap section dengan id, scroll-margin, padding, dan indeks
-// mono dari manifest. Tidak pernah membuat daftar section sendiri (F-18).
-
 import type { JSX } from "react";
 
 import { MonoTag } from "@/components/ui/MonoTag";
@@ -24,7 +19,7 @@ export function SectionShell({
   return (
     <section
       id={entry.id}
-      className={`relative scroll-mt-[calc(var(--nav-height)+var(--nav-offset))] px-[var(--gutter)] py-[var(--section-pad)] ${className}`.trim()}
+      className={`relative scroll-mt-[calc(var(--nav-height)+var(--nav-offset))] px-[var(--gutter)] py-[var(--section-pad)] md:pl-24 lg:pl-32 ${className}`.trim()}
       aria-labelledby={`${entry.id}-heading`}
     >
       <div className="mx-auto w-full max-w-[var(--container-max)]">

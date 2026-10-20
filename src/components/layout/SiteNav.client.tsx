@@ -35,7 +35,24 @@ export function SiteNav() {
     e.preventDefault();
     const el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Cek apakah Lenis aktif (Tier Cinematic)
+    const lenis = (
+      window as unknown as {
+        lenis?: {
+          scrollTo: (target: HTMLElement | string, options?: object) => void;
+        };
+      }
+    ).lenis;
+
+    if (lenis) {
+      // Lenis yang menangani scroll
+      lenis.scrollTo(el, { offset: -100 });
+    } else {
+      // Fallback native scroll (Lite/Static)
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
     const heading = el.querySelector<HTMLElement>("h1, h2, h3");
     if (heading) {
       heading.setAttribute("tabindex", "-1");

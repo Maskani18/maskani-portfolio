@@ -36,7 +36,8 @@ export function HeroPortrait({
       <div className="relative z-10 flex w-full flex-col justify-center gap-8 md:w-[55%]">
         <h1
           id="hero-heading"
-          className="text-center font-display text-d1 text-text-1 md:text-left"
+          data-hero-name
+          className="relative z-10 w-full text-center font-display text-d1 text-text-1 md:text-left"
         >
           {title}
         </h1>

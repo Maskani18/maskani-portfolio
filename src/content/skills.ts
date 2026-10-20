@@ -17,8 +17,8 @@ export const skills: readonly SkillGroup[] = [
       },
       {
         icon: "Network",
-        label: "Network & MikroTik",
-        description: "Konfigurasi jaringan, proxy, konektivitas, dan MikroTik.",
+        label: "Network & Connectivity",
+        description: "Konfigurasi jaringan, proxy, dan konektivitas.",
       },
       {
         icon: "Headset",
