@@ -54,18 +54,20 @@ export type Period = {
   readonly to: string | null; // null = "Present"
 };
 
-// Tuple 3 atau 4 poin, sesuai §2.2 "3–4 poin per peran".
-export type ExperienceDetail = readonly [string, string, string, string?];
+export type ExperienceDetail = {
+  readonly description: string;
+  readonly responsibilities: readonly string[];
+  readonly competencies: readonly string[];
+};
 
 export type ExperienceItem = {
+  readonly id: string;
   readonly role: string;
   readonly org: string;
   readonly period: Period;
-  readonly summary: string; // satu baris, selalu terlihat (A-05)
-  // 3–4 poin dari CV (PF-05). Field absen selama PF-05 belum disetujui;
-  // P1-07 merender `details` hanya bila ada (F-08: kosongkan, jangan
-  // isi placeholder string yang akan membuat penjaga konten merah
-  // permanen).
+  readonly summary: string;
+  readonly icon: "code" | "bug" | "monitor";
+  readonly techStack: readonly string[];
   readonly details?: ExperienceDetail;
 };
 
