@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { Download } from "lucide-react";
@@ -22,7 +23,9 @@ export function SiteNav() {
         dialog.close();
       }
     };
+
     dialog.addEventListener("click", handleBackdrop);
+
     return () => {
       dialog.removeEventListener("click", handleBackdrop);
     };
@@ -33,10 +36,11 @@ export function SiteNav() {
     id: string,
   ): void {
     e.preventDefault();
+
     const el = document.getElementById(id);
     if (!el) return;
 
-    // Cek apakah Lenis aktif (Tier Cinematic)
+    // Cek apakah Lenis aktif (Tier Cinematic).
     const lenis = (
       window as unknown as {
         lenis?: {
@@ -46,18 +50,23 @@ export function SiteNav() {
     ).lenis;
 
     if (lenis) {
-      // Lenis yang menangani scroll
+      // Lenis yang menangani scroll.
       lenis.scrollTo(el, { offset: -100 });
     } else {
-      // Fallback native scroll (Lite/Static)
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Fallback native scroll (Lite/Static).
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
 
     const heading = el.querySelector<HTMLElement>("h1, h2, h3");
+
     if (heading) {
       heading.setAttribute("tabindex", "-1");
       heading.focus({ preventScroll: true });
     }
+
     history.replaceState(null, "", `#${id}`);
   }
 
@@ -65,7 +74,7 @@ export function SiteNav() {
     <>
       {/* Container luar untuk memberikan margin dari atas layar */}
       <div className="pointer-events-none fixed left-0 top-0 z-[80] w-full px-4 py-4 md:px-6 md:py-6">
-        {/* Navbar Utama dengan gaya HUD */}
+        {/* Navbar utama dengan gaya HUD */}
         <nav
           aria-label="Navigasi utama"
           className="pointer-events-auto relative mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between border border-accent/30 bg-[#090B0D]/80 px-6 backdrop-blur-md"
@@ -79,20 +88,16 @@ export function SiteNav() {
 
           {/* KIRI: Logo & Teks */}
           <Link href="/" className="group flex items-center gap-3 outline-none">
-            {/* Ikon Logo (Custom SVG) */}
-            <div className="flex size-9 items-center justify-center rounded-sm border border-accent/20 bg-accent/5 text-accent transition-colors group-hover:border-accent group-hover:bg-accent/10">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="square"
-                strokeLinejoin="miter"
-              >
-                <path d="M8 4L4 20M14 4L10 20M20 4L16 20" />
-              </svg>
+            {/* Logo Baru */}
+            <div className="relative flex size-9 shrink-0 items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <Image
+                src="/logo.png"
+                alt="Maskani Logo"
+                fill
+                sizes="36px"
+                className="object-contain"
+                priority
+              />
             </div>
 
             <span className="font-display text-[1.1rem] font-bold tracking-wider text-text-1">
@@ -114,7 +119,7 @@ export function SiteNav() {
                 >
                   {item.label}
 
-                  {/* Indikator aktif (Statis di index 0) */}
+                  {/* Indikator aktif (statis di index 0) */}
                   {index === 0 && (
                     <div className="absolute -bottom-[22px] left-1/2 flex -translate-x-1/2 flex-col items-center">
                       <div className="size-1.5 rotate-45 bg-accent shadow-[0_0_8px_rgba(138,164,255,0.8)]" />
@@ -162,25 +167,23 @@ export function SiteNav() {
         <div className="flex h-full flex-col">
           <div className="flex h-[72px] items-center justify-between border-b border-accent/20 px-6">
             <div className="flex items-center gap-3">
-              <div className="flex size-9 items-center justify-center rounded-sm border border-accent/20 bg-accent/5 text-accent">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="square"
-                  strokeLinejoin="miter"
-                >
-                  <path d="M8 4L4 20M14 4L10 20M20 4L16 20" />
-                </svg>
+              {/* Logo Baru Mobile */}
+              <div className="relative flex size-9 shrink-0 items-center justify-center">
+                <Image
+                  src="/logo.png"
+                  alt="Maskani Logo"
+                  fill
+                  sizes="36px"
+                  className="object-contain"
+                />
               </div>
+
               <span className="font-display text-lg font-bold tracking-wider text-text-1">
                 {profile.name}
                 <span className="text-accent">.</span>
               </span>
             </div>
+
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
