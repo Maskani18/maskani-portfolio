@@ -1,21 +1,22 @@
-// MASKANI — Copy About (DL-015, V-1).
-//
-// Lead diadaptasi dari CV Professional Summary. Tiga frasa bergaris.
-// Chip C-08. Foto About (8:7) untuk kartu MediaCard di section.
-
+// MASKANI — Copy About (DL-015, VA-17).
 import type { Profile } from "./types";
 
 export const about = {
-  lead: "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support. Terbiasa melakukan troubleshooting hardware dan software, konfigurasi jaringan dengan MikroTik, serta pengujian aplikasi melalui manual testing dan User Acceptance Testing. Saya juga membangun antarmuka frontend dengan React dan Tailwind CSS.",
+  lead: "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support. Memiliki kemampuan troubleshooting hardware dan software, instalasi dan konfigurasi komputer, Windows, printer, serta perangkat pendukung, termasuk konfigurasi jaringan dan MikroTik. Terbiasa menangani kendala teknis, melakukan pemeliharaan perangkat, serta mendokumentasikan pekerjaan secara terstruktur. Pengalaman di bidang Quality Assurance turut memperkuat ketelitian dan kemampuan problem solving. Berkomitmen mengembangkan karier sebagai IT Support dan mendukung kelancaran operasional teknologi di lingkungan kerja.",
   highlights: [
-    "troubleshooting hardware dan software",
-    "konfigurasi jaringan dengan MikroTik",
-    "pengujian aplikasi melalui manual testing dan User Acceptance Testing",
+    "IT Support",
+    "troubleshooting hardware",
+    "software",
+    "Windows",
+    "printer",
+    "MikroTik",
+    "Quality Assurance",
+    "problem solving",
   ],
-  chip: "D4 Rekayasa Perangkat Lunak · Politeknik Negeri Indramayu · IPK 3.55/4.00",
+  chip: "D4 REKAYASA PERANGKAT LUNAK · POLITEKNIK NEGERI INDRAMAYU · IPK 3.55/4.00",
   photo: {
     src: "/portrait/about.webp",
-    alt: "Foto Maskani di depan kampus Politeknik Negeri Indramayu",
+    alt: "Foto Maskani",
   },
 } as const;
 
