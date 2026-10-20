@@ -9,6 +9,7 @@ import { TIER_SCRIPT } from "@/motion/runtime/tier-script";
 import { profile } from "@/content/profile";
 import { SmoothScroll } from "@/motion/runtime/smooth-scroll.client";
 import { TraceLayer } from "@/systems/trace/TraceLayer.client";
+import { CursorSystem } from "@/systems/cursor/CursorSystem.client";
 
 import "./globals.css";
 
@@ -80,6 +81,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Effects />
         <TraceLayer />
+        <CursorSystem />
         <SkipLink />
         <header
           id="site-header"
