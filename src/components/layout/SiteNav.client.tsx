@@ -130,6 +130,7 @@ export function SiteNav() {
           <div className="hidden items-center lg:flex">
             <a
               href={profile.cvPath}
+              data-magnetic
               className="group flex items-center gap-2 rounded-md border border-accent/50 bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-accent transition-all hover:border-accent hover:bg-accent/10"
             >
               <Download size={16} />

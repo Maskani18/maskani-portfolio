@@ -82,7 +82,13 @@ export function ContactActions() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={copy} variant="primary" className="min-w-[12rem]">
+        <Button
+          onClick={copy}
+          variant="primary"
+          className="min-w-[12rem]"
+          magnetic
+        >
+          SiteNav.client.tsx
           {state === "success" ? (
             <>
               <Icon name="check" size={18} />

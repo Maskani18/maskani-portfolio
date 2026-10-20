@@ -81,11 +81,10 @@ export function Hero(): JSX.Element {
             </p>
 
             <div className="flex flex-col items-center gap-3 sm:flex-row md:items-start">
-              <Button href={profile.cvPath} variant="primary">
+              <Button href={profile.cvPath} variant="primary" magnetic>
                 <Icon name="download" size={18} />
                 Unduh CV
               </Button>
-
               <Button href="#projects" variant="secondary">
                 Lihat Karya
                 <Icon name="arrow-right" size={18} />
