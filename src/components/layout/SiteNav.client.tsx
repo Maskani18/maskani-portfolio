@@ -1,15 +1,9 @@
 "use client";
 
-// MASKANI — SiteNav + IndexDialog (§3.2, A-03, A-04, DL-015).
-//
-// Client karena: scroll handler, fokus judul section, state dialog native.
-// Dialog memakai <dialog> native: Escape, focus trap, focus return
-// ditangani browser (tanpa library, §8.3).
-
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { Download } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { profile } from "@/content/profile";
 import { sections } from "@/content/sections";
@@ -52,74 +46,139 @@ export function SiteNav() {
 
   return (
     <>
-      <nav
-        aria-label="Navigasi utama"
-        className="mx-auto flex h-[var(--nav-height)] w-full max-w-[var(--container-max)] items-center justify-between px-[var(--gutter)]"
-      >
-        <Link
-          href="/"
-          className="font-display text-[1.125rem] font-semibold tracking-tight text-text-1"
+      {/* Container luar untuk memberikan margin dari atas layar */}
+      <div className="pointer-events-none fixed left-0 top-0 z-[80] w-full px-4 py-4 md:px-6 md:py-6">
+        {/* Navbar Utama dengan gaya HUD */}
+        <nav
+          aria-label="Navigasi utama"
+          className="pointer-events-auto relative mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between border border-accent/30 bg-[#090B0D]/80 px-6 backdrop-blur-md"
+          style={{
+            clipPath:
+              "polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px)",
+          }}
         >
-          {profile.name}
-        </Link>
+          {/* Garis aksen bawah (glow) */}
+          <div className="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-accent/0 via-accent/50 to-accent/0" />
 
-        {/* Desktop */}
-        <ul className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-                className="font-mono text-meta uppercase text-text-2 transition-colors duration-[var(--dur-fast)] hover:text-accent"
+          {/* KIRI: Logo & Teks */}
+          <Link href="/" className="group flex items-center gap-3 outline-none">
+            {/* Ikon Logo (Custom SVG) */}
+            <div className="flex size-9 items-center justify-center rounded-sm border border-accent/20 bg-accent/5 text-accent transition-colors group-hover:border-accent group-hover:bg-accent/10">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="square"
+                strokeLinejoin="miter"
               >
-                <span aria-hidden="true">{item.number}</span> {item.label}
-              </a>
-            </li>
-          ))}
-          <li>
-            <Button href={profile.cvPath} variant="secondary">
+                <path d="M8 4L4 20M14 4L10 20M20 4L16 20" />
+              </svg>
+            </div>
+
+            <span className="font-display text-[1.1rem] font-bold tracking-wider text-text-1">
+              {profile.name}
+              <span className="text-accent">.</span>
+            </span>
+          </Link>
+
+          {/* TENGAH: Menu Navigasi (Desktop) */}
+          <ul className="hidden h-full items-center gap-8 lg:flex">
+            {navItems.map((item, index) => (
+              <li key={item.id} className="relative flex h-full items-center">
+                <a
+                  href={`#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  className={`font-mono text-xs uppercase tracking-widest transition-colors hover:text-accent ${
+                    index === 0 ? "text-accent" : "text-text-2"
+                  }`}
+                >
+                  {item.label}
+
+                  {/* Indikator aktif (Statis di index 0) */}
+                  {index === 0 && (
+                    <div className="absolute -bottom-[22px] left-1/2 flex -translate-x-1/2 flex-col items-center">
+                      <div className="size-1.5 rotate-45 bg-accent shadow-[0_0_8px_rgba(138,164,255,0.8)]" />
+                      <div className="h-[2px] w-16 bg-accent shadow-[0_0_12px_rgba(138,164,255,0.8)]" />
+                    </div>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* KANAN: Tombol CV (Desktop) */}
+          <div className="hidden items-center lg:flex">
+            <a
+              href={profile.cvPath}
+              className="group flex items-center gap-2 rounded-md border border-accent/50 bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-accent transition-all hover:border-accent hover:bg-accent/10"
+            >
+              <Download size={16} />
               Unduh CV
-            </Button>
-          </li>
-        </ul>
+            </a>
+          </div>
 
-        {/* Mobile trigger */}
-        <button
-          type="button"
-          onClick={() => dialogRef.current?.showModal()}
-          aria-haspopup="dialog"
-          className="inline-flex items-center gap-2 text-text-1 lg:hidden"
-        >
-          <Icon name="index" size={20} />
-          <span className="font-mono text-meta uppercase">Indeks</span>
-        </button>
-      </nav>
+          {/* MOBILE TRIGGER: Tombol Indeks */}
+          <button
+            type="button"
+            onClick={() => dialogRef.current?.showModal()}
+            aria-haspopup="dialog"
+            className="flex items-center gap-2 text-text-1 outline-none lg:hidden"
+          >
+            <Icon name="index" size={24} />
+            <span className="font-mono text-xs uppercase tracking-widest">
+              Indeks
+            </span>
+          </button>
+        </nav>
+      </div>
 
-      {/* Dialog Index mobile (A-04) */}
+      {/* DIALOG INDEX MOBILE */}
       <dialog
         ref={dialogRef}
         aria-label="Indeks situs"
-        className="fixed inset-0 m-0 h-full max-h-full w-full max-w-full bg-void p-0 text-text-1 backdrop:bg-[var(--dialog-scrim)]"
+        className="fixed inset-0 m-0 h-full max-h-full w-full max-w-full bg-[#090B0D] p-0 text-text-1 backdrop:bg-black/90 backdrop:backdrop-blur-md"
       >
         <div className="flex h-full flex-col">
-          <div className="flex h-[var(--nav-height)] items-center justify-between border-b border-hairline px-[var(--gutter)]">
-            <span className="font-display text-[1.125rem] font-semibold">
-              {profile.name}
-            </span>
+          <div className="flex h-[72px] items-center justify-between border-b border-accent/20 px-6">
+            <div className="flex items-center gap-3">
+              <div className="flex size-9 items-center justify-center rounded-sm border border-accent/20 bg-accent/5 text-accent">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                >
+                  <path d="M8 4L4 20M14 4L10 20M20 4L16 20" />
+                </svg>
+              </div>
+              <span className="font-display text-lg font-bold tracking-wider text-text-1">
+                {profile.name}
+                <span className="text-accent">.</span>
+              </span>
+            </div>
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
               aria-label="Tutup indeks"
-              className="inline-flex items-center gap-2 text-text-1"
+              className="flex items-center gap-2 text-text-1 outline-none transition-colors hover:text-accent"
             >
               <Icon name="close" size={20} />
-              <span className="font-mono text-meta uppercase">Tutup</span>
+              <span className="font-mono text-xs uppercase tracking-widest">
+                Tutup
+              </span>
             </button>
           </div>
 
           <nav
             aria-label="Bagian"
-            className="flex-1 overflow-y-auto px-[var(--gutter)] py-10"
+            className="flex-1 overflow-y-auto px-6 py-10"
           >
             <ol className="flex flex-col gap-6">
               {navItems.map((item) => (
@@ -130,14 +189,8 @@ export function SiteNav() {
                       dialogRef.current?.close();
                       handleNavClick(e, item.id);
                     }}
-                    className="flex items-baseline gap-4 font-display text-d3 text-text-1"
+                    className="group flex items-baseline gap-4 font-display text-d3 uppercase text-text-1 outline-none transition-colors hover:text-accent"
                   >
-                    <span
-                      className="font-mono text-meta text-text-3"
-                      aria-hidden="true"
-                    >
-                      {item.number}
-                    </span>
                     <span>{item.label}</span>
                   </a>
                 </li>
@@ -145,14 +198,13 @@ export function SiteNav() {
             </ol>
 
             <div className="mt-12 flex flex-col gap-3">
-              <Button href={profile.cvPath} variant="primary">
-                <Icon name="download" size={18} />
+              <a
+                href={profile.cvPath}
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-accent/50 bg-transparent px-5 py-4 font-mono text-sm uppercase tracking-widest text-accent transition-colors hover:bg-accent/10"
+              >
+                <Download size={18} />
                 Unduh CV
-              </Button>
-              <Button href={profile.linkedin} variant="secondary" external>
-                LinkedIn
-                <Icon name="arrow-up-right" size={18} />
-              </Button>
+              </a>
             </div>
           </nav>
         </div>

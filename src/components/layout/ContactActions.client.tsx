@@ -99,7 +99,7 @@ export function ContactActions() {
         {mailto ? (
           <Button href={mailto} variant="secondary">
             <Icon name="mail" size={18} />
-            Buka email
+            Kirim Email
           </Button>
         ) : (
           <span
@@ -107,7 +107,7 @@ export function ContactActions() {
             className="inline-flex min-h-12 items-center gap-2 rounded-md border border-hairline-strong px-5 text-ui font-medium text-text-2"
           >
             <Icon name="mail" size={18} />
-            Buka email
+            Kirim Email
           </span>
         )}
       </div>

@@ -44,6 +44,8 @@ export type Profile = {
   readonly emailParts: EmailParts;
   readonly linkedin: string;
   readonly github?: string;
+  readonly whatsapp: string; // Tambahan
+  readonly instagram: string; // Tambahan
   readonly cvPath: string;
 };
 
@@ -116,12 +118,21 @@ export type SkillGroup = {
 
 // ---------------- Education (§2.3) ----------------
 
+export type EducationImage = {
+  readonly src: string;
+  readonly alt: string;
+  readonly label?: string;
+};
+
 export type Certification = {
+  readonly id: string;
   readonly name: string;
   readonly issuer: string;
-  readonly period: string; // "May 2024" atau "Jun – Jul 2023"
-  readonly note?: string; // mis. "Certificate of Attendance"
-  readonly description?: string; // satu kalimat, hanya bila ada
+  readonly period: string;
+  readonly note?: string;
+  readonly description: string;
+  readonly materials: readonly string[];
+  readonly images: readonly EducationImage[];
 };
 
 export type Organization = {
@@ -129,15 +140,20 @@ export type Organization = {
   readonly name: string;
   readonly period: string;
   readonly description: string;
+  readonly responsibilities: readonly string[];
+  readonly images: readonly EducationImage[]; // Ubah dari image ke images (array)
 };
 
 export type EducationBlock = {
   readonly degree: string;
   readonly school: string;
   readonly period: string;
-  readonly gpa: string; // "3.55/4.00"
+  readonly gpa: string;
   readonly certifications: readonly Certification[];
   readonly organization: Organization;
+  readonly images: {
+    readonly school: EducationImage;
+  };
 };
 
 // ---------------- Project (§6) ----------------
@@ -230,10 +246,21 @@ export type Project = {
 
 // ---------------- Colophon (§7.4) ----------------
 
+export type ColophonGroup = {
+  readonly title: string;
+  readonly items: readonly {
+    readonly label: string;
+    readonly value: string;
+  }[];
+};
+
 export type Colophon = {
-  readonly fonts: readonly [string, string, string];
-  readonly stack: string;
-  readonly copyright: string; // "© 2026 Maskani"
+  readonly title: string;
+  readonly thankYou: string; // Tambahan
+  readonly subtitle: string;
+  readonly tagline: string; // Tambahan
+  readonly groups: readonly ColophonGroup[];
+  readonly copyright: string;
 };
 
 // ---------------- Build Receipt (§7.4, R4) ----------------

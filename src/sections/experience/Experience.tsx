@@ -94,8 +94,8 @@ export function Experience(): JSX.Element {
           </div>
         </div>
 
-        {/* Judul Raksasa */}
-        <h2 className="mb-16 font-display text-[clamp(3rem,7vw,10rem)] uppercase leading-none text-text-1">
+        {/* Judul Raksasa (Dikecilkan) */}
+        <h2 className="mb-16 font-display text-[clamp(2.5rem,5vw,5rem)] uppercase leading-none text-text-1">
           Pengalaman
         </h2>
 
@@ -132,7 +132,8 @@ export function Experience(): JSX.Element {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <h3 className="font-display text-2xl uppercase leading-tight md:text-3xl">
+                      {/* Role text diperkecil sedikit */}
+                      <h3 className="font-display text-xl uppercase leading-tight md:text-2xl">
                         {item.role}
                       </h3>
                       <p className="font-mono text-meta uppercase text-text-2">
@@ -189,11 +190,7 @@ export function Experience(): JSX.Element {
           </div>
         </div>
 
-        {/* Footer Quote */}
-        <div className="mt-20 flex items-center gap-4 font-mono text-micro uppercase tracking-widest text-text-3">
-          <span>Pengalaman adalah proses belajar yang tak pernah berhenti</span>
-          <div className="h-px flex-1 bg-hairline" />
-        </div>
+        {/* Footer Quote DIHAPUS sesuai instruksi */}
       </div>
 
       {/* Modal Dialog */}
