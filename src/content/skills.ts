@@ -1,65 +1,159 @@
-// MASKANI — Data skills (§2.4, DL-016).
-//
-// Lima kategori, urutan tetap. MikroTik tepat sekali (CG-11).
-// Setiap item memiliki ikon monokrom (lihat SkillIcon.tsx).
-
 import type { SkillGroup } from "./types";
 
 export const skills: readonly SkillGroup[] = [
   {
     label: "IT Support",
+    evidence: "PT DIRGANTARA INDONESIA",
     items: [
-      { icon: "troubleshoot", label: "Troubleshooting Hardware & Software" },
-      { icon: "device-install", label: "Instalasi & Konfigurasi Perangkat" },
-      { icon: "maintenance", label: "Hardware Maintenance" },
-      { icon: "support", label: "Technical Support" },
+      {
+        icon: "Wrench",
+        label: "Troubleshooting Hardware & Software",
+        description: "Menangani kendala perangkat keras dan lunak.",
+      },
+      {
+        icon: "Monitor",
+        label: "Instalasi & Konfigurasi Perangkat",
+        description: "Windows, printer, dan perangkat pendukung lainnya.",
+      },
+      {
+        icon: "Network",
+        label: "Network & MikroTik",
+        description: "Konfigurasi jaringan, proxy, konektivitas, dan MikroTik.",
+      },
+      {
+        icon: "Headset",
+        label: "Technical Support",
+        description: "Memberikan dukungan teknis dan pemeliharaan perangkat.",
+      },
     ],
-    evidence: "PT Dirgantara Indonesia",
   },
   {
     label: "Networking",
+    evidence: "PT DIRGANTARA INDONESIA ",
     items: [
-      { icon: "networking", label: "Computer Networking" },
-      { icon: "network-admin", label: "Basic Network Administration" },
-      { icon: "mikrotik", label: "MikroTik" },
-      { icon: "network-monitoring", label: "Network Monitoring" },
-      { icon: "proxy", label: "Proxy" },
-      { icon: "dns", label: "DNS" },
+      {
+        icon: "Network",
+        label: "Computer Networking",
+        description: "Konfigurasi jaringan dan perangkat pendukung.",
+      },
+      {
+        icon: "Server",
+        label: "Basic Machine Administration",
+        description: "Pengelolaan sistem dan perangkat server.",
+      },
+      {
+        icon: "Router",
+        label: "MikroTik",
+        description: "Konfigurasi router dan manajemen bandwidth.",
+      },
+      {
+        icon: "Activity",
+        label: "Network Monitoring",
+        description: "Pemantauan jaringan dan perangkat secara berkala.",
+      },
+      {
+        icon: "Wifi",
+        label: "Proxy & DNS",
+        description: "Konfigurasi proxy dan pengelolaan DNS.",
+      },
     ],
-    evidence: "PT Dirgantara Indonesia · VSGA",
   },
   {
     label: "Software Quality Assurance",
+    evidence: "PT QTASNIM DIGITAL TEKNOLOGI",
     items: [
-      { icon: "manual-testing", label: "Manual Testing" },
-      { icon: "functional-testing", label: "Functional Testing" },
-      { icon: "uat", label: "User Acceptance Testing (UAT)" },
-      { icon: "test-case", label: "Test Case Design" },
-      { icon: "bug-report", label: "Bug Reporting" },
-      { icon: "retesting", label: "Retesting" },
-      { icon: "test-doc", label: "Test Documentation" },
+      {
+        icon: "ClipboardCheck",
+        label: "Manual Testing",
+        description: "Pengujian fitur sesuai skenario.",
+      },
+      {
+        icon: "FileCode",
+        label: "Functional Testing",
+        description: "Memastikan fungsi aplikasi berjalan dengan baik.",
+      },
+      {
+        icon: "Users",
+        label: "User Acceptance Testing (UAT)",
+        description: "Validasi bersama pengguna akhir.",
+      },
+      {
+        icon: "Bug",
+        label: "Test Case Design",
+        description: "Menyusun skenario dan kasus pengujian.",
+      },
+      {
+        icon: "RefreshCw",
+        label: "Bug Reporting",
+        description: "Mendokumentasikan dan melaporkan bug.",
+      },
     ],
-    evidence: "PT Qtasnim Digital Teknologi",
   },
   {
     label: "Frontend & Development",
+    evidence: "DISKOMINFO INDRAMAYU",
     items: [
-      { icon: "react", label: "React.js" },
-      { icon: "tailwind", label: "Tailwind CSS" },
-      { icon: "laravel", label: "Laravel" },
-      { icon: "php", label: "PHP" },
-      { icon: "rest-api", label: "REST API (Axios)" },
+      {
+        icon: "Atom",
+        label: "React.js",
+        description: "Membangun antarmuka aplikasi web.",
+      },
+      {
+        icon: "Wind",
+        label: "Tailwind CSS",
+        description: "Styling responsif dan modern.",
+      },
+      {
+        icon: "Code2",
+        label: "Axios",
+        description: "Integrasi data dari REST API.",
+      },
+      {
+        icon: "Cloud",
+        label: "REST API",
+        description: "Menghubungkan frontend dengan backend.",
+      },
+      {
+        icon: "Milestone",
+        label: "Routing",
+        description: "Manajemen navigasi antar halaman.",
+      },
+      {
+        icon: "ShieldCheck",
+        label: "Form Validation",
+        description: "Validasi input dan formulir pengguna.",
+      },
     ],
-    evidence: "Diskominfo Indramayu",
   },
   {
     label: "Tools & Documentation",
+    evidence: "PERSONAL & WORK",
     items: [
-      { icon: "trello", label: "Trello" },
-      { icon: "excel", label: "Microsoft Excel" },
-      { icon: "word", label: "Microsoft Word" },
-      { icon: "documentation", label: "Technical Documentation" },
+      {
+        icon: "code",
+        label: "Trello",
+        description: "Manajemen tugas dan pemantauan progres pekerjaan.",
+      },
+      {
+        icon: "GitBranch",
+        label: "Git & GitHub",
+        description: "Version control dan kolaborasi proyek.",
+      },
+      {
+        icon: "Table",
+        label: "Microsoft Excel",
+        description: "Pengolahan data dan laporan.",
+      },
+      {
+        icon: "FileText",
+        label: "Microsoft Word",
+        description: "Dokumentasi dan penyusunan laporan.",
+      },
+      {
+        icon: "BookOpen",
+        label: "Technical Documentation",
+        description: "Menulis dokumentasi teknis dan alur kerja.",
+      },
     ],
-    evidence: "",
   },
 ];

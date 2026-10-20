@@ -103,15 +103,15 @@ export type SkillIconName =
   | "documentation";
 
 export type SkillItem = {
-  readonly icon: SkillIconName;
+  readonly icon: string; // Nama ikon Lucide
   readonly label: string;
+  readonly description: string; // Tambahan deskripsi
 };
 
 export type SkillGroup = {
   readonly label: string;
-  readonly items: readonly SkillItem[];
-  // Baris bukti mono. String kosong = tidak ada baris bukti.
   readonly evidence: string;
+  readonly items: readonly SkillItem[];
 };
 
 // ---------------- Education (§2.3) ----------------
