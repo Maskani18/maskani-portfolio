@@ -1,34 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local"; // Ganti import
+import { Space_Mono, Inter } from "next/font/google";
 
-import { SkipLink } from "@/components/layout/SkipLink";
-import { profile } from "@/content/profile";
-import { SiteNav } from "@/components/layout/SiteNav.client";
 import { Effects } from "@/components/layout/Effects.client";
+import { SiteNav } from "@/components/layout/SiteNav.client";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { TIER_SCRIPT } from "@/motion/runtime/tier-script";
+import { profile } from "@/content/profile";
 
 import "./globals.css";
 
-// P0-04: tiga font self-host via next/font/google (§4.2).
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz"],
-  adjustFontFallback: false,
-});
-
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
+// Font Display: Rostex (Local File)
+const rostex = localFont({
+  src: "../fonts/Rostex.ttf", // Path relatif dari src/app/layout.tsx ke src/fonts/Rostex.ttf
+  variable: "--font-rostex",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Font Mono: Space Mono (400, 700)
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
+// Font Body: Inter (Variable)
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#090B0D",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -50,12 +51,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
-      className={`${bricolage.variable} ${geist.variable} ${geistMono.variable}`}
+      lang="id"
+      className={`${rostex.variable} ${spaceMono.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       <head>
-        {/* U-09: atribut tier diset sebelum paint. Inline, ~360 byte. */}
         <script dangerouslySetInnerHTML={{ __html: TIER_SCRIPT }} />
         <script
           type="application/ld+json"
