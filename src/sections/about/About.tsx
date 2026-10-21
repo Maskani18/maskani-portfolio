@@ -19,7 +19,7 @@ export function About(): JSX.Element {
         className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-6 md:flex lg:right-8"
       >
         <div className="h-24 w-px bg-hairline-strong" />
-        <span className="rotate-90 font-mono text-meta uppercase tracking-widest text-text-3 whitespace-nowrap">
+        <span className="rotate-90 whitespace-nowrap font-mono text-meta uppercase tracking-widest text-text-3">
           MASKANI
         </span>
         <div className="h-24 w-px bg-hairline-strong" />
@@ -32,7 +32,9 @@ export function About(): JSX.Element {
             <span>{entry.number}</span>
             <span>{entry.label}</span>
           </div>
+
           <div className="h-px flex-1 bg-hairline" />
+
           {/* Garis & MASKANI Kanan Atas */}
           <div className="hidden items-center gap-4 lg:flex">
             <div className="h-px w-12 bg-hairline" />
@@ -46,14 +48,17 @@ export function About(): JSX.Element {
         <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
           {/* KIRI: Foto & Indikator Bawah */}
           <div data-reveal className="flex flex-col gap-6 lg:col-span-5">
-            <MediaCard
-              src={about.photo.src}
-              alt={about.photo.alt}
-              variant="landscape"
-              aspectOverride="aspect-[4/5]"
-              sizes="(min-width: 1024px) 41vw, 100vw"
-              loading="lazy"
-            />
+            <div data-tilt>
+              <MediaCard
+                src={about.photo.src}
+                alt={about.photo.alt}
+                variant="landscape"
+                aspectOverride="aspect-[4/5]"
+                sizes="(min-width: 1024px) 41vw, 100vw"
+                loading="lazy"
+              />
+            </div>
+
             {/* Indikator 01 / 07 */}
             <div className="flex items-center gap-4 font-mono text-meta uppercase text-text-3">
               <span>01 / 07</span>
@@ -115,21 +120,33 @@ function WithHighlights({
 
   for (const phrase of phrases) {
     const next: Seg[] = [];
+
     for (const seg of segments) {
       if (seg.hl) {
         next.push(seg);
         continue;
       }
+
       const i = seg.t.indexOf(phrase);
+
       if (i === -1) {
         next.push(seg);
         continue;
       }
-      if (i > 0) next.push({ t: seg.t.slice(0, i), hl: false });
+
+      if (i > 0) {
+        next.push({ t: seg.t.slice(0, i), hl: false });
+      }
+
       next.push({ t: phrase, hl: true });
+
       const rest = seg.t.slice(i + phrase.length);
-      if (rest) next.push({ t: rest, hl: false });
+
+      if (rest) {
+        next.push({ t: rest, hl: false });
+      }
     }
+
     segments = next;
   }
 

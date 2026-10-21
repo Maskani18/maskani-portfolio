@@ -7,6 +7,7 @@ import { loadGsap } from "@/motion/runtime/gsap-loader";
 export function HeroMotion() {
   useEffect(() => {
     if (getTier() === "static") return;
+
     let ctx: gsap.Context;
 
     const init = async () => {
@@ -51,10 +52,29 @@ export function HeroMotion() {
             },
             "-=0.4",
           );
+
+        // Animasi breathing pada pembungkus foto
+        gsap.to("[data-hero-photo-wrapper]", {
+          y: -10,
+          duration: 3,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.5,
+        });
+
+        // Animasi Orbit HUD berputar perlahan (Futuristik)
+        gsap.to("[data-hero-orbit]", {
+          rotation: 360,
+          duration: 60, // Berputar sangat lambat (1 menit per putaran)
+          ease: "linear",
+          repeat: -1,
+        });
       }, heroEl);
     };
 
-    init();
+    void init();
+
     return () => ctx?.revert();
   }, []);
 

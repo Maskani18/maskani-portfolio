@@ -86,7 +86,7 @@ export function Hero(): JSX.Element {
                 Unduh CV
               </Button>
               <Button href="#projects" variant="secondary">
-                Lihat Karya
+                Lihat Project
                 <Icon name="arrow-right" size={18} />
               </Button>
             </div>
