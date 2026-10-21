@@ -81,7 +81,7 @@ export const education: EducationBlock = {
       "Bertanggung jawab atas perencanaan, pelaksanaan, dan evaluasi 8 program kerja selama satu periode kepengurusan.",
       "Mengoordinasikan anggota melalui pembagian tugas dan pemantauan pelaksanaan kegiatan untuk memastikan setiap program kerja berjalan sesuai rencana.",
       "Merancang dan melaksanakan kegiatan pengembangan wawasan serta kompetensi mahasiswa di bidang akademik.",
-      "Memfasilitasi kegiatan non-akademik melalui program Study Club dan Kompetisi untuk meningkatkan soft skill anggota.",
+      "Memfasilitasi kegiatan melalui program Study Club dan Kompetisi untuk meningkatkan soft skill mahasiswa.",
     ],
     images: [
       { src: "/media/hmti-1.webp", alt: "Foto Organisasi 1", label: "Foto 1" },

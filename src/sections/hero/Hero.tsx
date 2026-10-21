@@ -1,5 +1,6 @@
 // MASKANI — Section 01 Hero (V-1, DL-014a).
 import type { JSX } from "react";
+import { MapPin } from "lucide-react"; // <-- Tambahan import MapPin
 
 import { SectionShell } from "@/components/layout/SectionShell";
 import { Button } from "@/components/ui/Button";
@@ -14,7 +15,7 @@ export function Hero(): JSX.Element {
   const entry = getSection("hero");
 
   return (
-    <SectionShell entry={entry} hideHeader className="!py-0">
+    <SectionShell entry={entry} hideHeader className="!py-0 relative">
       <HeroMotion />
 
       <div className="flex min-h-[auto] flex-col justify-start gap-8 pt-24 pb-10 md:min-h-[calc(100svh-var(--nav-height))] md:justify-center md:gap-12 md:pt-32 md:pb-24">
@@ -23,13 +24,13 @@ export function Hero(): JSX.Element {
           className="relative z-40 flex flex-col items-start justify-between gap-4 md:flex-row md:items-start"
           data-hero-meta
         >
-          <div className="flex flex-col gap-1 font-mono text-[0.6rem] uppercase text-text-3 md:gap-1.5 md:text-meta">
+          <div className="flex flex-col gap-1.5 font-mono text-[0.6rem] uppercase text-text-3 md:text-meta">
             <ul className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
               {profile.fields.map((f, i) => (
                 <li key={f} className="flex items-center gap-2">
                   {i > 0 ? (
-                    <span aria-hidden="true" className="opacity-60">
-                      ·
+                    <span aria-hidden="true" className="text-accent opacity-50">
+                      /
                     </span>
                   ) : null}
                   <span>{f}</span>
@@ -37,31 +38,20 @@ export function Hero(): JSX.Element {
               ))}
             </ul>
 
-            <div className="flex items-center gap-1.5">
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="md:size-3"
-              >
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>{profile.locationShort}</span>
+            <div className="flex items-center gap-1.5 text-accent">
+              {/* Ganti Icon name="map-pin" jadi MapPin */}
+              <MapPin size={12} className="md:size-3.5" />
+              <span className="text-text-3">{profile.locationShort}</span>
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-hairline-strong px-2 py-1 md:gap-2 md:px-3 md:py-1.5">
-            <span
-              aria-hidden="true"
-              className="size-1 rounded-full bg-accent md:size-1.5"
-            />
-            <span className="font-mono text-[0.55rem] uppercase text-text-2 md:text-meta">
+          {/* Status Indikator (Lebih Futuristik) */}
+          <div className="group inline-flex items-center gap-2 rounded-sm border border-accent/30 bg-accent/5 px-2.5 py-1 backdrop-blur-sm transition-all hover:bg-accent/10 hover:shadow-[0_0_15px_rgba(138,164,255,0.2)] md:px-3 md:py-1.5">
+            <span className="relative flex size-2 md:size-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex size-2 rounded-full bg-accent md:size-2.5"></span>
+            </span>
+            <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-meta">
               {profile.status}
             </span>
           </div>
@@ -77,27 +67,28 @@ export function Hero(): JSX.Element {
             className="relative z-40 flex flex-col gap-4 md:gap-8"
             data-hero-cta
           >
-            <p className="text-left text-[0.7rem] leading-snug text-text-2 md:text-lead md:leading-relaxed">
+            <p className="text-left text-[0.7rem] leading-snug text-text-2 md:text-lead md:leading-relaxed border-l border-accent/30 pl-3 md:pl-4">
               {hero.lead}
             </p>
 
-            <div className="flex flex-row items-center gap-1.5 md:gap-3">
+            <div className="flex flex-row items-center gap-2 md:gap-4">
               <Button
                 href={profile.cvPath}
                 variant="primary"
                 magnetic
-                className="!px-2 !py-1.5 !text-[0.6rem] md:!px-5 md:!py-3 md:!text-sm !h-auto !min-h-0"
+                className="!px-3 !py-2 !text-[0.6rem] md:!px-6 md:!py-3 md:!text-sm !h-auto !min-h-0 !rounded-none !bg-accent hover:!bg-accent-hover !text-[#090B0D] font-bold shadow-[0_0_20px_rgba(138,164,255,0.3)] transition-all hover:shadow-[0_0_30px_rgba(138,164,255,0.5)] [clip-path:polygon(8px_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%,0_8px)]"
               >
-                <Icon name="download" size={12} className="md:size-4" />
+                <Icon name="download" size={14} className="md:size-4" />
                 Unduh CV
               </Button>
+
               <Button
                 href="#projects"
                 variant="secondary"
-                className="!px-2 !py-1.5 !text-[0.6rem] md:!px-5 md:!py-3 md:!text-sm !h-auto !min-h-0"
+                className="!px-3 !py-2 !text-[0.6rem] md:!px-6 md:!py-3 md:!text-sm !h-auto !min-h-0 !rounded-none !border-accent/40 hover:!border-accent hover:!bg-accent/10 transition-all [clip-path:polygon(8px_0,100%_0,100%_calc(100%-8px),calc(100%-8px)_100%,0_100%,0_8px)]"
               >
                 Lihat Project
-                <Icon name="arrow-right" size={12} className="md:size-4" />
+                <Icon name="arrow-right" size={14} className="md:size-4" />
               </Button>
             </div>
           </div>
