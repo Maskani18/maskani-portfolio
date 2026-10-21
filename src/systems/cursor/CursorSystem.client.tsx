@@ -4,7 +4,6 @@ import { useEffect, useRef, useSyncExternalStore } from "react";
 import { getTier } from "@/motion/runtime/tier";
 import { loadGsap } from "@/motion/runtime/gsap-loader";
 
-// Hydration check (false saat SSR, true saat client)
 function subscribeNoop(): () => void {
   return () => {};
 }
@@ -19,7 +18,6 @@ export function CursorSystem() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
-  // Menggunakan hook ini agar tidak ada setState di dalam useEffect
   const hydrated = useSyncExternalStore(
     subscribeNoop,
     getSnapshot,
@@ -27,7 +25,6 @@ export function CursorSystem() {
   );
 
   useEffect(() => {
-    // Pastikan hanya jalan di client dan tier adalah cinematic
     if (!hydrated) return;
     if (getTier() !== "cinematic") return;
 
@@ -39,10 +36,8 @@ export function CursorSystem() {
       const ring = ringRef.current;
       if (!dot || !ring) return;
 
-      // Sembunyikan kursor asli
       document.body.classList.add("has-custom-cursor");
 
-      // Gunakan quickTo untuk performa terbaik
       const dotX = gsap.quickTo(dot, "x", { duration: 0, ease: "none" });
       const dotY = gsap.quickTo(dot, "y", { duration: 0, ease: "none" });
 
@@ -73,27 +68,36 @@ export function CursorSystem() {
         isVisible = false;
       };
 
-      const onHoverEnter = () => document.body.classList.add("cursor-hover");
-      const onHoverLeave = () => document.body.classList.remove("cursor-hover");
+      const onHoverEnter = (e: MouseEvent) => {
+        const target = e.target;
+        if (
+          target instanceof Element &&
+          target.closest("a, button, [data-magnetic], input, textarea, select")
+        ) {
+          document.body.classList.add("cursor-hover");
+        }
+      };
 
-      const bindHoverEvents = () => {
-        const targets = document.querySelectorAll(
-          "a, button, [data-magnetic], input, textarea, select",
-        );
-        targets.forEach((el) => {
-          el.addEventListener("pointerenter", onHoverEnter);
-          el.addEventListener("pointerleave", onHoverLeave);
-        });
+      const onHoverLeave = (e: MouseEvent) => {
+        const target = e.target;
+        if (
+          target instanceof Element &&
+          target.closest("a, button, [data-magnetic], input, textarea, select")
+        ) {
+          document.body.classList.remove("cursor-hover");
+        }
       };
 
       window.addEventListener("pointermove", onMove, { passive: true });
       window.addEventListener("pointerleave", onLeave);
-
-      setTimeout(bindHoverEvents, 1000);
+      document.addEventListener("mouseover", onHoverEnter);
+      document.addEventListener("mouseout", onHoverLeave);
 
       cleanupFn = () => {
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("pointerleave", onLeave);
+        document.removeEventListener("mouseover", onHoverEnter);
+        document.removeEventListener("mouseout", onHoverLeave);
         document.body.classList.remove("has-custom-cursor", "cursor-hover");
         gsap.killTweensOf([dot, ring]);
       };
@@ -106,7 +110,6 @@ export function CursorSystem() {
     };
   }, [hydrated]);
 
-  // Jangan render di server (SSR) agar tidak terjadi hydration mismatch
   if (!hydrated) return null;
 
   return (

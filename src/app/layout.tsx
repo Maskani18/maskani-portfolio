@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local"; // Ganti import
+import localFont from "next/font/local";
 import { Space_Mono, Inter } from "next/font/google";
 
 import { Effects } from "@/components/layout/Effects.client";
@@ -15,7 +15,7 @@ import "./globals.css";
 
 // Font Display: Rostex (Local File)
 const rostex = localFont({
-  src: "../fonts/Rostex.ttf", // Path relatif dari src/app/layout.tsx ke src/fonts/Rostex.ttf
+  src: "../fonts/Rostex.ttf",
   variable: "--font-rostex",
   display: "swap",
 });
@@ -51,7 +51,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  report,
+}: Readonly<{
+  children: React.ReactNode;
+  report?: React.ReactNode;
+}>) {
   return (
     <html
       lang="id"
@@ -77,20 +81,24 @@ export default function RootLayout({
           }}
         />
       </head>
+
       <body>
         <SmoothScroll />
         <Effects />
         <TraceLayer />
         <CursorSystem />
         <SkipLink />
+
         <header
           id="site-header"
           className="sticky top-0 z-[80] border-b border-hairline bg-[var(--color-void)]/75 backdrop-blur-[var(--nav-blur)]"
         >
           <SiteNav />
         </header>
+
         <main id="main" className="relative">
           {children}
+          {report}
         </main>
       </body>
     </html>

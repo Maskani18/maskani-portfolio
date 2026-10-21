@@ -17,8 +17,7 @@ export function Hero(): JSX.Element {
     <SectionShell entry={entry} hideHeader className="!py-0">
       <HeroMotion />
 
-      <div className="flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-between gap-12 pt-12 pb-20 md:pt-20 md:pb-28">
-        {/* Baris atas: meta + chip status */}
+      <div className="flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-center gap-12 pt-24 pb-16 md:pt-32 md:pb-24">
         <div
           className="relative z-40 flex flex-col items-start justify-between gap-6 md:flex-row md:items-start"
           data-hero-meta
