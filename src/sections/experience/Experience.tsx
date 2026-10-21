@@ -11,12 +11,11 @@ import type { ExperienceItem } from "@/content/types";
 import { getSection } from "@/content/sections";
 import { Icon } from "@/components/ui/Icon";
 
-// Ikon SVG inline untuk masing-masing tipe
 const Icons = {
   code: () => (
     <svg
-      width="24"
-      height="24"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -29,8 +28,8 @@ const Icons = {
   ),
   bug: () => (
     <svg
-      width="24"
-      height="24"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -43,8 +42,8 @@ const Icons = {
   ),
   monitor: () => (
     <svg
-      width="24"
-      height="24"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -65,108 +64,87 @@ export function Experience(): JSX.Element {
 
   return (
     <SectionShell entry={entry} hideHeader className="relative overflow-hidden">
-      {/* Garis Vertikal & Teks di Sisi Kanan Layar */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-6 md:flex lg:right-8"
-      >
-        <div className="h-24 w-px bg-hairline-strong" />
-        <span className="rotate-90 font-mono text-meta uppercase tracking-widest text-text-3 whitespace-nowrap">
-          MASKANI
-        </span>
-        <div className="h-24 w-px bg-hairline-strong" />
-      </div>
-
       <div className="mx-auto w-full max-w-[var(--container-max)]">
-        {/* Header Section (03 PENGALAMAN) */}
-        <div className="mb-12 flex items-center gap-6">
-          <div className="flex items-center gap-4 font-mono text-meta uppercase text-text-2">
+        <div className="mb-8 flex items-center gap-6 md:mb-12">
+          <div className="flex items-center gap-4 font-mono text-[0.65rem] uppercase text-text-2 md:text-meta">
             <span>{entry.number}</span>
             <span>{entry.label}</span>
           </div>
           <div className="h-px flex-1 bg-hairline" />
-          <div className="hidden items-center gap-4 lg:flex">
-            <div className="h-px w-12 bg-hairline" />
-            <span className="font-mono text-meta uppercase tracking-widest text-text-3">
-              MASKANI
-            </span>
-            <div className="h-px w-12 bg-hairline" />
-          </div>
         </div>
 
-        {/* Judul Raksasa (Dikecilkan) */}
-        <h2 className="mb-16 font-display text-[clamp(2.5rem,5vw,5rem)] uppercase leading-none text-text-1">
+        <h2 className="mb-8 font-display text-[clamp(2rem,5vw,5rem)] uppercase leading-none text-text-1 md:mb-16">
           Pengalaman
         </h2>
 
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+        {/* Mobile: Grid 12 Kolom, Teks 8, Foto 4 */}
+        <div className="grid grid-cols-12 items-start gap-3 md:gap-16 lg:gap-16">
           {/* KIRI: List Timeline */}
-          <div className="flex flex-col lg:col-span-8">
+          <div className="col-span-8 flex flex-col md:col-span-8">
             {experience.items.map((item, index) => (
-              <div key={item.id} className="group relative flex gap-6 pb-12">
-                {/* Garis Timeline Vertikal */}
+              <div
+                key={item.id}
+                className="group relative flex gap-2 pb-8 md:gap-6 md:pb-12"
+              >
+                {/* Garis Timeline */}
                 {index !== experience.items.length - 1 && (
-                  <div className="absolute left-[72px] top-8 h-full w-px bg-hairline md:left-[88px]" />
+                  <div className="absolute left-[5px] top-6 h-full w-px bg-hairline md:left-[88px] md:top-8" />
                 )}
 
-                {/* Tanggal (Kiri) */}
-                <div className="mt-2 w-[52px] shrink-0 text-right md:w-[64px]">
-                  <p className="font-mono text-meta uppercase text-text-3">
-                    {item.period.from}
-                  </p>
-                  <p className="font-mono text-meta uppercase text-text-3">–</p>
-                  <p className="font-mono text-meta uppercase text-text-3">
-                    {item.period.to}
-                  </p>
-                </div>
-
                 {/* Titik Timeline */}
-                <div className="relative z-10 mt-3 hidden size-2 shrink-0 rounded-full bg-text-3 md:block" />
+                <div className="relative z-10 mt-1.5 size-2.5 shrink-0 rounded-full border border-hairline-strong bg-void md:mt-2 md:size-2 md:bg-text-3" />
 
                 {/* Konten Kanan */}
-                <div className="flex flex-1 flex-col gap-4">
-                  <div className="flex items-start gap-4 md:gap-6">
-                    {/* Ikon */}
-                    <div className="flex size-14 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-surface-2 text-text-1 md:size-16">
+                <div className="flex flex-1 flex-col gap-2 md:gap-4">
+                  <div className="flex items-start gap-2 md:gap-6">
+                    <div className="hidden size-10 shrink-0 items-center justify-center rounded-md bg-surface-2 text-text-1 md:flex md:size-14">
                       {Icons[item.icon]()}
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      {/* Role text diperkecil sedikit */}
-                      <h3 className="font-display text-xl uppercase leading-tight md:text-2xl">
+                    <div className="flex flex-col gap-0.5 md:gap-1">
+                      <h3 className="font-display text-sm uppercase leading-tight md:text-2xl">
                         {item.role}
                       </h3>
-                      <p className="font-mono text-meta uppercase text-text-2">
+                      <p className="font-mono text-[0.55rem] uppercase text-text-2 md:text-meta">
                         {item.org}
+                      </p>
+                      <p className="font-mono text-[0.55rem] uppercase text-text-3">
+                        {item.period.from} – {item.period.to}
                       </p>
                     </div>
                   </div>
 
-                  <p className="max-w-[62ch] text-body text-text-2">
+                  <p className="hidden text-xs leading-relaxed text-text-2 sm:block md:text-base">
                     {item.summary}
                   </p>
 
-                  <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
-                    {/* Pills Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
-                      {item.techStack.map((tech) => (
+                  <div className="mt-1 flex flex-wrap items-center gap-3 md:mt-2 md:justify-between">
+                    <div className="flex flex-wrap gap-1 md:gap-2">
+                      {item.techStack.slice(0, 2).map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-hairline px-3 py-1.5 font-mono text-[0.7rem] uppercase text-text-2"
+                          className="rounded-full border border-hairline px-1.5 py-0.5 font-mono text-[0.5rem] uppercase text-text-2 md:px-3 md:py-1.5 md:text-[0.7rem]"
                         >
                           {tech}
                         </span>
                       ))}
+                      {item.techStack.length > 2 && (
+                        <span className="rounded-full border border-hairline px-1.5 py-0.5 font-mono text-[0.5rem] uppercase text-text-3 md:hidden">
+                          +{item.techStack.length - 2}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Tombol Detail */}
                     <button
                       onClick={() => setSelectedItem(item)}
-                      className="group/btn flex items-center gap-2 font-mono text-sm uppercase text-text-3 transition-colors hover:text-accent"
+                      className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-text-3 transition-colors hover:text-accent md:text-sm"
                     >
-                      Lihat Detail
-                      <span className="block h-px w-8 bg-text-3 transition-all group-hover/btn:w-12 group-hover/btn:bg-accent" />
-                      <Icon name="arrow-right" size={16} />
+                      Detail
+                      <Icon
+                        name="arrow-right"
+                        size={12}
+                        className="md:size-4"
+                      />
                     </button>
                   </div>
                 </div>
@@ -174,26 +152,21 @@ export function Experience(): JSX.Element {
             ))}
           </div>
 
-          {/* KANAN: Foto Sticky */}
-          <div className="hidden lg:col-span-4 lg:block">
-            <div className="sticky top-[calc(var(--nav-height)+3rem)]">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[var(--radius-media)] shadow-media">
-                <Image
-                  src={experience.photo.src}
-                  alt={experience.photo.alt}
-                  fill
-                  sizes="30vw"
-                  className="object-cover"
-                />
-              </div>
+          {/* KANAN: Foto (Bersebelahan di Mobile) */}
+          <div className="sticky top-24 col-span-4 md:col-span-4">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[var(--radius-media)] shadow-media">
+              <Image
+                src={experience.photo.src}
+                alt={experience.photo.alt}
+                fill
+                sizes="(min-width: 1024px) 30vw, 33vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
-
-        {/* Footer Quote DIHAPUS sesuai instruksi */}
       </div>
 
-      {/* Modal Dialog */}
       <ExperienceDialog
         item={selectedItem}
         onClose={() => setSelectedItem(null)}

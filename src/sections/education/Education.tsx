@@ -48,14 +48,13 @@ export function Education() {
         </div>
 
         {/* Judul Utama (Dikecilkan) */}
-        <div className="mb-16">
-          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] uppercase leading-[1.1] text-text-1">
-            Pendidikan &<br />
-            Pengalaman
+        <div className="mb-12 md:mb-16">
+          <h2 className="font-display text-[clamp(2rem,4.5vw,4rem)] uppercase leading-[1.1] text-text-1">
+            Pendidikan &<br className="md:hidden" /> Sertifikat Pelatihan
           </h2>
-          <p className="mt-6 max-w-[62ch] text-lg text-text-2">
-            Pendidikan, sertifikasi, pelatihan, dan pengalaman organisasi yang
-            mendukung perjalanan saya dalam mengembangkan diri.
+          <p className="mt-4 max-w-[62ch] text-sm text-text-2 md:mt-6 md:text-lg">
+            Pendidikan, sertifikasi, dan pelatihan yang mendukung perjalanan
+            saya dalam mengembangkan diri.
           </p>
         </div>
 

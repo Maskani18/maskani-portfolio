@@ -36,7 +36,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Maskani — IT Support, QA & Frontend Developer",
+  title: "Maskani",
   description:
     "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support, Software Quality Assurance, dan Frontend Development.",
   metadataBase: new URL("https://maskani-portfolio.vercel.app"),

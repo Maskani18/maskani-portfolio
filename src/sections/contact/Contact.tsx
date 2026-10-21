@@ -18,142 +18,135 @@ export function Contact(): JSX.Element {
       hideHeader
       className="relative overflow-hidden bg-[#090B0D]"
     >
-      <div className="mx-auto w-full max-w-[var(--container-max)] py-16 lg:py-24">
-        {/* Header Section (06. KONTAK) */}
-        <div className="mb-12 flex items-center gap-4">
-          <div className="flex items-center gap-3 font-mono text-sm uppercase tracking-widest text-accent">
+      <div className="mx-auto w-full max-w-[var(--container-max)] py-12 md:py-24">
+        <div className="mb-8 flex items-center gap-4 md:mb-12">
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent md:text-sm">
             <span>{entry.number}.</span>
             <span>{entry.label}</span>
           </div>
-          <div className="h-[2px] w-12 bg-accent" />
-          <div className="h-px w-16 bg-hairline" />
+          <div className="h-[2px] w-8 bg-accent md:w-12" />
+          <div className="h-px w-12 bg-hairline md:w-16" />
         </div>
 
-        {/* items-start mencegah space kosong vertikal yang besar */}
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
-          {/* KIRI: Teks & Info Kontak */}
-          <div className="flex flex-col gap-8">
+        {/* 2 Kolom Mobile: Teks kiri, Foto kanan */}
+        <div className="grid grid-cols-12 items-start gap-4 md:gap-10 lg:gap-20">
+          <div className="col-span-8 flex flex-col gap-6 md:col-span-7 md:gap-10">
             <div>
-              {/* Ukuran font diperkecil */}
-              <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] uppercase leading-[0.9] text-text-1 drop-shadow-[0_0_30px_rgba(138,164,255,0.2)]">
+              <h2 className="font-display text-[clamp(2rem,6vw,5rem)] uppercase leading-[0.9] text-text-1">
                 Hubungi
                 <br />
                 Saya
               </h2>
-              <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-text-2 md:text-lg">
+              <p className="mt-4 text-xs leading-relaxed text-text-2 md:mt-8 md:text-lg">
                 Jika Anda memiliki pertanyaan, saran, atau ingin berdiskusi
                 lebih lanjut, silakan hubungi saya melalui informasi kontak di
-                bawah ini. Saya akan dengan senang hati merespons secepat
-                mungkin.
+                bawah ini.
               </p>
             </div>
 
-            {/* Info Kontak */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 md:gap-6">
               <ContactEmail />
 
               <a
                 href={profile.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4"
+                className="group flex items-center gap-3 md:gap-4"
               >
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-md border border-accent/50 bg-accent/5 text-accent transition-colors group-hover:border-accent group-hover:bg-accent/20">
-                  <Phone size={20} />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-accent/50 bg-accent/5 text-accent md:size-12">
+                  <Phone size={16} className="md:size-5" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-mono text-[0.65rem] uppercase tracking-widest text-accent">
+                  <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-xs">
                     Telepon / WA
                   </span>
-                  <span className="text-sm font-medium text-text-1 transition-colors group-hover:text-accent md:text-base">
+                  <span className="text-xs font-medium text-text-1 md:text-base">
                     +62 895 1013 4186
                   </span>
                 </div>
               </a>
 
-              <div className="flex items-center gap-4">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-md border border-accent/50 bg-accent/5 text-accent">
-                  <MapPin size={20} />
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-accent/50 bg-accent/5 text-accent md:size-12">
+                  <MapPin size={16} className="md:size-5" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-mono text-[0.65rem] uppercase tracking-widest text-accent">
+                  <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-xs">
                     Lokasi
                   </span>
-                  <span className="text-sm font-medium text-text-1 md:text-base">
+                  <span className="text-xs font-medium text-text-1 md:text-base">
                     {profile.location}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Tombol Download CV & Sosial Media (Digabung) */}
-            <div className="mt-2 flex flex-col gap-6">
-              {/* Tombol CV */}
+            <div className="mt-2 flex flex-col gap-4 md:gap-6">
               <div>
                 <a
                   href={profile.cvPath}
-                  className="group inline-flex items-center gap-3 border border-accent bg-transparent px-6 py-3 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:bg-accent/10"
+                  className="group inline-flex items-center gap-2 border border-accent bg-transparent px-3 py-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent transition-colors hover:bg-accent/10 md:gap-3 md:px-6 md:py-3 md:text-xs"
                   style={{
                     clipPath:
-                      "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                      "polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)",
                   }}
                 >
-                  <Download size={16} />
+                  <Download size={14} className="md:size-4" />
                   Download CV
                 </a>
               </div>
 
-              {/* Garis Pemisah Tipis */}
               <div className="h-px w-full max-w-sm bg-accent/20" />
 
-              {/* Ikon Sosial Media & Teks */}
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-3">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <div className="flex gap-2 md:gap-3">
                   <a
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex size-10 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
+                    className="flex size-9 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
                   >
-                    <SocialIcons.Linkedin size={18} />
+                    <SocialIcons.Linkedin size={16} />
                   </a>
                   <a
                     href={profile.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex size-10 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
+                    className="flex size-9 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
                   >
-                    <SocialIcons.Github size={18} />
+                    <SocialIcons.Github size={16} />
                   </a>
                   <a
                     href={profile.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex size-10 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
+                    className="flex size-9 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
                   >
-                    <SocialIcons.Instagram size={18} />
+                    <SocialIcons.Instagram size={16} />
                   </a>
                   <a
                     href={profile.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex size-10 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
+                    className="flex size-9 items-center justify-center rounded-md border border-hairline-strong bg-surface-1 text-text-2 transition-colors hover:border-accent hover:text-accent hover:bg-accent/10 md:size-12"
                   >
-                    <SocialIcons.Whatsapp size={18} />
+                    <SocialIcons.Whatsapp size={16} />
                   </a>
                 </div>
 
-                <div className="flex items-center gap-3 font-mono text-[0.65rem] uppercase tracking-widest text-text-3">
-                  <span>Temukan saya di social media</span>
-                  <ArrowRight size={14} className="text-accent" />
+                <div className="flex items-center gap-2 font-mono text-[0.55rem] uppercase tracking-widest text-text-3 md:gap-3 md:text-[0.65rem]">
+                  <span>Temukan saya</span>
+                  <ArrowRight size={12} className="text-accent md:size-4" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* KANAN: Foto dengan Bingkai HUD Futuristik */}
-          <div className="relative w-full lg:ml-auto">
-            <HudFrame src={hero.portrait.src} alt={hero.portrait.alt} />
+          {/* KANAN: Foto Muncul Lagi (Kecil di Mobile) */}
+          <div className="col-span-4 flex justify-end md:col-span-5">
+            <div className="w-full max-w-[120px] md:max-w-none">
+              <HudFrame src={hero.portrait.src} alt={hero.portrait.alt} />
+            </div>
           </div>
         </div>
       </div>

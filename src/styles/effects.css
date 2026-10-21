@@ -81,3 +81,292 @@
     cursor: auto;
   }
 }
+
+/* ===== Colophon Space Background ===== */
+
+@keyframes space-drift-slow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -450px 0;
+  }
+}
+
+@keyframes space-drift-fast {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -320px 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* ===== Colophon Space Background ===== */
+
+@keyframes space-drift-slow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -450px 0;
+  }
+}
+
+@keyframes space-drift-fast {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -320px 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* ===== Tiga Variasi Animasi Mengambang (Lebih Terlihat) ===== */
+
+@keyframes drift-up {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -25px, 0) rotate(-0.5deg);
+  }
+}
+
+@keyframes drift-down {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, 25px, 0) rotate(0.5deg);
+  }
+}
+
+@keyframes drift-sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(-15px, -12px, 0) rotate(-0.8deg);
+  }
+  75% {
+    transform: translate3d(15px, 12px, 0) rotate(0.8deg);
+  }
+}
+
+/* ===== Kelas Animasi ===== */
+
+.colophon-float {
+  animation: drift-up 8s ease-in-out infinite;
+}
+
+.colophon-drift-down {
+  animation: drift-down 10s ease-in-out infinite;
+}
+
+.colophon-drift-sway {
+  animation: drift-sway 12s ease-in-out infinite;
+}
+
+.colophon-starfield-slow {
+  background-image:
+    radial-gradient(
+      1px 1px at 25px 40px,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 80px 120px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 150px 60px,
+      rgba(255, 255, 255, 0.9) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 200px 200px,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 320px 100px,
+      rgba(138, 164, 255, 0.8) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 400px 280px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 280px 350px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 120px 300px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    );
+  background-size: 450px 450px;
+  animation: space-drift-slow 180s linear infinite;
+}
+
+.colophon-starfield-fast {
+  background-image:
+    radial-gradient(
+      1px 1px at 30px 60px,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 150px 100px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 220px 200px,
+      rgba(138, 164, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 80px 220px,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 280px 40px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    );
+  background-size: 320px 320px;
+  animation:
+    space-drift-fast 90s linear infinite,
+    twinkle 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colophon-starfield-slow,
+  .colophon-starfield-fast,
+  .colophon-float,
+  .colophon-drift-down,
+  .colophon-drift-sway {
+    animation: none !important;
+  }
+}
+
+.colophon-starfield-slow {
+  background-image:
+    radial-gradient(
+      1px 1px at 25px 40px,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 80px 120px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 150px 60px,
+      rgba(255, 255, 255, 0.9) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 200px 200px,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 320px 100px,
+      rgba(138, 164, 255, 0.8) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 400px 280px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 280px 350px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 120px 300px,
+      rgba(255, 255, 255, 0.7) 50%,
+      transparent 100%
+    );
+  background-size: 450px 450px;
+  animation: space-drift-slow 180s linear infinite;
+}
+
+.colophon-starfield-fast {
+  background-image:
+    radial-gradient(
+      1px 1px at 30px 60px,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 150px 100px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 220px 200px,
+      rgba(138, 164, 255, 0.6) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 80px 220px,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1px 1px at 280px 40px,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    );
+  background-size: 320px 320px;
+  animation:
+    space-drift-fast 90s linear infinite,
+    twinkle 6s ease-in-out infinite;
+}
+
+.colophon-float {
+  animation: float-credits 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colophon-starfield-slow,
+  .colophon-starfield-fast,
+  .colophon-float {
+    animation: none !important;
+  }
+}

@@ -210,9 +210,9 @@ export function SiteNav() {
                       dialogRef.current?.close();
                       handleNavClick(e, item.id);
                     }}
-                    className="group flex items-baseline gap-4 font-display text-d3 uppercase text-text-1 outline-none transition-colors hover:text-accent"
+                    className="group font-display text-xl uppercase text-text-1 outline-none transition-colors hover:text-accent"
                   >
-                    <span>{item.label}</span>
+                    {item.label}
                   </a>
                 </li>
               ))}

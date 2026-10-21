@@ -1,16 +1,14 @@
-// MASKANI — Manifest section (F-18, §3.1 Final Specification).
-//
-// Sebab: F-18 mewajibkan satu manifest yang menurunkan nav, Trace, dan node.
-// Dilarang membuat daftar section kedua.
-// Tujuan: satu array tunggal sebagai sumber nomor, label, dan keikutsertaan
-// di nav/Trace. Komponen (SiteNav, Trace, SectionShell) membaca dari sini.
-// Perilaku: array statis, `as const`. Tidak ada impor UI.
-
-import type { SectionEntry, SectionId } from "./types";
+import type { SectionEntry } from "./types";
 
 export const sections = [
   { id: "hero", number: "01", label: "Hero", inNav: false, inTrace: true },
-  { id: "about", number: "02", label: "Tentang", inNav: true, inTrace: true },
+  {
+    id: "about",
+    number: "02",
+    label: "Profile",
+    inNav: true,
+    inTrace: true,
+  },
   {
     id: "experience",
     number: "03",
@@ -25,15 +23,27 @@ export const sections = [
     inNav: true,
     inTrace: true,
   },
-  { id: "skills", number: "05", label: "Skills", inNav: true, inTrace: true },
   {
     id: "education",
-    number: "06",
+    number: "05",
     label: "Pendidikan",
     inNav: true,
     inTrace: true,
   },
-  { id: "contact", number: "07", label: "Kontak", inNav: true, inTrace: true },
+  {
+    id: "skills",
+    number: "06",
+    label: "Skills",
+    inNav: true,
+    inTrace: true,
+  },
+  {
+    id: "contact",
+    number: "07",
+    label: "Kontak",
+    inNav: true,
+    inTrace: true,
+  },
   {
     id: "colophon",
     number: "08",
@@ -52,3 +62,5 @@ export function getSection(id: SectionId): SectionEntry {
   }
   return found;
 }
+
+import type { SectionId } from "./types";

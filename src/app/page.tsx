@@ -14,8 +14,8 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
-      <Skills />
       <Education />
+      <Skills />
       <Contact />
       <Colophon />
     </>
