@@ -77,7 +77,6 @@ export function Experience(): JSX.Element {
           Pengalaman
         </h2>
 
-        {/* Mobile: Grid 12 Kolom, Teks 8, Foto 4 */}
         <div className="grid grid-cols-12 items-start gap-3 md:gap-16 lg:gap-16">
           {/* KIRI: List Timeline */}
           <div className="col-span-8 flex flex-col md:col-span-8">
@@ -135,14 +134,16 @@ export function Experience(): JSX.Element {
                       )}
                     </div>
 
+                    {/* TOMBOL KECIL */}
                     <button
                       onClick={() => setSelectedItem(item)}
-                      className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-text-3 transition-colors hover:text-accent md:text-sm"
+                      className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-text-3 transition-colors hover:text-accent md:gap-2 md:text-sm"
                     >
                       Detail
+                      <span className="block h-px w-3 bg-text-3 transition-all group-hover/btn:w-6 group-hover/btn:bg-accent md:w-8 md:group-hover/btn:w-12" />
                       <Icon
                         name="arrow-right"
-                        size={12}
+                        size={10}
                         className="md:size-4"
                       />
                     </button>

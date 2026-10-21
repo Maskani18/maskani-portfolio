@@ -17,12 +17,13 @@ export function Hero(): JSX.Element {
     <SectionShell entry={entry} hideHeader className="!py-0">
       <HeroMotion />
 
-      <div className="flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-center gap-12 pt-24 pb-16 md:pt-32 md:pb-24">
+      <div className="flex min-h-[auto] flex-col justify-start gap-8 pt-24 pb-10 md:min-h-[calc(100svh-var(--nav-height))] md:justify-center md:gap-12 md:pt-32 md:pb-24">
+        {/* Meta info & Chip Open to Work */}
         <div
-          className="relative z-40 flex flex-col items-start justify-between gap-6 md:flex-row md:items-start"
+          className="relative z-40 flex flex-col items-start justify-between gap-4 md:flex-row md:items-start"
           data-hero-meta
         >
-          <div className="flex flex-col gap-1.5 font-mono text-meta uppercase text-text-3">
+          <div className="flex flex-col gap-1 font-mono text-[0.6rem] uppercase text-text-3 md:gap-1.5 md:text-meta">
             <ul className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
               {profile.fields.map((f, i) => (
                 <li key={f} className="flex items-center gap-2">
@@ -38,14 +39,15 @@ export function Hero(): JSX.Element {
 
             <div className="flex items-center gap-1.5">
               <svg
-                width="12"
-                height="12"
+                width="10"
+                height="10"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="md:size-3"
               >
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                 <circle cx="12" cy="10" r="3" />
@@ -54,39 +56,48 @@ export function Hero(): JSX.Element {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-hairline-strong px-3 py-1.5">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-hairline-strong px-2 py-1 md:gap-2 md:px-3 md:py-1.5">
             <span
               aria-hidden="true"
-              className="size-1.5 rounded-full bg-accent"
+              className="size-1 rounded-full bg-accent md:size-1.5"
             />
-            <span className="font-mono text-meta uppercase text-text-2">
+            <span className="font-mono text-[0.55rem] uppercase text-text-2 md:text-meta">
               {profile.status}
             </span>
           </div>
         </div>
 
-        {/* Blok tengah: Potret + Judul + Tagline (digabung) */}
+        {/* Blok Potret + Teks + CTA */}
         <HeroPortrait
           src={hero.portrait.src}
           alt={hero.portrait.alt}
           title={profile.name}
         >
           <div
-            className="relative z-40 flex max-w-[42rem] flex-col gap-8"
+            className="relative z-40 flex flex-col gap-4 md:gap-8"
             data-hero-cta
           >
-            <p className="mx-auto max-w-[42rem] text-lead text-text-2 md:mx-0">
+            <p className="text-left text-[0.7rem] leading-snug text-text-2 md:text-lead md:leading-relaxed">
               {hero.lead}
             </p>
 
-            <div className="flex flex-col items-center gap-3 sm:flex-row md:items-start">
-              <Button href={profile.cvPath} variant="primary" magnetic>
-                <Icon name="download" size={18} />
+            <div className="flex flex-row items-center gap-1.5 md:gap-3">
+              <Button
+                href={profile.cvPath}
+                variant="primary"
+                magnetic
+                className="!px-2 !py-1.5 !text-[0.6rem] md:!px-5 md:!py-3 md:!text-sm !h-auto !min-h-0"
+              >
+                <Icon name="download" size={12} className="md:size-4" />
                 Unduh CV
               </Button>
-              <Button href="#projects" variant="secondary">
+              <Button
+                href="#projects"
+                variant="secondary"
+                className="!px-2 !py-1.5 !text-[0.6rem] md:!px-5 md:!py-3 md:!text-sm !h-auto !min-h-0"
+              >
                 Lihat Project
-                <Icon name="arrow-right" size={18} />
+                <Icon name="arrow-right" size={12} className="md:size-4" />
               </Button>
             </div>
           </div>

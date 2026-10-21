@@ -7,78 +7,6 @@ import { projects } from "@/content/projects";
 import { getSection } from "@/content/sections";
 import { Icon } from "@/components/ui/Icon";
 
-const FeatureIcon = ({ name }: { name: string }) => {
-  const icons: Record<string, JSX.Element> = {
-    user: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    ),
-    database: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <ellipse cx="12" cy="5" rx="9" ry="3" />
-        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-      </svg>
-    ),
-    shield: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    bell: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-      </svg>
-    ),
-    monitor: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <rect width="20" height="14" x="2" y="3" rx="2" />
-        <line x1="8" x2="16" y1="21" y2="21" />
-        <line x1="12" x2="12" y1="17" y2="21" />
-      </svg>
-    ),
-  };
-  return icons[name] || null;
-};
-
 export function Projects(): JSX.Element {
   const entry = getSection("projects");
   const project = projects[0];
@@ -97,9 +25,8 @@ export function Projects(): JSX.Element {
           <div className="h-px flex-1 bg-hairline" />
         </div>
 
-        {/* BAGIAN ATAS: Grid 12 Kolom (Judul Kiri, Poster Kanan di HP) */}
+        {/* BAGIAN ATAS: Grid 12 Kolom (Judul Kiri, Poster Kanan) */}
         <div className="mb-10 grid grid-cols-12 gap-4 md:mb-16 md:gap-10">
-          {/* KIRI: Judul & Subtitle (Desktop: 7 kolom, Mobile: 7 kolom) */}
           <div className="col-span-7 flex flex-col justify-center md:col-span-6">
             <div className="mb-3 flex items-center gap-2 font-mono text-[0.65rem] uppercase text-accent md:mb-4 md:text-meta">
               <span className="size-1.5 rounded-full bg-accent md:size-2" />
@@ -108,16 +35,16 @@ export function Projects(): JSX.Element {
               </span>
             </div>
 
-            <h2 className="font-display text-[clamp(1.5rem,6vw,6rem)] uppercase leading-none text-text-1 break-words">
+            {/* Judul SIDALEKAS Dikecilkan */}
+            <h2 className="font-display text-[clamp(1.5rem,5vw,4rem)] uppercase leading-none text-text-1 break-words">
               {project.title}
             </h2>
 
-            <p className="mt-2 hidden font-display text-sm text-text-2 sm:block md:mt-4 md:text-2xl">
+            <p className="mt-2 hidden font-display text-sm text-text-2 sm:block md:mt-4 md:text-xl">
               {project.subtitle}
             </p>
           </div>
 
-          {/* KANAN: Poster Kecil (Desktop: 6 kolom, Mobile: 5 kolom) */}
           <div className="col-span-5 flex items-center md:col-span-6">
             <div className="relative w-full overflow-hidden rounded-[var(--radius-md)] border border-hairline bg-surface-2 p-1 md:p-3">
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm bg-surface-1">
@@ -192,33 +119,8 @@ export function Projects(): JSX.Element {
             </div>
           </div>
 
-          {/* Fitur Utama */}
-          <div>
-            <h3 className="mb-4 flex items-center gap-4 font-mono text-xs uppercase text-accent md:mb-6 md:text-sm">
-              <span className="flex items-center gap-2">
-                Fitur Utama <Icon name="arrow-up-right" size={14} />
-              </span>
-              <span className="h-px flex-1 bg-hairline" />
-            </h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-5 md:gap-x-6">
-              {project.features?.map((f) => (
-                <div key={f.title} className="flex flex-col gap-1.5">
-                  <div className="flex size-6 items-center justify-center rounded-sm border border-hairline bg-surface-2 text-text-2 md:size-8">
-                    <FeatureIcon name={f.icon} />
-                  </div>
-                  <p className="text-[0.65rem] font-semibold leading-tight text-text-1 md:text-xs">
-                    {f.title}
-                  </p>
-                  <p className="text-[0.55rem] leading-tight text-text-3 md:text-[0.65rem]">
-                    {f.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Tech Stack & Tombol */}
-          <div className="flex flex-col gap-6 border-t border-hairline pt-6 md:flex-row md:items-end md:justify-between md:pt-8">
+          <div className="flex flex-col gap-6 border-b border-hairline pb-8 md:flex-row md:items-end md:justify-between">
             <div className="flex-1">
               <h3 className="mb-3 font-mono text-xs uppercase text-accent md:mb-4 md:text-sm">
                 Tech Stack

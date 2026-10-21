@@ -370,3 +370,79 @@
     animation: none !important;
   }
 }
+/* ===== HUD Photo Frame Animations ===== */
+
+@keyframes hud-scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes hud-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(138, 164, 255, 0.2);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(138, 164, 255, 0.6);
+  }
+}
+
+.animate-hud-scanline {
+  animation: hud-scanline 4s linear infinite;
+}
+
+.animate-hud-pulse {
+  animation: hud-pulse 3s ease-in-out infinite;
+}
+/* ===== Futuristic Index Menu Animations ===== */
+
+@keyframes hud-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hud-menu-item {
+  opacity: 0;
+  animation: hud-menu-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hud-scan-fast {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.hud-scan-line {
+  animation: hud-scan-fast 3s linear infinite;
+}
