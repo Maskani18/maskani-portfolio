@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   title: "Maskani",
   description:
     "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support, Software Quality Assurance, dan Frontend Development.",
-  metadataBase: new URL("https://maskani-portfolio.vercel.app"),
+  metadataBase: new URL("hhttps://maskani.my.id"),
 };
 
 export const viewport: Viewport = {

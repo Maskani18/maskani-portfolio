@@ -89,6 +89,9 @@ export const education: EducationBlock = {
       { src: "/media/hmti-3.webp", alt: "Foto Organisasi 3", label: "Foto 3" },
       { src: "/media/hmti-4.webp", alt: "Foto Organisasi 4", label: "Foto 4" },
       { src: "/media/hmti-5.webp", alt: "Foto Organisasi 5", label: "Foto 5" },
+      { src: "/media/hmti-6.webp", alt: "Foto Organisasi 6", label: "Foto 6" },
+      { src: "/media/hmti-7.webp", alt: "Foto Organisasi 7", label: "Foto 7" },
+      { src: "/media/hmti-8.webp", alt: "Foto Organisasi 8", label: "Foto 8" },
     ],
   },
 };
