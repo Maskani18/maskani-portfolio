@@ -15,7 +15,7 @@ import "./globals.css";
 
 // Font Display: Rostex (Local File)
 const rostex = localFont({
-  src: "../fonts/Rostex.ttf",
+  src: "../fonts/rostex.ttf",
   variable: "--font-rostex",
   display: "swap",
 });
