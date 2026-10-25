@@ -10,6 +10,8 @@ import { profile } from "@/content/profile";
 import { SmoothScroll } from "@/motion/runtime/smooth-scroll.client";
 import { TraceLayer } from "@/systems/trace/TraceLayer.client";
 import { CursorSystem } from "@/systems/cursor/CursorSystem.client";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { BackToTop } from "@/components/ui/BackToTop.client";
 
 import "./globals.css";
 
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   title: "Maskani",
   description:
     "Fresh Graduate D4 Rekayasa Perangkat Lunak dari Politeknik Negeri Indramayu dengan pengalaman praktik di bidang IT Support, Software Quality Assurance, dan Frontend Development.",
-  metadataBase: new URL("hhttps://maskani.my.id"),
+  metadataBase: new URL("https://maskani.my.id"),
 };
 
 export const viewport: Viewport = {
@@ -83,23 +85,30 @@ export default function RootLayout({
       </head>
 
       <body>
-        <SmoothScroll />
-        <Effects />
-        <TraceLayer />
-        <CursorSystem />
-        <SkipLink />
+        <LanguageProvider>
+          <SmoothScroll />
+          <Effects />
+          <TraceLayer />
+          <CursorSystem />
+          <SkipLink />
 
-        <header
-          id="site-header"
-          className="sticky top-0 z-[80] border-b border-hairline bg-[var(--color-void)]/75 backdrop-blur-[var(--nav-blur)]"
-        >
-          <SiteNav />
-        </header>
+          <header
+            id="site-header"
+            className="sticky top-0 z-[80] border-b border-hairline bg-[var(--color-void)]/75 backdrop-blur-[var(--nav-blur)]"
+          >
+            <SiteNav />
+          </header>
+          <main id="main" className="relative">
+            {children}
+            {report}
+          </main>
+          <BackToTop />
 
-        <main id="main" className="relative">
-          {children}
-          {report}
-        </main>
+          <main id="main" className="relative">
+            {children}
+            {report}
+          </main>
+        </LanguageProvider>
       </body>
     </html>
   );

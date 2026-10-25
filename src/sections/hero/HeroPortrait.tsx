@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { JSX, ReactNode } from "react";
+import { useState } from "react";
 
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
@@ -18,16 +19,16 @@ export function HeroPortrait({
   title,
   children,
 }: HeroPortraitProps): JSX.Element {
+  const [isSwinging, setIsSwinging] = useState(false);
+
   return (
     <div className="relative flex w-full flex-col gap-6 md:gap-16">
       {/* Baris Utama: Teks + CTA (Kiri) & Foto (Kanan) */}
-      <div className="relative flex w-full flex-row items-start justify-between gap-4 md:items-center md:gap-16">
-        {/* BACKGROUND HUD (LOGO NEON & GRID DI TENGAH) */}
+      {/* PERUBAHAN: items-start diganti items-center agar sejajar tengah vertikal */}
+      <div className="relative flex w-full flex-row items-center justify-between gap-4 md:gap-16">
+        {/* BACKGROUND HUD */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
-          {/* Cahaya Nebula */}
           <div className="absolute size-[250px] rounded-full bg-accent/15 blur-[80px] md:size-[600px] md:blur-[120px]" />
-
-          {/* Grid Radial Halus */}
           <div
             className="absolute inset-0 opacity-15"
             style={{
@@ -36,13 +37,9 @@ export function HeroPortrait({
               backgroundSize: "30px 30px",
             }}
           />
-
-          {/* Logo Raksasa */}
           <div className="absolute opacity-20 mix-blend-screen md:opacity-30">
             <BrandLogo className="w-[300px] md:w-[1200px]" />
           </div>
-
-          {/* Orbit Cincin */}
           <div
             data-hero-orbit
             className="absolute aspect-square w-[80%] rounded-full border border-accent/20 border-dashed opacity-50 md:w-[60%]"
@@ -51,51 +48,78 @@ export function HeroPortrait({
         </div>
 
         {/* KOLOM KIRI: Judul, Tagline, & Tombol */}
-        <div className="relative z-10 flex w-[60%] flex-col justify-start gap-4 md:w-[55%] md:gap-8">
+        {/* PERUBAHAN: justify-start diganti justify-center */}
+        <div className="relative z-10 flex w-[60%] flex-col items-center justify-center gap-4 text-center md:w-[55%] md:gap-8">
           <div className="overflow-visible pb-1 md:pb-4">
             <h1
               id="hero-heading"
               data-hero-name
-              className="relative z-10 w-full text-left font-display text-[clamp(1.8rem,8vw,6rem)] leading-[0.9] text-text-1 md:text-d1 drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="relative z-10 w-full text-center font-display text-[clamp(1.8rem,8vw,6rem)] leading-[0.9] text-text-1 md:text-d1 drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
               {title}
             </h1>
           </div>
-
           {children}
         </div>
 
-        {/* KOLOM KANAN: Foto Potret dengan Bingkai Minimalis */}
-        <div className="relative z-10 flex w-[40%] justify-center pt-2 md:w-[40%] md:pt-0">
+        {/* KOLOM KANAN: ID Card Lanyard */}
+        <div
+          data-hero-photo-wrapper
+          className="relative z-10 flex w-[40%] justify-center pt-16 md:w-[40%] md:pt-24"
+        >
+          {/* WRAPPER LANYARD */}
           <div
-            data-hero-photo-wrapper
-            className="group relative aspect-[3/4] w-full max-w-[130px] md:-mt-12 md:max-w-[450px]"
+            onClick={() => setIsSwinging(!isSwinging)}
+            className={`relative flex w-full max-w-[110px] flex-col items-center cursor-pointer md:max-w-[180px] ${isSwinging ? "animate-lanyard-fast" : "animate-lanyard"}`}
           >
-            {/* === EFEK GLOW DI BELAKANG FOTO (Sangat Halus) === */}
-            <div className="absolute -inset-1 z-0 rounded-2xl bg-gradient-to-tr from-accent/10 to-transparent opacity-0 blur-xl transition-opacity duration-700 group-hover:opacity-100" />
-
-            {/* === BINGKAI MINIMALIS (Hanya 2 Sudut) === */}
-            <div className="absolute -inset-1 z-0 md:-inset-2">
-              {/* Garis tepi luar yang sangat tipis */}
-              <div className="absolute inset-0 rounded-lg border border-white/5 transition-colors duration-500 group-hover:border-accent/20" />
-
-              {/* Sudut Kiri Atas */}
-              <div className="absolute -left-0.5 -top-0.5 size-3 border-l-[1.5px] border-t-[1.5px] border-accent/70 transition-all duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:border-accent md:size-5" />
-
-              {/* Sudut Kanan Bawah */}
-              <div className="absolute -bottom-0.5 -right-0.5 size-3 border-b-[1.5px] border-r-[1.5px] border-accent/70 transition-all duration-300 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:border-accent md:size-5" />
+            {/* 1. TALI LANYARD */}
+            <div className="absolute -top-[80px] flex h-[80px] w-5 flex-col items-center justify-start border-x border-white/5 bg-[#2a3441] shadow-[0_0_10px_rgba(0,0,0,0.5)] md:-top-[110px] md:h-[110px] md:w-7">
+              <div className="flex h-full w-full flex-col items-center justify-evenly opacity-40">
+                <span className="-rotate-90 whitespace-nowrap font-mono text-[5px] tracking-[0.2em] text-white md:text-[6px]">
+                  MASKANI
+                </span>
+                <span className="-rotate-90 whitespace-nowrap font-mono text-[5px] tracking-[0.2em] text-white md:text-[6px]">
+                  PORTFOLIO
+                </span>
+                <span className="-rotate-90 whitespace-nowrap font-mono text-[5px] tracking-[0.2em] text-white md:text-[6px]">
+                  MASKANI
+                </span>
+              </div>
             </div>
 
-            {/* Gambar Foto */}
-            <div data-tilt className="relative z-10 h-full w-full cursor-none">
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="(min-width: 768px) 40vw, 40vw"
-                priority
-                className="pointer-events-none object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
-              />
+            {/* 2. KLIP LOGAM */}
+            <div className="absolute -top-4 z-20 flex flex-col items-center md:-top-5">
+              <div className="h-3 w-8 rounded-sm border border-zinc-500 bg-gradient-to-b from-zinc-300 to-zinc-500 shadow-md md:h-4 md:w-10" />
+              <div className="h-5 w-2.5 rounded-b-full border-2 border-t-0 border-zinc-400 md:h-6 md:w-3.5" />
+            </div>
+
+            {/* 3. KARTU ID */}
+            <div className="group relative z-10 w-full origin-top overflow-hidden rounded-sm border border-white/10 bg-[#1a1f26] p-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:scale-105 md:p-2">
+              <div className="absolute left-1/2 top-2 z-20 h-1.5 w-6 -translate-x-1/2 rounded-full bg-black shadow-inner md:top-2.5 md:h-2 md:w-8" />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm border border-white/5 bg-[#111418]">
+                <Image
+                  src={src}
+                  alt={alt}
+                  fill
+                  sizes="(min-width: 768px) 20vw, 30vw"
+                  priority
+                  className="pointer-events-none object-cover object-top"
+                />
+              </div>
+              <div className="mt-2 flex w-full items-end justify-between px-0.5 pb-0.5">
+                <div className="flex h-3 items-end gap-[1px] opacity-60 md:h-4">
+                  <div className="h-full w-[1.5px] bg-white" />
+                  <div className="h-2/3 w-[1px] bg-white" />
+                  <div className="h-full w-[2px] bg-white" />
+                  <div className="h-3/4 w-[1px] bg-white" />
+                  <div className="h-full w-[1.5px] bg-white" />
+                  <div className="h-1/2 w-[1px] bg-white" />
+                  <div className="h-full w-[2px] bg-white" />
+                </div>
+                <span className="font-mono text-[0.4rem] font-bold text-white/70 md:text-[0.55rem]">
+                  A-2026
+                </span>
+              </div>
             </div>
           </div>
         </div>

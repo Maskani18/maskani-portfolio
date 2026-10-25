@@ -34,7 +34,8 @@ export function ReportModal({ children }: { children: React.ReactNode }) {
         />
 
         {/* Konten Modal HUD */}
-        <div className="relative z-10 w-full max-w-6xl overflow-hidden rounded-xl border border-accent/30 bg-[#090B0D]/95 shadow-[0_0_50px_rgba(138,164,255,0.15)] backdrop-blur-2xl">
+        {/* Konten Modal */}
+        <div className="animate-[page-enter_0.4s_ease-out] relative z-10 w-full max-w-6xl overflow-hidden rounded-xl border border-accent/30 bg-[#090B0D]/95 shadow-[0_0_50px_rgba(138,164,255,0.15)] backdrop-blur-2xl">
           {/* Garis Grid dalam Modal */}
           <div
             className="pointer-events-none absolute inset-0 opacity-20"

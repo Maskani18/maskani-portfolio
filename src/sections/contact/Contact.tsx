@@ -1,5 +1,10 @@
+"use client";
+
 import type { JSX } from "react";
 import { Phone, MapPin, Download, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { contact as contactId } from "@/content/contact";
+import { contact as contactEn } from "@/content/en/contact";
 
 import { SectionShell } from "@/components/layout/SectionShell";
 import { ContactEmail } from "@/components/layout/ContactLinks.client";
@@ -12,6 +17,8 @@ import { MOTION_ATTR } from "@/motion/contract";
 
 export function Contact(): JSX.Element {
   const entry = getSection("contact");
+  const { lang } = useLanguage();
+  const contact = lang === "id" ? contactId : contactEn;
 
   return (
     <SectionShell
@@ -53,18 +60,16 @@ export function Contact(): JSX.Element {
           >
             <div>
               <h2 className="font-display text-[clamp(2rem,6vw,5rem)] uppercase leading-[0.9] text-text-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                Hubungi
+                {lang === "id" ? "Hubungi" : "Contact"}
                 <br />
-                Saya
+                {lang === "id" ? "Saya" : "Me"}
               </h2>
               <p className="mt-4 text-xs leading-relaxed text-text-2 md:mt-8 md:text-lg">
-                Jika Anda memiliki pertanyaan, saran, atau ingin berdiskusi
-                lebih lanjut, silakan hubungi saya melalui informasi kontak di
-                bawah ini.
+                {contact.lead}
               </p>
             </div>
 
-            {/* DAFTAR KONTAK (Hanya Ikon yang di dalam Kotak) */}
+            {/* DAFTAR KONTAK */}
             <div className="flex flex-col gap-4 md:gap-6">
               <ContactEmail />
 
@@ -80,7 +85,7 @@ export function Contact(): JSX.Element {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-xs">
-                    Telepon / WA
+                    {lang === "id" ? "Telepon / WA" : "Phone / WA"}
                   </span>
                   <span className="text-xs font-medium text-text-1 transition-colors group-hover:text-accent md:text-base">
                     +62 895 1013 4186
@@ -89,12 +94,12 @@ export function Contact(): JSX.Element {
               </a>
 
               <div className="group flex items-center gap-3 md:gap-4">
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-accent/30 bg-[#090B0D] text-accent shadow-[0_0_10px_rgba(138,164,255,0.1)] transition-all group-hover:border-accent group-hover:bg-accent/10 group-hover:shadow-[0_0_15px_rgba(138,164,255,0.4)] md:size-12">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-accent/30 bg-[#090B0D] text-accent shadow-[0_0_10px_rgba(138,164,255,0.1)] md:size-12">
                   <MapPin size={16} className="md:size-5" />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-xs">
-                    Lokasi
+                    {lang === "id" ? "Lokasi" : "Location"}
                   </span>
                   <span className="text-xs font-medium text-text-1 md:text-base">
                     {profile.location}
@@ -119,7 +124,7 @@ export function Contact(): JSX.Element {
                     size={14}
                     className="md:size-4 transition-transform group-hover:translate-y-0.5"
                   />
-                  Download CV
+                  {lang === "id" ? "Download CV" : "Download CV"}
                 </a>
               </div>
 
@@ -147,23 +152,21 @@ export function Contact(): JSX.Element {
                 </div>
 
                 <div className="flex items-center gap-2 font-mono text-[0.55rem] uppercase tracking-widest text-text-3 md:gap-3 md:text-[0.65rem]">
-                  <span>Temukan saya</span>
+                  <span>{lang === "id" ? "Temukan saya" : "Find me"}</span>
                   <ArrowRight size={12} className="text-accent md:size-4" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* KANAN: Foto dengan Efek 3D Tilt */}
+          {/* KANAN: Foto */}
           <div className="col-span-4 flex justify-end perspective-[1000px] md:col-span-5">
             <div
               {...{ [MOTION_ATTR.REVEAL]: "" }}
               data-tilt
               className="group relative w-full max-w-[120px] transform-style-3d will-change-transform md:max-w-none"
             >
-              {/* Glow Effect di belakang foto */}
               <div className="absolute -inset-2 z-0 rounded-xl bg-accent/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-
               <div className="relative z-10 transition-transform duration-500 group-hover:scale-[1.02]">
                 <HudFrame src={hero.portrait.src} alt={hero.portrait.alt} />
               </div>

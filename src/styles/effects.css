@@ -446,3 +446,45 @@
 .hud-scan-line {
   animation: hud-scan-fast 3s linear infinite;
 }
+
+/* ===== Lanyard Swing Animation ===== */
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-8deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-lanyard {
+  animation: swing 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.animate-lanyard-fast {
+  animation: swing 1.5s ease-in-out infinite;
+  transform-origin: top center;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

@@ -1,11 +1,18 @@
+"use client";
+
 import type { JSX } from "react";
 
 import { BrandLogo } from "@/components/ui/BrandLogo";
-import { colophon } from "@/content/colophon";
+import { useLanguage } from "@/context/LanguageContext";
+import { colophon as colId } from "@/content/colophon";
+import { colophon as colEn } from "@/content/en/colophon";
 import { getSection } from "@/content/sections";
 
 export function Colophon(): JSX.Element {
   const entry = getSection("colophon");
+  const { lang } = useLanguage();
+  const colophon = lang === "id" ? colId : colEn;
+
   const barHeights = [40, 70, 30, 90, 50, 100, 60, 80, 40, 60, 90, 40];
 
   // Variasi animasi agar tiap grup mengambang dengan ritme berbeda
@@ -32,10 +39,12 @@ export function Colophon(): JSX.Element {
         <div className="absolute -left-[10%] -top-[5%] w-[80vw] rotate-12 md:w-[50vw]">
           <BrandLogo className="w-full text-accent" />
         </div>
+
         {/* Logo Kanan Bawah */}
         <div className="absolute -bottom-[5%] -right-[10%] w-[80vw] -rotate-12 md:w-[50vw]">
           <BrandLogo className="w-full text-accent" />
         </div>
+
         {/* Logo Tengah (Sangat Samar) */}
         <div className="absolute left-1/2 top-1/2 w-[100vw] -translate-x-1/2 -translate-y-1/2 opacity-50 md:w-[80vw]">
           <BrandLogo className="w-full text-accent" />
@@ -71,7 +80,7 @@ export function Colophon(): JSX.Element {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-5xl">
-        {/* ===== HEADER (TITLE CARD TANPA IKON) ===== */}
+        {/* ===== HEADER ===== */}
         <div className="colophon-drift-sway mb-16 flex flex-col items-center text-center md:mb-24">
           {/* Garis & Teks Kecil */}
           <div className="mb-8 flex w-full max-w-xs items-center justify-center gap-4">
@@ -86,7 +95,7 @@ export function Colophon(): JSX.Element {
             {colophon.thankYou}
           </p>
 
-          {/* Subtitle Besar & Megah */}
+          {/* Subtitle Besar */}
           <h2
             id={`${entry.id}-heading`}
             className="font-display text-[clamp(1.8rem,6vw,4.5rem)] uppercase leading-[1.1] text-text-1 drop-shadow-[0_0_30px_rgba(138,164,255,0.4)]"
@@ -112,7 +121,7 @@ export function Colophon(): JSX.Element {
 
         <div className="mx-auto mb-16 h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent md:mb-24" />
 
-        {/* ===== GRUP CREDITS (Murni Teks Tanpa Ikon) ===== */}
+        {/* ===== GRUP CREDITS ===== */}
         <div className="flex flex-col items-center gap-16 md:gap-24">
           {/* Baris 1: Creator & Tech */}
           <div className="grid w-full grid-cols-1 gap-16 md:grid-cols-2 md:gap-32">
@@ -128,6 +137,7 @@ export function Colophon(): JSX.Element {
                     {group.title}
                   </h3>
                 </div>
+
                 <ul className="flex flex-col items-center gap-5 md:items-start md:gap-6">
                   {group.items.map((item) => (
                     <li
@@ -147,12 +157,12 @@ export function Colophon(): JSX.Element {
             ))}
           </div>
 
-          {/* Baris 2: Motion (Tengah & Lebar) */}
+          {/* Baris 2: Motion */}
           {colophon.groups.slice(2, 3).map((group, idx) => (
             <div
               key={group.title}
               className={`${driftClasses[(idx + 2) % driftClasses.length]} flex w-full flex-col items-center text-center`}
-              style={{ animationDelay: `1s` }}
+              style={{ animationDelay: "1s" }}
             >
               <div className="mb-6 flex items-center justify-center gap-4 md:mb-8">
                 <span className="h-px w-12 bg-accent/50 md:w-24" />
@@ -161,6 +171,7 @@ export function Colophon(): JSX.Element {
                 </h3>
                 <span className="h-px w-12 bg-accent/50 md:w-24" />
               </div>
+
               <ul className="flex flex-col flex-wrap items-center justify-center gap-6 md:flex-row md:gap-16">
                 {group.items.map((item) => (
                   <li
@@ -193,6 +204,7 @@ export function Colophon(): JSX.Element {
                   </h3>
                   <span className="hidden h-px w-8 bg-accent/50 md:block" />
                 </div>
+
                 <ul className="flex flex-col items-center gap-5 md:items-end md:gap-6">
                   {group.items.map((item) => (
                     <li
@@ -215,7 +227,7 @@ export function Colophon(): JSX.Element {
 
         <div className="mx-auto mt-20 h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent md:mt-28" />
 
-        {/* ===== FOOTER BAWAH (Terminal Sign-off Tanpa Ikon) ===== */}
+        {/* ===== FOOTER BAWAH ===== */}
         <div className="mt-8 flex flex-col items-center justify-between gap-6 font-mono text-[0.55rem] uppercase tracking-widest text-text-3 md:flex-row md:gap-4 md:text-[0.65rem]">
           <p className="w-full text-center md:w-auto md:text-left">
             {colophon.copyright}
@@ -224,12 +236,16 @@ export function Colophon(): JSX.Element {
           <div className="flex items-center gap-3 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5">
             <div className="flex items-center gap-2">
               <span className="size-1.5 animate-pulse rounded-full bg-accent shadow-[0_0_8px_rgba(138,164,255,0.8)]" />
-              <span className="text-accent">SYSTEM ONLINE</span>
+              <span className="text-accent">
+                {lang === "id" ? "SISTEM AKTIF" : "SYSTEM ONLINE"}
+              </span>
             </div>
           </div>
 
           <p className="w-full text-center md:w-auto md:text-right">
-            DESIGNED & BUILT BY MASKANI
+            {lang === "id"
+              ? "DIRANCANG & DIBANGUN OLEH MASKANI"
+              : "DESIGNED & BUILT BY MASKANI"}
           </p>
         </div>
       </div>

@@ -145,12 +145,12 @@ export function EducationDialog({ cert, org, onClose }: Props) {
               </div>
 
               {/* Kanan: Teks */}
-              <div className="flex flex-col gap-6 md:gap-8">
+              <div className="flex w-full min-w-0 flex-col gap-6 md:gap-8">
                 <div>
                   <h3 className="mb-2 font-mono text-[0.65rem] uppercase tracking-widest text-accent md:mb-3 md:text-sm">
                     [ Deskripsi ]
                   </h3>
-                  <p className="text-[0.75rem] leading-relaxed text-text-2 md:text-base">
+                  <p className="break-words text-[0.75rem] leading-relaxed text-text-2 md:text-base">
                     {cert?.description || org?.description}
                   </p>
                 </div>
@@ -160,17 +160,17 @@ export function EducationDialog({ cert, org, onClose }: Props) {
                     <h3 className="mb-3 font-mono text-[0.65rem] uppercase tracking-widest text-accent md:mb-4 md:text-sm">
                       [ Materi Pelatihan ]
                     </h3>
-                    <ul className="flex flex-col gap-2.5 md:gap-3">
+                    <ul className="flex w-full flex-col gap-2.5 md:gap-3">
                       {cert.materials.map((m, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-[0.7rem] text-text-2 md:gap-3 md:text-sm"
+                          className="flex w-full items-start gap-2 text-[0.7rem] text-text-2 md:gap-3 md:text-sm"
                         >
                           <ChevronRight
                             size={14}
                             className="mt-0.5 shrink-0 text-accent md:size-4"
                           />
-                          {m}
+                          <span className="flex-1 break-words">{m}</span>
                         </li>
                       ))}
                     </ul>
@@ -182,17 +182,17 @@ export function EducationDialog({ cert, org, onClose }: Props) {
                     <h3 className="mb-3 font-mono text-[0.65rem] uppercase tracking-widest text-accent md:mb-4 md:text-sm">
                       [ Tugas & Tanggung Jawab ]
                     </h3>
-                    <ul className="flex flex-col gap-2.5 md:gap-3">
+                    <ul className="flex w-full flex-col gap-2.5 md:gap-3">
                       {org.responsibilities.map((r, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-[0.7rem] text-text-2 md:gap-3 md:text-sm"
+                          className="flex w-full items-start gap-2 text-[0.7rem] text-text-2 md:gap-3 md:text-sm"
                         >
                           <ChevronRight
                             size={14}
                             className="mt-0.5 shrink-0 text-accent md:size-4"
                           />
-                          {r}
+                          <span className="flex-1 break-words">{r}</span>
                         </li>
                       ))}
                     </ul>

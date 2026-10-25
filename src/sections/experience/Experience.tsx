@@ -4,9 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import type { JSX } from "react";
 
+import { useLanguage } from "@/context/LanguageContext";
+import { experience as expId } from "@/content/experience";
+import { experience as expEn } from "@/content/en/experience";
+
 import { SectionShell } from "@/components/layout/SectionShell";
 import { ExperienceDialog } from "@/components/layout/ExperienceDialog.client";
-import { experience } from "@/content/experience";
 import type { ExperienceItem } from "@/content/types";
 import { getSection } from "@/content/sections";
 import { Icon } from "@/components/ui/Icon";
@@ -61,6 +64,10 @@ const Icons = {
 export function Experience(): JSX.Element {
   const entry = getSection("experience");
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
+  const { lang } = useLanguage();
+
+  // Pilih data pengalaman berdasarkan bahasa aktif.
+  const experience = lang === "id" ? expId : expEn;
 
   return (
     <SectionShell entry={entry} hideHeader className="relative overflow-hidden">
@@ -80,7 +87,7 @@ export function Experience(): JSX.Element {
         </div>
 
         <h2 className="mb-8 font-display text-[clamp(2rem,5vw,5rem)] uppercase leading-none text-text-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] md:mb-16">
-          Pengalaman
+          {lang === "id" ? "Pengalaman" : "Experience"}
         </h2>
 
         <div className="grid grid-cols-12 items-start gap-3 md:gap-10 lg:gap-16">
@@ -91,7 +98,7 @@ export function Experience(): JSX.Element {
                 key={item.id}
                 className="group relative flex gap-3 pb-8 md:gap-5 md:pb-12"
               >
-                {/* Garis Timeline (Sejajar dengan titik) */}
+                {/* Garis Timeline */}
                 {index !== experience.items.length - 1 && (
                   <div className="absolute left-[4.5px] top-6 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent md:top-8" />
                 )}
@@ -99,7 +106,7 @@ export function Experience(): JSX.Element {
                 {/* Titik Timeline */}
                 <div className="relative z-10 mt-1.5 size-2.5 shrink-0 rounded-full border border-accent bg-void shadow-[0_0_10px_rgba(138,164,255,0.8)] transition-transform duration-500 group-hover:scale-150 md:mt-2.5" />
 
-                {/* Konten Kanan */}
+                {/* Konten Pengalaman */}
                 <div className="flex flex-1 flex-col gap-2 transition-transform duration-300 group-hover:translate-x-1 md:gap-4">
                   <div className="flex items-start gap-2 md:gap-4 lg:gap-6">
                     <div className="hidden size-10 shrink-0 items-center justify-center rounded-md border border-accent/20 bg-accent/5 text-accent shadow-[0_0_15px_rgba(138,164,255,0.1)] transition-colors group-hover:bg-accent/20 md:flex md:size-12 lg:size-14">
@@ -133,6 +140,7 @@ export function Experience(): JSX.Element {
                           {tech}
                         </span>
                       ))}
+
                       {item.techStack.length > 2 && (
                         <span className="rounded-full border border-hairline px-1.5 py-0.5 font-mono text-[0.5rem] uppercase text-text-3 md:hidden">
                           +{item.techStack.length - 2}
@@ -140,12 +148,14 @@ export function Experience(): JSX.Element {
                       )}
                     </div>
 
-                    {/* TOMBOL DETAIL HUD */}
+                    {/* Tombol Detail */}
                     <button
+                      type="button"
                       onClick={() => setSelectedItem(item)}
                       className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-accent transition-all hover:text-accent-hover md:gap-2 md:text-sm"
                     >
-                      <span className="opacity-50">[</span> Detail{" "}
+                      <span className="opacity-50">[</span>
+                      {lang === "id" ? "Detail" : "Details"}
                       <span className="opacity-50">]</span>
                       <Icon
                         name="arrow-right"
@@ -159,14 +169,14 @@ export function Experience(): JSX.Element {
             ))}
           </div>
 
-          {/* KANAN: Foto (TANPA SUDUT HUD, TETAP BERGErAK 3D) */}
+          {/* KANAN: Foto dengan Efek 3D */}
           <div className="sticky top-24 col-span-4 perspective-[1000px] md:col-span-5 lg:col-span-4">
             {/* Wrapper Tilt */}
             <div
               data-tilt
               className="group relative transform-style-3d will-change-transform"
             >
-              {/* Glow Effect di belakang foto */}
+              {/* Glow Effect */}
               <div className="absolute -inset-2 z-0 rounded-[var(--radius-media)] bg-accent/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* Foto */}

@@ -1,12 +1,19 @@
+"use client";
 import type { JSX } from "react";
 
 import { SectionShell } from "@/components/layout/SectionShell";
 import { MediaCard } from "@/components/media/MediaCard";
-import { about } from "@/content/about";
+import { about as aboutId } from "@/content/about";
+import { about as aboutEn } from "@/content/en/about";
 import { getSection } from "@/content/sections";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function About(): JSX.Element {
   const entry = getSection("about");
+  const { lang } = useLanguage();
+
+  // Pilih data berdasarkan bahasa aktif.
+  const about = lang === "id" ? aboutId : aboutEn;
 
   return (
     <SectionShell entry={entry} hideHeader className="relative overflow-hidden">
@@ -73,7 +80,7 @@ export function About(): JSX.Element {
                 id="about-heading"
                 className="font-display text-[clamp(1.5rem,5vw,6rem)] uppercase leading-none text-text-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               >
-                Profile
+                {lang === "id" ? "Profil" : "Profile"}
               </h2>
             </div>
 

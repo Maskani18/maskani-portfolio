@@ -1,13 +1,17 @@
+"use client";
+
 import type { JSX } from "react";
 import * as LucideIcons from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { skills as skillsId } from "@/content/skills";
+import { skills as skillsEn } from "@/content/en/skills";
 
 import { SectionShell } from "@/components/layout/SectionShell";
 import { getSection } from "@/content/sections";
-import { skills } from "@/content/skills";
 
 // Fungsi mapping ikon yang lebih aman
-const getSkillIcon = (iconName: string) => {
-  const iconMap: Record<string, React.ElementType> = {
+const getSkillIcon = (iconName: string): JSX.Element => {
+  const iconMap: Record<string, LucideIcons.LucideIcon> = {
     code: LucideIcons.Code,
     Table: LucideIcons.Table,
     Network: LucideIcons.Network,
@@ -16,7 +20,8 @@ const getSkillIcon = (iconName: string) => {
 
   const IconComponent =
     iconMap[iconName] ||
-    (LucideIcons[iconName as keyof typeof LucideIcons] as React.ElementType) ||
+    (LucideIcons[iconName as keyof typeof LucideIcons] as
+      LucideIcons.LucideIcon | undefined) ||
     LucideIcons.Monitor;
 
   return <IconComponent size={16} strokeWidth={1.5} className="md:size-5" />;
@@ -24,6 +29,10 @@ const getSkillIcon = (iconName: string) => {
 
 export function Skills(): JSX.Element {
   const entry = getSection("skills");
+  const { lang } = useLanguage();
+
+  // Pilih data skills berdasarkan bahasa aktif.
+  const skills = lang === "id" ? skillsId : skillsEn;
 
   return (
     <SectionShell
@@ -60,19 +69,24 @@ export function Skills(): JSX.Element {
         <div className="mb-8 flex flex-col items-start justify-between gap-4 md:mb-12 md:flex-row md:items-end">
           <div>
             <h2 className="font-display text-[clamp(2rem,5vw,4rem)] uppercase leading-none text-text-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-              Skills
+              {lang === "id" ? "Keahlian" : "Skills"}
             </h2>
             <p className="mt-3 max-w-[62ch] text-xs text-text-2 md:mt-4 md:text-base">
-              Tools, technologies, and skills I use to build and support
-              effective solutions.
+              {lang === "id"
+                ? "Perangkat, teknologi, dan keahlian yang saya gunakan untuk membangun serta mendukung solusi yang efektif."
+                : "Tools, technologies, and skills I use to build and support effective solutions."}
             </p>
           </div>
+
           <div className="hidden flex-col items-end text-right font-mono text-[0.65rem] uppercase tracking-widest text-accent md:flex md:text-xs">
             <span className="flex items-center gap-2">
               {"// SYSTEM.CAPABILITIES"} <LucideIcons.Terminal size={16} />
             </span>
             <span className="mt-1 text-text-3">
-              STATUS: <span className="text-accent">ONLINE</span>
+              {lang === "id" ? "STATUS: " : "STATUS: "}
+              <span className="text-accent">
+                {lang === "id" ? "AKTIF" : "ONLINE"}
+              </span>
             </span>
           </div>
         </div>
@@ -98,6 +112,7 @@ export function Skills(): JSX.Element {
                   <span className="text-text-3">/</span>
                   {group.label}
                 </h3>
+
                 <p className="font-mono text-[0.55rem] uppercase tracking-widest text-text-3 md:text-xs">
                   [ {group.evidence} ]
                 </p>
@@ -105,32 +120,30 @@ export function Skills(): JSX.Element {
 
               {/* Grid Item */}
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-3 lg:grid-cols-4 xl:grid-cols-5">
-                {group.items.map((item) => {
-                  return (
-                    <div
-                      key={item.label}
-                      className="group/item relative flex flex-col items-start gap-2 overflow-hidden rounded border border-accent/20 bg-[#090B0D]/60 p-2.5 transition-all hover:border-accent/60 hover:bg-accent/10 md:gap-3 md:p-3"
-                    >
-                      {/* Efek Garis Hover */}
-                      <div className="absolute left-0 top-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover/item:w-full" />
+                {group.items.map((item) => (
+                  <div
+                    key={item.label}
+                    className="group/item relative flex flex-col items-start gap-2 overflow-hidden rounded border border-accent/20 bg-[#090B0D]/60 p-2.5 transition-all hover:border-accent/60 hover:bg-accent/10 md:gap-3 md:p-3"
+                  >
+                    {/* Efek Garis Hover */}
+                    <div className="absolute left-0 top-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover/item:w-full" />
 
-                      {/* Kotak Ikon Menyala */}
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-sm border border-accent/30 bg-accent/10 text-accent shadow-[0_0_10px_rgba(138,164,255,0.1)] transition-all group-hover/item:scale-110 group-hover/item:border-accent group-hover/item:shadow-[0_0_15px_rgba(138,164,255,0.4)] md:size-9">
-                        {getSkillIcon(item.icon)}
-                      </div>
-
-                      {/* Teks (Font Body / Inter, Rapat & Jelas) */}
-                      <div className="flex w-full flex-col gap-0.5">
-                        <h4 className="w-full break-words font-sans text-[0.7rem] font-semibold leading-tight text-text-1 transition-colors group-hover/item:text-accent md:text-xs">
-                          {item.label}
-                        </h4>
-                        <p className="hidden text-[0.6rem] leading-tight text-text-3 sm:block">
-                          {item.description}
-                        </p>
-                      </div>
+                    {/* Kotak Ikon Menyala */}
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-sm border border-accent/30 bg-accent/10 text-accent shadow-[0_0_10px_rgba(138,164,255,0.1)] transition-all group-hover/item:scale-110 group-hover/item:border-accent group-hover/item:shadow-[0_0_15px_rgba(138,164,255,0.4)] md:size-9">
+                      {getSkillIcon(item.icon)}
                     </div>
-                  );
-                })}
+
+                    {/* Nama dan Deskripsi Skill */}
+                    <div className="flex w-full flex-col gap-0.5">
+                      <h4 className="w-full break-words font-sans text-[0.7rem] font-semibold leading-tight text-text-1 transition-colors group-hover/item:text-accent md:text-xs">
+                        {item.label}
+                      </h4>
+                      <p className="hidden text-[0.6rem] leading-tight text-text-3 sm:block">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}

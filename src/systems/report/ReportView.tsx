@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Building2,
@@ -12,11 +14,14 @@ import {
   Code2,
 } from "lucide-react";
 import type { JSX } from "react";
-
+import { useLanguage } from "@/context/LanguageContext";
+import { projects as projectsId } from "@/content/projects";
+import { projectsEn } from "@/content/en/projects";
 import type { Project } from "@/content/types";
 
 // --- IKON FITUR ---
 const FeatureIcon = ({ name }: { name: string }) => {
+  // ... (biarkan kode FeatureIcon tetap sama)
   const icons: Record<string, JSX.Element> = {
     user: (
       <svg
@@ -99,11 +104,9 @@ const FeatureIcon = ({ name }: { name: string }) => {
   return icons[name] || icons.monitor;
 };
 
-// --- IKON TECH STACK ---
 const getTechIcon = (tech: string) => {
   const className = "text-accent";
   const size = 12;
-
   switch (tech.toLowerCase()) {
     case "react.js":
       return <Atom size={size} className={className} />;
@@ -117,12 +120,27 @@ const getTechIcon = (tech: string) => {
       return <Route size={size} className={className} />;
     case "jwt / auth":
       return <ShieldCheck size={size} className={className} />;
+    case "laravel 11":
+      return <Server size={size} className={className} />;
+    case "postgresql":
+      return <Globe size={size} className={className} />;
+    case "mikrotik api":
+      return <Route size={size} className={className} />;
+    case "k-means clustering":
+      return <Code2 size={size} className={className} />;
     default:
       return <Code2 size={size} className={className} />;
   }
 };
 
-export function ReportView({ project }: { project: Project }) {
+export function ReportView({ project: initialProject }: { project: Project }) {
+  const { lang } = useLanguage();
+
+  // Ambil data project yang sesuai dengan bahasa
+  const projectList = lang === "id" ? projectsId : projectsEn;
+  const project =
+    projectList.find((p) => p.slug === initialProject.slug) || initialProject;
+
   const mainShot = project.screenshots?.[0];
   const otherShots = project.screenshots?.slice(1) || [];
 
@@ -130,7 +148,7 @@ export function ReportView({ project }: { project: Project }) {
 
   return (
     <article className="relative w-full bg-[#090B0D] pb-24 pt-8">
-      {/* Background Grid */}
+      {/* ... Background Grid ... */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
@@ -145,7 +163,8 @@ export function ReportView({ project }: { project: Project }) {
         <header className="mb-12 border-b border-accent/20 pb-8">
           <p className="flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-accent">
             <span className="size-2 animate-pulse rounded-full bg-accent shadow-[0_0_8px_rgba(138,164,255,0.8)]" />
-            [ Project Intern {project.index} ]
+            [ {lang === "id" ? "Laporan Proyek" : "Project Report"}{" "}
+            {project.index} ]
           </p>
           <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,6rem)] uppercase leading-none text-text-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
             {project.title}
@@ -173,7 +192,9 @@ export function ReportView({ project }: { project: Project }) {
             <span>
               {"//"} {mainShot.id} {mainShot.title}
             </span>
-            <span className="text-text-3">Tampilan Utama</span>
+            <span className="text-text-3">
+              {lang === "id" ? "Tampilan Utama" : "Main View"}
+            </span>
           </div>
 
           <div
@@ -186,7 +207,6 @@ export function ReportView({ project }: { project: Project }) {
               <div className="pointer-events-none absolute right-2 top-2 size-6 border-r-2 border-t-2 border-accent md:right-4 md:top-4" />
               <div className="pointer-events-none absolute bottom-2 left-2 size-6 border-b-2 border-l-2 border-accent md:bottom-4 md:left-4" />
               <div className="pointer-events-none absolute bottom-2 right-2 size-6 border-b-2 border-r-2 border-accent md:bottom-4 md:right-4" />
-
               <Image
                 src={mainShot.src}
                 alt={mainShot.alt}
@@ -205,17 +225,18 @@ export function ReportView({ project }: { project: Project }) {
           <div className="flex flex-col gap-8">
             <section className="rounded-xl border border-accent/10 bg-[#090B0D]/50 p-5 backdrop-blur-sm md:p-6">
               <h2 className="mb-4 flex items-center gap-3 font-display text-xl uppercase text-text-1">
-                <span className="text-accent">{"//"}</span> Tentang Project
+                <span className="text-accent">{"//"}</span>{" "}
+                {lang === "id" ? "Tentang Proyek" : "About Project"}
               </h2>
               <p className="text-sm leading-relaxed text-text-2 md:text-base">
                 {project.context.short}
               </p>
             </section>
 
-            {/* FITUR UTAMA (Diperbaiki untuk Mobile) */}
             <section>
               <h2 className="mb-4 flex items-center gap-3 font-display text-xl uppercase text-text-1">
-                <span className="text-accent">{"//"}</span> Fitur Utama
+                <span className="text-accent">{"//"}</span>{" "}
+                {lang === "id" ? "Fitur Utama" : "Key Features"}
               </h2>
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3">
                 {project.features?.map((f) => (
@@ -239,7 +260,6 @@ export function ReportView({ project }: { project: Project }) {
               </div>
             </section>
 
-            {/* TECH STACK (Dengan Ikon Lucide) */}
             <section>
               <h2 className="mb-4 flex items-center gap-3 font-display text-xl uppercase text-text-1">
                 <span className="text-accent">{"//"}</span> Tech Stack
@@ -250,8 +270,7 @@ export function ReportView({ project }: { project: Project }) {
                     key={s}
                     className="flex items-center gap-1.5 rounded border border-accent/20 bg-[#090B0D] px-2.5 py-1.5 font-mono text-[0.65rem] uppercase text-text-2 md:px-3"
                   >
-                    {getTechIcon(s)}
-                    {s}
+                    {getTechIcon(s)} {s}
                   </span>
                 ))}
               </div>
@@ -281,13 +300,12 @@ export function ReportView({ project }: { project: Project }) {
               </div>
             ))}
 
-            {/* Panel Detail Peran */}
             <div className="relative mt-2 overflow-hidden rounded-xl border border-accent/20 bg-accent/5 p-5 md:p-6">
               <div className="pointer-events-none absolute left-0 top-0 size-4 border-l-2 border-t-2 border-accent" />
               <div className="pointer-events-none absolute bottom-0 right-0 size-4 border-b-2 border-r-2 border-accent" />
 
               <h3 className="mb-4 font-mono text-sm uppercase tracking-widest text-accent">
-                [ Detail Peran ]
+                [ {lang === "id" ? "Detail Peran" : "Role Details"} ]
               </h3>
               <ul className="flex flex-col gap-3">
                 {project.roleDetails?.map((detail, i) => (
@@ -295,16 +313,15 @@ export function ReportView({ project }: { project: Project }) {
                     key={i}
                     className="flex items-start gap-2 text-sm leading-relaxed text-text-2"
                   >
-                    <span className="mt-0.5 font-mono text-accent">{`>`}</span>
+                    <span className="mt-0.5 font-mono text-accent">{`>`}</span>{" "}
                     {detail}
                   </li>
                 ))}
               </ul>
 
-              {/* Catatan Penutup Bergaya Terminal */}
-              <div className="mt-6 border border-accent/20 bg-[#090B0D]/60 p-4 rounded">
+              <div className="mt-6 rounded border border-accent/20 bg-[#090B0D]/60 p-4">
                 <p className="mb-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent opacity-70">
-                  {"//"} Catatan Project
+                  {"//"} {lang === "id" ? "Catatan Proyek" : "Project Note"}
                 </p>
                 <p className="text-xs italic leading-relaxed text-text-3 md:text-sm">
                   &ldquo;{project.closingQuote}&rdquo;
