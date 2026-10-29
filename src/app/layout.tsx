@@ -98,16 +98,13 @@ export default function RootLayout({
           >
             <SiteNav />
           </header>
-          <main id="main" className="relative">
-            {children}
-            {report}
-          </main>
-          <BackToTop />
 
           <main id="main" className="relative">
             {children}
             {report}
           </main>
+
+          <BackToTop />
         </LanguageProvider>
       </body>
     </html>

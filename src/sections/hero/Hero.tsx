@@ -1,7 +1,6 @@
 // MASKANI — Section 01 Hero (V-1, DL-014a).
 "use client";
 import type { JSX } from "react";
-import { MapPin } from "lucide-react";
 
 import { SectionShell } from "@/components/layout/SectionShell";
 import { Button } from "@/components/ui/Button";
@@ -18,52 +17,13 @@ export function Hero(): JSX.Element {
   const entry = getSection("hero");
   const { lang } = useLanguage();
 
-  // Pilih data hero berdasarkan bahasa aktif.
   const hero = lang === "id" ? heroId : heroEn;
 
   return (
     <SectionShell entry={entry} hideHeader className="!py-0 relative">
       <HeroMotion />
 
-      <div className="flex min-h-[auto] flex-col justify-start gap-8 pt-24 pb-10 md:min-h-[calc(100svh-var(--nav-height))] md:justify-center md:gap-12 md:pt-32 md:pb-24">
-        {/* Meta info & Chip Open to Work */}
-        <div
-          className="relative z-40 flex flex-col items-start justify-between gap-4 md:flex-row md:items-start"
-          data-hero-meta
-        >
-          <div className="flex flex-col gap-1.5 font-mono text-[0.6rem] uppercase text-text-3 md:text-meta">
-            <ul className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-              {profile.fields.map((f, i) => (
-                <li key={f} className="flex items-center gap-2">
-                  {i > 0 ? (
-                    <span aria-hidden="true" className="text-accent opacity-50">
-                      /
-                    </span>
-                  ) : null}
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex items-center gap-1.5 text-accent">
-              <MapPin size={12} className="md:size-3.5" />
-              <span className="text-text-3">{profile.locationShort}</span>
-            </div>
-          </div>
-
-          {/* Status Indikator */}
-          <div className="group inline-flex items-center gap-2 rounded-sm border border-accent/30 bg-accent/5 px-2.5 py-1 backdrop-blur-sm transition-all hover:bg-accent/10 hover:shadow-[0_0_15px_rgba(138,164,255,0.2)] md:px-3 md:py-1.5">
-            <span className="relative flex size-2 md:size-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex size-2 rounded-full bg-accent md:size-2.5"></span>
-            </span>
-            <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent md:text-meta">
-              {profile.status}
-            </span>
-          </div>
-        </div>
-
-        {/* Blok Potret + Teks + CTA */}
+      <div className="flex min-h-[auto] flex-col justify-start gap-8 pt-28 pb-4 md:min-h-[auto] md:justify-center md:gap-12 md:pt-36 md:pb-8">
         <HeroPortrait
           src={hero.portrait.src}
           alt={hero.portrait.alt}
@@ -73,7 +33,8 @@ export function Hero(): JSX.Element {
             className="relative z-40 flex w-full flex-col items-center justify-center gap-4 text-center md:gap-8"
             data-hero-cta
           >
-            <p className="text-center text-[0.7rem] leading-snug text-text-2 md:text-lead md:leading-relaxed">
+            {/* PERUBAHAN: text-accent diganti jadi text-text-1 */}
+            <p className="text-center font-mono text-[0.7rem] uppercase tracking-widest text-text-1 md:text-sm md:leading-relaxed">
               {hero.lead}
             </p>
 

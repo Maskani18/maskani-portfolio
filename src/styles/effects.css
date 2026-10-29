@@ -488,3 +488,18 @@
     transform: scale(1) translateY(0);
   }
 }
+@keyframes text-blink {
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 0.4;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.animate-text-blink {
+  animation: text-blink 3s ease-in-out infinite;
+}

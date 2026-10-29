@@ -1,9 +1,9 @@
 // MASKANI — HeroPortrait (Mobile & Desktop: Teks & CTA di Kiri).
+"use client";
 
 import Image from "next/image";
 import type { JSX, ReactNode } from "react";
 import { useState } from "react";
-
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export type HeroPortraitProps = {
@@ -23,8 +23,6 @@ export function HeroPortrait({
 
   return (
     <div className="relative flex w-full flex-col gap-6 md:gap-16">
-      {/* Baris Utama: Teks + CTA (Kiri) & Foto (Kanan) */}
-      {/* PERUBAHAN: items-start diganti items-center agar sejajar tengah vertikal */}
       <div className="relative flex w-full flex-row items-center justify-between gap-4 md:gap-16">
         {/* BACKGROUND HUD */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
@@ -48,13 +46,13 @@ export function HeroPortrait({
         </div>
 
         {/* KOLOM KIRI: Judul, Tagline, & Tombol */}
-        {/* PERUBAHAN: justify-start diganti justify-center */}
         <div className="relative z-10 flex w-[60%] flex-col items-center justify-center gap-4 text-center md:w-[55%] md:gap-8">
           <div className="overflow-visible pb-1 md:pb-4">
+            {/* PERUBAHAN: Menambahkan animate-text-blink */}
             <h1
               id="hero-heading"
               data-hero-name
-              className="relative z-10 w-full text-center font-display text-[clamp(1.8rem,8vw,6rem)] leading-[0.9] text-text-1 md:text-d1 drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="animate-text-blink relative z-10 w-full text-center font-display text-[clamp(1.8rem,8vw,6rem)] leading-[0.9] text-text-1 md:text-d1"
             >
               {title}
             </h1>

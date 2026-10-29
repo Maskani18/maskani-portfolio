@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { JSX } from "react";
+import { motion } from "motion/react";
 import {
   Atom,
   Wind,
@@ -99,112 +100,125 @@ export function Projects(): JSX.Element {
             const mainShot = project.screenshots[0];
 
             return (
-              <Link
+              <motion.div
                 key={project.slug}
-                href={`/projects/${project.slug}`}
-                className="group relative flex flex-col justify-between gap-3 rounded-lg border border-accent/20 bg-[#090B0D]/60 p-2 transition-all duration-500 hover:border-accent/50 hover:bg-accent/5 hover:shadow-[0_0_30px_rgba(138,164,255,0.1)] md:gap-6 md:rounded-xl md:p-6"
-                style={{
-                  clipPath:
-                    "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
                 }}
+                className="relative"
               >
-                {/* HUD Sudut Kartu */}
-                <div className="pointer-events-none absolute left-0 top-0 size-2 border-l-2 border-t-2 border-accent opacity-50 transition-opacity group-hover:opacity-100 md:size-4" />
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group relative flex h-full flex-col justify-between gap-3 rounded-lg border border-accent/20 bg-[#090B0D]/60 p-2 transition-all duration-500 hover:border-accent/50 hover:bg-accent/5 hover:shadow-[0_0_30px_rgba(138,164,255,0.1)] md:gap-6 md:rounded-xl md:p-6"
+                  style={{
+                    clipPath:
+                      "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                  }}
+                >
+                  {/* HUD Sudut Kartu */}
+                  <div className="pointer-events-none absolute left-0 top-0 size-2 border-l-2 border-t-2 border-accent opacity-50 transition-opacity group-hover:opacity-100 md:size-4" />
 
-                <div className="pointer-events-none absolute bottom-0 right-0 size-2 border-b-2 border-r-2 border-accent opacity-50 transition-opacity group-hover:opacity-100 md:size-4" />
+                  <div className="pointer-events-none absolute bottom-0 right-0 size-2 border-b-2 border-r-2 border-accent opacity-50 transition-opacity group-hover:opacity-100 md:size-4" />
 
-                {/* Bagian Atas: Info + Gambar */}
-                <div className="flex flex-col gap-1.5 md:gap-4">
-                  <div className="flex items-center gap-1 font-mono text-[0.5rem] uppercase text-accent md:gap-2 md:text-xs">
-                    <span className="size-1 animate-pulse rounded-full bg-accent md:size-1.5" />
+                  {/* Bagian Atas: Info + Gambar */}
+                  <div className="flex flex-col gap-1.5 md:gap-4">
+                    <div className="flex items-center gap-1 font-mono text-[0.5rem] uppercase text-accent md:gap-2 md:text-xs">
+                      <span className="size-1 animate-pulse rounded-full bg-accent md:size-1.5" />
 
-                    <span>
-                      {project.index} / {project.title}
-                    </span>
-                  </div>
+                      <span>
+                        {project.index} / {project.title}
+                      </span>
+                    </div>
 
-                  <h3 className="font-display text-[0.7rem] uppercase leading-tight text-text-1 sm:text-lg md:text-4xl">
-                    {project.title}
-                  </h3>
+                    <h3 className="font-display text-[0.7rem] uppercase leading-tight text-text-1 sm:text-lg md:text-4xl">
+                      {project.title}
+                    </h3>
 
-                  <p className="line-clamp-2 text-[0.55rem] text-text-2 sm:text-xs md:line-clamp-none md:text-sm">
-                    {project.subtitle}
-                  </p>
+                    <p className="line-clamp-2 text-[0.55rem] text-text-2 sm:text-xs md:line-clamp-none md:text-sm">
+                      {project.subtitle}
+                    </p>
 
-                  {/* Gambar Utama */}
-                  {mainShot && (
-                    <div className="perspective-[1000px] mt-1 w-full md:mt-2">
-                      <div
-                        data-tilt
-                        className="group/img relative w-full transform-style-3d will-change-transform"
-                      >
-                        <div className="relative aspect-[16/10] w-full overflow-hidden rounded border border-accent/20 bg-[#090B0D] p-0.5 shadow-lg transition-colors duration-300 group-hover/img:border-accent/50 md:rounded-lg md:p-2 md:shadow-2xl">
-                          <Image
-                            src={mainShot.src}
-                            alt={mainShot.alt}
-                            fill
-                            className="object-cover object-top transition-transform duration-700 group-hover/img:scale-105"
-                            sizes="(min-width: 768px) 50vw, 50vw"
-                          />
+                    {/* Gambar Utama */}
+                    {mainShot && (
+                      <div className="perspective-[1000px] mt-1 w-full md:mt-2">
+                        <div
+                          data-tilt
+                          className="group/img relative w-full transform-style-3d will-change-transform"
+                        >
+                          <div className="relative aspect-[16/10] w-full overflow-hidden rounded border border-accent/20 bg-[#090B0D] p-0.5 shadow-lg transition-colors duration-300 group-hover/img:border-accent/50 md:rounded-lg md:p-2 md:shadow-2xl">
+                            <Image
+                              src={mainShot.src}
+                              alt={mainShot.alt}
+                              fill
+                              className="object-cover object-top transition-transform duration-700 group-hover/img:scale-105"
+                              sizes="(min-width: 768px) 50vw, 50vw"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bagian Bawah: Peran, Tempat, Tech Stack & Tombol */}
-                <div className="flex flex-col gap-2 border-t border-accent/10 pt-2 md:gap-4 md:pt-4">
-                  {/* Peran & Tempat */}
-                  <div className="flex flex-col gap-0.5 md:gap-1">
-                    <span className="flex items-center gap-1 font-mono text-[0.5rem] uppercase tracking-widest text-text-3 md:text-[0.65rem]">
-                      <User size={10} className="text-accent md:size-3" />
-                      {project.role}
-                    </span>
-
-                    <span className="flex items-center gap-1 font-mono text-[0.5rem] uppercase tracking-widest text-text-3 md:text-[0.65rem]">
-                      <Building2 size={10} className="text-accent md:size-3" />
-                      {project.org}
-                    </span>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-1 md:gap-1.5">
-                    {project.stack.slice(0, 3).map((s) => (
-                      <span
-                        key={s}
-                        className="flex items-center gap-1 rounded border border-accent/20 bg-[#090B0D] p-1 font-mono text-[0.5rem] uppercase text-text-2 md:px-2 md:py-1 md:text-[0.55rem]"
-                        title={s}
-                      >
-                        {getTechIcon(s)}
-                        <span className="hidden md:inline">{s}</span>
-                      </span>
-                    ))}
-
-                    {project.stack.length > 3 && (
-                      <span className="flex items-center justify-center rounded border border-hairline px-1.5 py-1 font-mono text-[0.5rem] text-text-3 md:px-2 md:text-[0.55rem]">
-                        +{project.stack.length - 3}
-                      </span>
                     )}
                   </div>
 
-                  {/* Tombol Detail */}
-                  <div className="group/btn mt-1 flex w-full items-center justify-between border border-accent/30 bg-accent/5 px-2 py-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent transition-all duration-300 group-hover:bg-accent/10 group-hover:shadow-[0_0_15px_rgba(138,164,255,0.3)] md:mt-2 md:px-4 md:py-3 md:text-xs">
-                    <span className="flex items-center gap-1 md:gap-2">
-                      <span className="opacity-50">[</span>
+                  {/* Bagian Bawah: Peran, Tempat, Tech Stack & Tombol */}
+                  <div className="flex flex-col gap-2 border-t border-accent/10 pt-2 md:gap-4 md:pt-4">
+                    {/* Peran & Tempat */}
+                    <div className="flex flex-col gap-0.5 md:gap-1">
+                      <span className="flex items-center gap-1 font-mono text-[0.5rem] uppercase tracking-widest text-text-3 md:text-[0.65rem]">
+                        <User size={10} className="text-accent md:size-3" />
+                        {project.role}
+                      </span>
 
-                      {lang === "id" ? "Detail" : "Details"}
+                      <span className="flex items-center gap-1 font-mono text-[0.5rem] uppercase tracking-widest text-text-3 md:text-[0.65rem]">
+                        <Building2
+                          size={10}
+                          className="text-accent md:size-3"
+                        />
+                        {project.org}
+                      </span>
+                    </div>
 
-                      <span className="opacity-50">]</span>
-                    </span>
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-1 md:gap-1.5">
+                      {project.stack.slice(0, 3).map((s) => (
+                        <span
+                          key={s}
+                          className="flex items-center gap-1 rounded border border-accent/20 bg-[#090B0D] p-1 font-mono text-[0.5rem] uppercase text-text-2 md:px-2 md:py-1 md:text-[0.55rem]"
+                          title={s}
+                        >
+                          {getTechIcon(s)}
+                          <span className="hidden md:inline">{s}</span>
+                        </span>
+                      ))}
 
-                    <Icon
-                      name="arrow-up-right"
-                      size={10}
-                      className="transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 md:size-3.5"
-                    />
+                      {project.stack.length > 3 && (
+                        <span className="flex items-center justify-center rounded border border-hairline px-1.5 py-1 font-mono text-[0.5rem] text-text-3 md:px-2 md:text-[0.55rem]">
+                          +{project.stack.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Tombol Detail */}
+                    <div className="group/btn mt-1 flex w-full items-center justify-between border border-accent/30 bg-accent/5 px-2 py-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent transition-all duration-300 group-hover:bg-accent/10 group-hover:shadow-[0_0_15px_rgba(138,164,255,0.3)] md:mt-2 md:px-4 md:py-3 md:text-xs">
+                      <span className="flex items-center gap-1 md:gap-2">
+                        <span className="opacity-50">[</span>
+
+                        {lang === "id" ? "Detail" : "Details"}
+
+                        <span className="opacity-50">]</span>
+                      </span>
+
+                      <Icon
+                        name="arrow-up-right"
+                        size={10}
+                        className="transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 md:size-3.5"
+                      />
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
