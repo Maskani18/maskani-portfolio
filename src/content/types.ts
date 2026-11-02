@@ -69,6 +69,7 @@ export type ExperienceItem = {
   readonly period: Period;
   readonly summary: string;
   readonly icon: "code" | "bug" | "monitor";
+  readonly logo?: string; // <-- TAMBAHKAN INI
   readonly techStack: readonly string[];
   readonly details?: ExperienceDetail;
 };

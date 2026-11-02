@@ -33,38 +33,49 @@ export function Hero(): JSX.Element {
             className="relative z-40 flex w-full flex-col items-center justify-center gap-4 text-center md:gap-8"
             data-hero-cta
           >
-            {/* PERUBAHAN: text-accent diganti jadi text-text-1 */}
             <p className="text-center font-mono text-[0.7rem] uppercase tracking-widest text-text-1 md:text-sm md:leading-relaxed">
               {hero.lead}
             </p>
 
-            {/* Tombol CTA */}
-            <div className="mt-2 flex w-full flex-row items-center justify-center gap-2 md:mt-0 md:gap-4">
+            {/* Tombol CTA - Sekarang ada 3 Tombol Sejajar */}
+            <div className="mt-2 flex w-full flex-row items-center justify-center gap-1.5 md:mt-0 md:gap-3">
+              {/* Tombol 1: Unduh CV */}
               <Button
                 href={profile.cvPath}
                 variant="primary"
                 magnetic
-                className="!h-auto !min-h-0 !flex-1 !rounded-none !bg-accent !px-2 !py-2 !text-[0.55rem] font-bold !text-[#090B0D] whitespace-nowrap shadow-[0_0_15px_rgba(138,164,255,0.3)] transition-all hover:!bg-accent-hover hover:shadow-[0_0_25px_rgba(138,164,255,0.5)] md:!flex-none md:!px-5 md:!py-2.5 md:!text-xs [clip-path:polygon(6px_0,100%_0,100%_calc(100%-6px),calc(100%-6px)_100%,0_100%,0_6px)]"
+                className="!h-auto !min-h-0 !flex-1 !rounded-none !bg-accent !px-1 !py-2 !text-[0.5rem] font-bold !text-[#090B0D] whitespace-nowrap shadow-[0_0_15px_rgba(138,164,255,0.3)] transition-all hover:!bg-accent-hover hover:shadow-[0_0_25px_rgba(138,164,255,0.5)] md:!flex-none md:!px-4 md:!py-2.5 md:!text-xs [clip-path:polygon(6px_0,100%_0,100%_calc(100%-6px),calc(100%-6px)_100%,0_100%,0_6px)]"
               >
                 <Icon
                   name="download"
-                  size={12}
+                  size={10}
                   className="md:size-3.5 shrink-0"
                 />
                 {lang === "id" ? "Unduh CV" : "Download CV"}
               </Button>
 
+              {/* Tombol 2: Lihat Project */}
               <Button
                 href="#projects"
                 variant="secondary"
-                className="!h-auto !min-h-0 !flex-1 !rounded-none !border-accent/40 !px-2 !py-2 !text-[0.55rem] whitespace-nowrap transition-all hover:!border-accent hover:!bg-accent/10 md:!flex-none md:!px-5 md:!py-2.5 md:!text-xs [clip-path:polygon(6px_0,100%_0,100%_calc(100%-6px),calc(100%-6px)_100%,0_100%,0_6px)]"
+                className="!h-auto !min-h-0 !flex-1 !rounded-none !border-accent/40 !px-1 !py-2 !text-[0.5rem] whitespace-nowrap transition-all hover:!border-accent hover:!bg-accent/10 md:!flex-none md:!px-4 md:!py-2.5 md:!text-xs [clip-path:polygon(6px_0,100%_0,100%_calc(100%-6px),calc(100%-6px)_100%,0_100%,0_6px)]"
               >
-                {lang === "id" ? "Lihat Project" : "View Projects"}
+                {lang === "id" ? "Project" : "Projects"}
                 <Icon
                   name="arrow-right"
-                  size={12}
+                  size={10}
                   className="md:size-3.5 shrink-0"
                 />
+              </Button>
+
+              {/* Tombol 3: Hubungi */}
+              <Button
+                href="#contact"
+                variant="secondary"
+                className="!h-auto !min-h-0 !flex-1 !rounded-none !border-accent/40 !px-1 !py-2 !text-[0.5rem] whitespace-nowrap transition-all hover:!border-accent hover:!bg-accent/10 md:!flex-none md:!px-4 md:!py-2.5 md:!text-xs [clip-path:polygon(6px_0,100%_0,100%_calc(100%-6px),calc(100%-6px)_100%,0_100%,0_6px)]"
+              >
+                {lang === "id" ? "Hubungi" : "Contact"}
+                <Icon name="mail" size={10} className="md:size-3.5 shrink-0" />
               </Button>
             </div>
           </div>

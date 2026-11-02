@@ -66,7 +66,6 @@ export function Experience(): JSX.Element {
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
   const { lang } = useLanguage();
 
-  // Pilih data pengalaman berdasarkan bahasa aktif.
   const experience = lang === "id" ? expId : expEn;
 
   return (
@@ -96,11 +95,12 @@ export function Experience(): JSX.Element {
             {experience.items.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative flex gap-3 pb-8 md:gap-5 md:pb-12"
+                onClick={() => setSelectedItem(item)}
+                className="group relative -mx-2 flex cursor-pointer gap-3 rounded-lg px-2 pb-8 transition-colors duration-300 hover:bg-white/[0.02] md:gap-5 md:pb-12"
               >
                 {/* Garis Timeline */}
                 {index !== experience.items.length - 1 && (
-                  <div className="absolute left-[4.5px] top-6 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent md:top-8" />
+                  <div className="absolute left-[12px] top-6 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent md:left-[18px] md:top-8" />
                 )}
 
                 {/* Titik Timeline */}
@@ -109,8 +109,21 @@ export function Experience(): JSX.Element {
                 {/* Konten Pengalaman */}
                 <div className="flex flex-1 flex-col gap-2 transition-transform duration-300 group-hover:translate-x-1 md:gap-4">
                   <div className="flex items-start gap-2 md:gap-4 lg:gap-6">
-                    <div className="hidden size-10 shrink-0 items-center justify-center rounded-md border border-accent/20 bg-accent/5 text-accent shadow-[0_0_15px_rgba(138,164,255,0.1)] transition-colors group-hover:bg-accent/20 md:flex md:size-12 lg:size-14">
-                      {Icons[item.icon]()}
+                    {/* Kotak Logo/Ikon */}
+                    <div className="relative hidden size-10 shrink-0 items-center justify-center overflow-hidden rounded-md border border-accent/20 bg-[#090B0D] text-accent shadow-[0_0_15px_rgba(138,164,255,0.1)] transition-colors group-hover:border-accent/50 md:flex md:size-12 lg:size-14">
+                      {item.logo ? (
+                        <Image
+                          src={item.logo}
+                          alt={item.org}
+                          fill
+                          sizes="(min-width: 768px) 56px, 40px"
+                          className="object-contain p-1.5 md:p-2"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-accent/5">
+                          {Icons[item.icon]()}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex flex-col gap-0.5 md:gap-1">
@@ -148,12 +161,8 @@ export function Experience(): JSX.Element {
                       )}
                     </div>
 
-                    {/* Tombol Detail */}
-                    <button
-                      type="button"
-                      onClick={() => setSelectedItem(item)}
-                      className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-accent transition-all hover:text-accent-hover md:gap-2 md:text-sm"
-                    >
+                    {/* Tombol Detail (Visual saja) */}
+                    <div className="group/btn flex items-center gap-1 font-mono text-[0.6rem] uppercase text-accent transition-all group-hover:text-accent-hover md:gap-2 md:text-sm">
                       <span className="opacity-50">[</span>
                       {lang === "id" ? "Detail" : "Details"}
                       <span className="opacity-50">]</span>
@@ -162,7 +171,7 @@ export function Experience(): JSX.Element {
                         size={10}
                         className="transition-transform group-hover/btn:translate-x-1 md:size-4"
                       />
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -10,6 +10,7 @@ export const experience = {
       summary:
         "Developed the SIDALEKAS interface using React.js and Tailwind CSS with a responsive design, and built data management features and REST API integration using Axios.",
       icon: "code",
+      logo: "/logos/diskominfo.webp",
       techStack: ["React.js", "Tailwind CSS", "Axios", "REST API"],
       details: {
         description:
@@ -38,6 +39,7 @@ export const experience = {
       summary:
         "Performed manual testing, UAT, retesting, bug documentation, and coordinated fixes with the developer team to ensure features ran according to user needs.",
       icon: "bug",
+      logo: "/logos/qtasnim.webp",
       techStack: ["Manual Testing", "UAT", "Bug Tracking", "Retesting"],
       details: {
         description:
@@ -65,6 +67,7 @@ export const experience = {
       summary:
         "Handled device troubleshooting, Windows installation and configuration, printers, networking (MikroTik), and computer and CCTV maintenance to support smooth operations.",
       icon: "monitor",
+      logo: "/logos/dirgantara.webp",
       techStack: ["Windows", "Networking", "MikroTik", "Troubleshooting"],
       details: {
         description:

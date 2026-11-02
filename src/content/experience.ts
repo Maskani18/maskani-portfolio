@@ -11,6 +11,7 @@ export const experience = {
       summary:
         "Mengembangkan antarmuka SIDALEKAS menggunakan React.js dan Tailwind CSS dengan tampilan responsif, serta membangun fitur pengelolaan data dan integrasi REST API menggunakan Axios.",
       icon: "code",
+      logo: "/logos/diskominfo.webp",
       techStack: ["React.js", "Tailwind CSS", "Axios", "REST API"],
       details: {
         description:
@@ -39,6 +40,7 @@ export const experience = {
       summary:
         "Melakukan manual testing, UAT, retesting, dokumentasi bug, dan koordinasi perbaikan bersama tim developer untuk memastikan fitur berjalan sesuai kebutuhan pengguna.",
       icon: "bug",
+      logo: "/logos/qtasnim.webp",
       techStack: ["Manual Testing", "UAT", "Bug Tracking", "Retesting"],
       details: {
         description:
@@ -66,6 +68,7 @@ export const experience = {
       summary:
         "Menangani troubleshooting perangkat, instalasi dan konfigurasi Windows, printer, jaringan (MikroTik), serta pemeliharaan perangkat komputer dan CCTV untuk mendukung kelancaran operasional.",
       icon: "monitor",
+      logo: "/logos/dirgantara.webp",
       techStack: ["Windows", "Networking", "MikroTik", "Troubleshooting"],
       details: {
         description:
